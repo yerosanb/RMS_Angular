@@ -1,0 +1,219 @@
+<div class="row">
+    <div class="col-12">
+      <div class="page-title-box">
+        <app-navigator-upper></app-navigator-upper>
+        <h4 class="page-title"> Pending user</h4>
+        <div class="card">
+          <div class="card-body">
+            <h4 class="header-title">Approve</h4>
+            <div class="continer mb-4">
+              <div class="row mt-4">
+                <form (ngSubmit)="onSubmit()" [formGroup]="registerForm">
+                  <div class="row">
+                    <div class="mb-3 col-sm-4">
+                      <label for="firstname" class="form-label">First Name</label>
+                      <div class="input-group">
+                        <input class="form-control" type="text" id="firstname" formControlName="firstname"
+                          placeholder="First Name" autocomplete="off" />
+                        <div class="valid-feedback" *ngIf="
+                            submitted && registerForm.controls['firstname'].valid
+                          ">
+                          Looks good!
+                        </div>
+                        <div class="invalid-feedback"
+                          *ngIf="registerForm.controls['firstname'].touched && registerForm.controls['firstname'].errors?.['pattern']">
+                          Please enter valid name.
+                        </div>
+                        <div class="invalid-feedback"
+                          *ngIf="submitted && registerForm.controls['firstname'].errors?.['required']">
+                          Please enter firstname.
+                        </div>
+                        <div class="invalid-feedback"
+                          *ngIf="submitted && registerForm.controls['firstname'].errors?.['minlength']">
+                          At least 4 Characters.
+                        </div>
+                        <div class="invalid-feedback"
+                          *ngIf="submitted && registerForm.controls['firstname'].errors?.['maxlength']">
+                          At most 50 Characters.
+                        </div>
+                      </div>
+                    </div>
+                    <div class="mb-3 col-sm-4">
+                      <label for="middlename" class="form-label">Middle Name</label>
+                      <div class="input-group">
+                        <input class="form-control" type="text" id="middlename" formControlName="middlename"
+                          placeholder="Middle Name" autocomplete="off" />
+                        <div class="valid-feedback" *ngIf="
+                            submitted && registerForm.controls['middlename'].valid
+                          ">
+                          Looks good!
+                        </div>
+                        <div class="invalid-feedback"
+                          *ngIf="registerForm.controls['middlename'].touched && registerForm.controls['middlename'].errors?.['pattern']">
+                          Please enter valid name.
+                        </div>
+                        <div class="invalid-feedback"
+                          *ngIf="submitted && registerForm.controls['middlename'].errors?.['required']">
+                          Please enter middlename.
+                        </div>
+                        <div class="invalid-feedback"
+                          *ngIf="submitted && registerForm.controls['middlename'].errors?.['minlength']">
+                          At least 4 Characters.
+                        </div>
+                        <div class="invalid-feedback"
+                          *ngIf="submitted && registerForm.controls['middlename'].errors?.['maxlength']">
+                          At most 50 Characters.
+                        </div>
+                      </div>
+                    </div>
+                    <div class="mb-3 col-sm-4">
+                      <label for="lastname" class="form-label">Last Name</label>
+                      <div class="input-group">
+                        <input class="form-control" type="text" id="lastname" formControlName="lastname"
+                          placeholder="Last Name" autocomplete="off" />
+                        <div class="valid-feedback" *ngIf="
+                            submitted && registerForm.controls['lastname'].valid
+                          ">
+                          Looks good!
+                        </div>
+                        <div class="invalid-feedback"
+                          *ngIf="registerForm.controls['lastname'].touched && registerForm.controls['lastname'].errors?.['pattern']">
+                          Please enter valid name.
+                        </div>
+                        <div class="invalid-feedback"
+                          *ngIf="submitted && registerForm.controls['lastname'].errors?.['required']">
+                          Please enter lastname.
+                        </div>
+                        <div class="invalid-feedback"
+                          *ngIf="submitted && registerForm.controls['lastname'].errors?.['minlength']">
+                          At least 4 Characters.
+                        </div>
+                        <div class="invalid-feedback"
+                          *ngIf="submitted && registerForm.controls['lastname'].errors?.['maxlength']">
+                          At most 50 Characters.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="mb-3 col-sm-4">
+                      <label for="role" class="form-label">Assign Role</label>
+                      <app-multi-dropdown-roles></app-multi-dropdown-roles>
+                      <div class="valid-feedback" *ngIf="
+                      submitted && this.componentMultiRoles.selectedItems.length > 0
+                    ">
+                        Looks good!
+                      </div>
+                      <div class="invalid-feedback"
+                        *ngIf="submitted && !(this.componentMultiRoles.selectedItems.length > 0)">
+                        Please select a role for the user.
+                      </div>
+                    </div>
+                    <div class="mb-3 col-sm-6">
+                      <div>
+                        <label for="gender" class="form-label">Gender</label>
+                        <div class="mt-1">
+                          <div class="form-check form-check-inline">
+                            <input type="radio" id="customRadio3" value="Male" name="gender" formControlName="gender"
+                              class="form-check-input" />
+                            <label class="form-check-label" for="customRadio3">Male</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                            <input type="radio" id="customRadio4" value="Female" name="gender" formControlName="gender"
+                              class="form-check-input" />
+                            <label class="form-check-label" for="customRadio4">Female</label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="mb-3 col-sm-6">
+                      <label for="email" class="form-label">Email</label>
+                      <div class="input-group">
+                        <input class="form-control" type="email" id="email" formControlName="email" placeholder="Email"
+                          autocomplete="off" (ngModelChange)="
+                            checkEmailExist(registerForm.controls['email'].value)
+                          " />
+                        <div *ngIf="checkEmailExistPayload.email != ''" style="
+                            position: absolute;
+                            top: 20px;
+                            left: 95%;
+                            transform: translate(-50%, -50%);
+                            z-index: 3;
+                          ">
+                          <div id="invalid-email" class="d-none">
+                            <i class="dripicons-thumbs-up" style="color: #04d12a"></i>
+                          </div>
+                          <div id="valid-email" class="d-none">
+                            <i class="dripicons-thumbs-down" style="color: red"></i>
+                          </div>
+                        </div>
+                        <div class="valid-feedback" *ngIf="
+                            submitted && registerForm.controls['email'].valid
+                          ">
+                          Looks good!
+                        </div>
+                        <div class="invalid-feedback"
+                          *ngIf="submitted && registerForm.controls['email'].errors?.['required']">
+                          Please enter email.
+                        </div>
+                        <div class="invalid-feedback"
+                          *ngIf="submitted && registerForm.controls['email'].errors?.['email']">
+                          Invalid email
+                        </div>
+                        <div class="invalid-feedback"
+                          *ngIf="submitted && registerForm.controls['email'].errors?.['maxlength']">
+                          At most 320 characters.
+                        </div>
+                      </div>
+                    </div>
+                    <div class="mb-3 col-sm-6">
+                      <label for="phonenumber" class="form-label">Phone Number</label>
+                      <div class="input-group">
+                        <input class="form-control" type="text" id="phonenumber" formControlName="phonenumber"
+                          placeholder="Phone Number" autocomplete="off" />
+                        <div class="valid-feedback" *ngIf="
+                            submitted &&
+                            registerForm.controls['phonenumber'].valid
+                          ">
+                          Looks good!
+                        </div>
+                        <!-- <div class="invalid-feedback" *ngIf="registerForm.controls['phonenumber'].touched && registerForm.controls['phonenumber'].errors?.['pattern']">Please enter valid Phone number.
+                        </div> -->
+                        <div class="invalid-feedback"
+                          *ngIf="submitted && registerForm.controls['phonenumber'].errors?.['required']">
+                          Please enter phonenumber.
+                        </div>
+                        <div class="invalid-feedback"
+                          *ngIf="submitted && registerForm.controls['phonenumber'].errors?.['invalid_phone_number']">
+                          Invalid phone number
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mb-3 text-center">
+                    <button *ngIf="user_id == null" class="btn btn-primary" type="submit">
+                      Register
+                    </button>
+                    <button *ngIf="user_id != null" class="btn btn-primary" type="submit">
+                      Approve
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <swal #SuccessSwalRegisterUser title="Success" text="User approved successfully!" icon="success"
+    [showCancelButton]="false" [showConfirmButton]="false" [timer]="2500" [focusCancel]="true"></swal>
+  
+  <!-- <swal #SuccessSwalUpdateUser title="Success" text="User information updated successfully!" icon="success"
+    [showCancelButton]="false" [showConfirmButton]="false" [timer]="2500" [focusCancel]="true"></swal> -->
+  
+  <swal #SwalSessionExpired title="Warning" text="Your session has expired! please login to continue." icon="warning"
+    [showCancelButton]="false" [showConfirmButton]="false" [timer]="3500" [focusCancel]="true">
+  </swal>

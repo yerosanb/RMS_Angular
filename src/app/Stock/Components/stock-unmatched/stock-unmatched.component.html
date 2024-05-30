@@ -1,0 +1,371 @@
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box">
+            <h4 *ngIf="type=='121'" class="page-title">Stock - Stationary - Unmatched </h4>
+            <h4 *ngIf="type=='111'" class="page-title">Stock - Tools - Unmatched </h4>
+            <h4 *ngIf="type=='113'" class="page-title">Stock - Spares - Unmatched </h4>
+            <h4 *ngIf="type=='105'" class="page-title">Stock - Uniform - Unmatched </h4>
+            <h4 *ngIf="type=='119'" class="page-title">Stock - Accessory - Unmatched </h4>
+            <h4 *ngIf="type=='120'" class="page-title">Stock - Check - Unmatched </h4>
+            <h4 *ngIf="type=='112'" class="page-title">Stock - Sanitory - Unmatched </h4>
+            <h4 *ngIf="type=='106'" class="page-title">Stock - Computer - Unmatched </h4>
+            <h4 *ngIf="type=='107'" class="page-title">Stock - Furniture - Unmatched </h4>
+            <h4 *ngIf="type=='104'" class="page-title">Stock - Equipment - Unmatched </h4>
+            <h4 *ngIf="type=='all'" class="page-title">Stock - All - Unmatched </h4>
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-4" style="margin-top: 4px;">
+                            <div class="form-floating">
+                                <select formControlName="type" (change)="onChange($event)"
+                                    class="form-select text-primary" id="floatingSelect"
+                                    aria-label="Floating label select example">
+                                    <option value="000" *ngIf="authService.isFixedAsset()">Please Select Stock Category
+                                        !
+                                    </option>
+                                    <option value="121" *ngIf="authService.isFixedAsset()">Stationary</option>
+                                    <option value="111" *ngIf="authService.isFixedAsset()">Tools</option>
+                                    <option value="113" *ngIf="authService.isFixedAsset()">Spares</option>
+                                    <option value="105" *ngIf="authService.isFixedAsset()">Uniform</option>
+                                    <option value="119" *ngIf="authService.isFixedAsset()">Accessory</option>
+                                    <option value="120" *ngIf="authService.isFixedAsset()">Check</option>
+                                    <option value="112" *ngIf="authService.isFixedAsset()">Sanitory</option>
+                                    <option value="106" *ngIf="authService.isFixedAsset()">Computer Stock</option>
+                                    <option value="107" *ngIf="authService.isFixedAsset()">Furniture Stock</option>
+                                    <option value="104" *ngIf="authService.isFixedAsset()">O/Equipment Stock</option>
+                                    <option value="all" *ngIf="authService.isFixedAsset()">All Category of Stock
+                                    </option>
+                                </select>
+
+                            </div>
+                        </div>
+                        <div class="col-lg-4" style="margin-top: 4px;">
+                            <div class="form-floating">
+                                <input type="text" placeholder="Datepicker" class="form-control text-primary"
+                                    autocomplete="off" id="floatingInput" bsDatepicker [bsValue]="initialDateValue"
+                                    [bsConfig]="{ adaptivePosition: true }" (bsValueChange)="onReconDateChange($event)">
+                                <label for="floatingInput" style="color: black;">Transaction Date</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+
+                            <table datatable [dtOptions]="dtOptions_mms_stock" id="stock_mms_matched"
+                                class="table table-bordered dt-responsive nowrap w-100">
+                                <tfoot class="foot-datatables-container">
+                                    <tr style="border-top: none !important">
+                                        <th class="foot-datatables">
+                                            <div class="form-floating">
+                                                <input type="text" id="floatingInput" [ngModel]="mms_input_0"
+                                                    id="{{ mms_first_column_id }}" name="search-id"
+                                                    class="form-control {{ mms_first_column_id }} _id" />
+                                                <label for="floatingInput">Id</label>
+                                            </div>
+                                        </th>
+                                        <th class="foot-datatables">
+                                            <div class="form-floating">
+                                                <input type="text" id="floatingInput" id="{{ mms_second_column_id }}"
+                                                    name="search-first-name" [ngModel]="mms_input_1"
+                                                    class="form-control {{ mms_second_column_id }} _firstname" />
+
+                                                <label for="floatingInput">Category Description</label>
+                                            </div>
+                                        </th>
+                                        <th class="foot-datatables">
+                                            <div class="form-floating">
+                                                <input type="text" id="floatingInput" id="{{ mms_third_column_id }}"
+                                                    name="search-last-name" [ngModel]="mms_input_2"
+                                                    class="form-control {{ mms_third_column_id }} _middlename" />
+
+                                                <label for="floatingInput">Store code</label>
+                                            </div>
+                                        </th>
+                                        <th class="foot-datatables">
+                                            <div class="form-floating">
+                                                <input type="text" id="floatingInput" id="{{ mms_fourth_column_id }}"
+                                                    name="search-last-name" [ngModel]="mms_input_3"
+                                                    class="form-control {{ mms_fourth_column_id }} _lastname" />
+
+                                                <label for="floatingInput">Account Segment</label>
+                                            </div>
+                                        </th>
+                                        <th class="foot-datatables">
+                                            <div class="form-floating">
+                                                <input type="text" id="floatingInput" id="{{ mms_fifth_column_id }}"
+                                                    name="search-last-name" [ngModel]="mms_input_4"
+                                                    class="form-control {{ mms_fifth_column_id }} _gender" />
+
+                                                <label for="floatingInput">Transaction Date</label>
+                                            </div>
+                                        </th>
+
+                                        <th class="foot-datatables">
+                                            <div class="form-floating">
+                                                <input type="text" id="floatingInput" id="{{ mms_sixth_column_id }}"
+                                                    name="search-last-name" [ngModel]="mms_input_5"
+                                                    class="form-control {{ mms_sixth_column_id }} _role" />
+
+                                                <label for="floatingInput">Store name</label>
+                                            </div>
+                                        </th>
+                                        <th class="foot-datatables">
+                                            <div class="form-floating">
+                                                <input type="text" id="floatingInput" id="{{ mms_seventh_column_id }}"
+                                                    name="search-last-name" [ngModel]="mms_input_6"
+                                                    class="form-control {{ mms_seventh_column_id }} _email" />
+
+                                                <label for="floatingInput">Amount </label>
+                                            </div>
+                                        </th>
+                                        <th class="foot-datatables">
+                                            <div class="form-floating">
+                                                <input type="text" id="floatingInput" id="{{ mms_eighth_column_id }}"
+                                                    name="search-last-name" [ngModel]="mms_input_7" class="form-control {{ mms_eighth_column_id
+                                                    }} _phonenumber" />
+
+                                                <label for="floatingInput">Period</label>
+                                            </div>
+                                        </th>
+                                        <th class="foot-datatables">
+                                            <div class="form-floating">
+                                                <input type="text" id="floatingInput" id="{{ mms_ninth_column_id }}"
+                                                    name="search-last-name" [ngModel]="mms_input_8"
+                                                    class="form-control {{ mms_ninth_column_id }} _reg_date" />
+
+                                                <label for="floatingInput">Transaction code</label>
+                                            </div>
+                                        </th>
+
+                                        <th class="foot-datatables">
+                                            <div class="form-floating">
+                                                <input type="text" id="floatingInput" id="{{ mms_tenth_column_id }}"
+                                                    name="search-last-name" [ngModel]="mms_input_9"
+                                                    class="form-control {{ mms_tenth_column_id }} _reg_date" />
+
+                                                <label for="floatingInput">DR_CR</label>
+                                            </div>
+                                        </th>
+                                        <th class="foot-datatables">
+                                            <div class="form-floating">
+                                                <input type="text" id="floatingInput" id="{{ mms_eleventh_column_id }}"
+                                                    name="search-last-name" [ngModel]="mms_input_10"
+                                                    class="form-control {{ mms_eleventh_column_id }} _reg_date" />
+
+                                                <label for="floatingInput">Reference </label>
+                                            </div>
+                                        </th>
+                                        <th class="foot-datatables">
+                                            <div class="form-floating">
+                                                <input type="text" id="floatingInput" id="{{ mms_twelevth_column_id }}"
+                                                    name="search-last-name" [ngModel]="mms_input_11"
+                                                    class="form-control {{ mms_twelevth_column_id }} _reg_date" />
+
+                                                <label for="floatingInput">Main pg</label>
+                                            </div>
+                                        </th>
+                                        <th class="foot-datatables">
+                                            <div class="form-floating">
+                                                <input type="text" id="floatingInput"
+                                                    id="{{ mms_thirteenth_column_id }}" name="search-last-name"
+                                                    [ngModel]="mms_input_12"
+                                                    class="form-control {{ mms_thirteenth_column_id }} _reg_date" />
+
+                                                <label for="floatingInput">Descreption</label>
+                                            </div>
+                                        </th>
+                                        <!--      <th class="foot-datatables">
+                                       <div class="form-floating">
+                                                <input type="text" id="floatingInput"
+                                                    id="{{ mms_fourteenth_column_id }}" name="search-last-name"
+                                                    [ngModel]="mms_input_13"
+                                                    class="form-control {{ mms_fourteenth_column_id }} _reg_date" />
+
+                                                <label for="floatingInput">Match Id</label>
+                                            </div>
+                                        </th>
+                                        <th class="foot-datatables">
+                                            <div class="form-floating">
+                                                <input type="text" id="floatingInput" id="{{ mms_fifteenth_column_id }}"
+                                                    name="search-last-name" [ngModel]="mms_input_14"
+                                                    class="form-control {{ mms_fifteenth_column_id }} _reg_date" />
+
+                                                <label for="floatingInput">Match date</label>
+                                            </div>
+                                        </th>
+                                        <th class="foot-datatables">
+                                            <div class="form-floating">
+                                                <input type="text" id="floatingInput" id="{{ mms_sixteenth_column_id }}"
+                                                    name="search-last-name" [ngModel]="mms_input_15"
+                                                    class="form-control {{ mms_sixteenth_column_id }} _reg_date" />
+
+                                                <label for="floatingInput">Matched By</label>
+                                            </div>
+                                        </th> -->
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <div class="col-lg-6">
+                            <table datatable [dtOptions]="dtOptions_core_stock" id="stock_core_matched"
+                                class="table table-bordered dt-responsive nowrap w-100">
+                                <tfoot class="foot-datatables-container">
+                                    <tr style="border-top: none !important">
+                                        <th class="foot-datatables">
+                                            <div class="form-floating">
+                                                <input type="text" id="floatingInput" [ngModel]="core_input_0"
+                                                    id="{{ core_first_column_id }}" name="search-id"
+                                                    class="form-control {{ core_first_column_id }} _id" />
+                                                <label for="floatingInput">Id</label>
+                                            </div>
+                                        </th>
+                                        <th class="foot-datatables">
+                                            <div class="form-floating">
+                                                <input type="text" id="floatingInput" id="{{ core_second_column_id }}"
+                                                    name="search-first-name" [ngModel]="core_input_1"
+                                                    class="form-control {{ core_second_column_id }} _firstname" />
+
+                                                <label for="floatingInput">Account </label>
+                                            </div>
+                                        </th>
+                                        <th class="foot-datatables">
+                                            <div class="form-floating">
+                                                <input type="text" id="floatingInput" id="{{ core_third_column_id }}"
+                                                    name="search-last-name" [ngModel]="core_input_2"
+                                                    class="form-control {{ core_third_column_id }} _middlename" />
+
+                                                <label for="floatingInput">Transaction Reference</label>
+                                            </div>
+                                        </th>
+                                        <th class="foot-datatables">
+                                            <div class="form-floating">
+                                                <input type="text" id="floatingInput" id="{{ core_fourth_column_id }}"
+                                                    name="search-last-name" [ngModel]="core_input_3"
+                                                    class="form-control {{ core_fourth_column_id }} _lastname" />
+
+                                                <label for="floatingInput">Posting Date</label>
+                                            </div>
+                                        </th>
+                                        <th class="foot-datatables">
+                                            <div class="form-floating">
+                                                <input type="text" id="floatingInput" id="{{ core_fifth_column_id }}"
+                                                    name="search-last-name" [ngModel]="core_input_4"
+                                                    class="form-control {{ core_fifth_column_id }} _gender" />
+
+                                                <label for="floatingInput">Value Date</label>
+                                            </div>
+                                        </th>
+                                        <th class="foot-datatables">
+                                            <div class="form-floating">
+                                                <input type="text" id="floatingInput" id="{{ core_sixth_column_id }}"
+                                                    name="search-last-name" [ngModel]="core_input_5"
+                                                    class="form-control {{ core_sixth_column_id }} _role" />
+
+                                                <label for="floatingInput">Amount</label>
+                                            </div>
+                                        </th>
+                                        <th class="foot-datatables">
+                                            <div class="form-floating">
+                                                <input type="text" id="floatingInput" id="{{ core_seventh_column_id }}"
+                                                    name="search-last-name" [ngModel]="core_input_6"
+                                                    class="form-control {{ core_seventh_column_id }} _email" />
+
+                                                <label for="floatingInput">Balance</label>
+                                            </div>
+                                        </th>
+                                        <th class="foot-datatables">
+                                            <div class="form-floating">
+                                                <input type="text" id="floatingInput" id="{{ core_eighth_column_id }}"
+                                                    name="search-last-name" [ngModel]="core_input_7" class="form-control {{ core_eighth_column_id
+                                                    }} _phonenumber" />
+
+                                                <label for="floatingInput">Source Branch</label>
+                                            </div>
+                                        </th>
+                                        <th class="foot-datatables">
+                                            <div class="form-floating">
+                                                <input type="text" id="floatingInput" id="{{ core_ninth_column_id }}"
+                                                    name="search-last-name" [ngModel]="core_input_8"
+                                                    class="form-control {{ core_ninth_column_id }} _reg_date" />
+
+                                                <label for="floatingInput">Branch Name</label>
+                                            </div>
+                                        </th>
+                                        <th class="foot-datatables">
+                                            <div class="form-floating">
+                                                <input type="text" id="floatingInput" id="{{ core_tenth_column_id }}"
+                                                    name="search-last-name" [ngModel]="core_input_9"
+                                                    class="form-control {{ core_tenth_column_id }} _reg_date" />
+
+                                                <label for="floatingInput">Description</label>
+                                            </div>
+                                        </th>
+                                        <th class="foot-datatables">
+                                            <div class="form-floating">
+                                                <input type="text" id="floatingInput" id="{{ core_eleventh_column_id }}"
+                                                    name="search-last-name" [ngModel]="core_input_10"
+                                                    class="form-control {{ core_eleventh_column_id }} _reg_date" />
+
+                                                <label for="floatingInput">DR_CR</label>
+                                            </div>
+                                        </th>
+                                        <!-- <th class="foot-datatables">
+                                            <div class="form-floating">
+                                                <input type="text" id="floatingInput" id="{{ core_twelveth_column_id }}"
+                                                    name="search-last-name" [ngModel]="core_input_11"
+                                                    class="form-control {{ core_twelveth_column_id }} _reg_date" />
+
+                                                <label for="floatingInput">Status</label>
+                                            </div>
+                                        </th>
+
+                                        <th class="foot-datatables">
+                                            <div class="form-floating">
+                                                <input type="text" id="floatingInput"
+                                                    id="{{ core_thirteenth_column_id }}" name="search-last-name"
+                                                    [ngModel]="core_input_12"
+                                                    class="form-control {{ core_thirteenth_column_id }} _reg_date" />
+
+                                                <label for="floatingInput">Match Id</label>
+                                            </div>
+                                        </th>
+                                        <th class="foot-datatables">
+                                            <div class="form-floating">
+                                                <input type="text" id="floatingInput"
+                                                    id="{{ core_fourteenth_column_id }}" name="search-last-name"
+                                                    [ngModel]="core_input_13"
+                                                    class="form-control {{ core_fourteenth_column_id }} _reg_date" />
+
+                                                <label for="floatingInput">Match Date</label>
+                                            </div>
+                                        </th>
+                                        <th class="foot-datatables">
+                                            <div class="form-floating">
+                                                <input type="text" id="floatingInput"
+                                                    id="{{ core_fifteenth_column_id }}" name="search-last-name"
+                                                    [ngModel]="core_input_14"
+                                                    class="form-control {{ core_fifteenth_column_id }} _reg_date" />
+
+                                                <label for="floatingInput">Matched By</label>
+                                            </div>
+                                        </th> -->
+                                    </tr>
+                                </tfoot>
+                            </table>
+
+                            <button id="reset_button" class="btn btn-primary"
+                                (click)="clearAllSearches()">Reset</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<lib-ng-toast></lib-ng-toast>
+
+
+
+<swal #SwalSessionExpired title="Warning" text="Your session has expired! please login to continue." icon="warning"
+    [showCancelButton]="false" [showConfirmButton]="false" [timer]="3500" [focusCancel]="true">
+</swal>

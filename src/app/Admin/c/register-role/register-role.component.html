@@ -1,0 +1,124 @@
+<div class="field-row">
+    <div class="col-12">
+      <div class="page-title-box">
+        <app-navigator-upper></app-navigator-upper>
+        <h4 class="page-title">Create Role</h4>
+        
+        <div class="card">
+          <div class="card-body">
+             <div class="continer mb-4">
+              <div class="row mt-4">
+                <form
+                  (ngSubmit)="submitRole()"
+                  [formGroup]="submitRoleForm"
+                 >
+                  <div class="row">
+                    <div class="col-sm">
+                      <div class="continer mb-2 col-sm-12">
+                        
+                        <div class="form-group">
+                          <label for="floatingInput">Name</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="exampleInputEmail1"
+                            aria-describedby="emailHelp"
+                            name="name"
+                            placeholder="Enter role name"
+                            autocomplete="off"
+                            formControlName="name"
+                          />
+                        </div>
+                        <div class="invalid-feedback" *ngIf="submitRoleForm.controls['name'].touched && submitRoleForm.controls['name'].errors?.['pattern']">Please enter valid name.
+                        </div>
+   
+                        <div
+                          class="valid-feedback"
+                          *ngIf=" submitRoleForm.controls['name'].touched && submitRoleForm.controls['name'].valid"
+  
+                        >
+                          Looks good!
+                        </div>
+                        <div
+                          class="invalid-feedback"
+                          *ngIf="submitted  && submitRoleForm.controls['name'].errors?.['required']"
+                        >
+                          Please enter role name.
+                        </div>
+                        
+  
+  
+                        
+                        <div
+                          class="invalid-feedback"
+                          *ngIf="  submitRoleForm.controls['name'].touched && submitRoleForm.controls['name'].errors?.['minlength']"
+                        >
+                          At least 2 Characters.
+                        </div>
+                        <div
+                          class="invalid-feedback"
+                          *ngIf="  submitRoleForm.controls['name'].touched && submitRoleForm.controls['name'].errors?.['maxlength']"
+                        >
+                          At most 50 Characters.
+                        </div>
+                      </div>
+                    </div>
+                    <div class="continer mb-4">
+                      <div class="form-group mt-10">
+                        <quill-editor
+                          [placeholder]="'Enter description'"
+                          formControlName="description"
+                          style="width:100%"
+                         ></quill-editor>
+  
+                      </div>
+                      
+                      <div
+                        class="invalid-feedback"
+  
+                        *ngIf=" submitted  && submitRoleForm.controls['description'].errors?.['required']"
+                        >
+                        Please enter description.
+                      </div>
+  
+                    </div>
+                    
+                  </div>
+                  <div class="col-md-12  text-center">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- <swal
+      #SuccessSwalRegisterUser
+      title="Success"
+      text="User registered successfully!"
+      icon="success"
+      [showCancelButton]="false"
+      [showConfirmButton]="false"
+      [timer]="2500"
+      [focusCancel]="true"
+    ></swal> -->
+  
+    <swal
+    #SwalSessionExpired
+    title="Warning"
+    text="Your session has expired! please login to continue."
+    icon="warning"
+    [showCancelButton]="false"
+    [showConfirmButton]="false"
+    [timer]="3500"
+    [focusCancel]="true"
+  >
+  </swal>
+  
+   
+    <!-- </div> -->
+  <!-- </div> -->
+  

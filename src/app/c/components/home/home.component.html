@@ -1,0 +1,842 @@
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box">
+            <app-navigator-upper></app-navigator-upper>
+            <h4 class="page-title">Home</h4>
+            <!-- Approver dashboard beging-->
+            <div *ngIf="authService.isApprover()">
+                <div class="row">
+                    <div class="col-xl-6 ">
+                        <div class="card">
+                            <div class="card-body" style="height: 305px !important">
+                                <h6 class="text-uppercase mt-0">Total Currency and Account requests</h6>
+                                <div *ngIf="!chart4_no_data" class="row" style="    display: flex;
+                                        align-items: center;
+
+
+                                  
+                                        justify-content: center;
+                                        height: 100%;
+                                        padding-bottom: 12px;">
+                                    <canvas id="MyChart4">{{ chart4 }}</canvas>
+                                </div>
+                                <div *ngIf="chart4_no_data" style="width: 100%; height: 100%; position: relative;">
+                                    <div
+                                        style="text-align: center; width: 100%; height: 100%; position: absolute; left: 0; top: 50%; z-index: 200;">
+                                        <b>No request </b>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card" *ngIf="!data_is_ready" style="margin-top: -330px !important; z-index: 12;">
+                            <div class="card-body card__ is-loading" style="height: 307px !important">
+                                <h6 class="text-uppercase mt-0"></h6>
+                                <h5></h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="card" *ngIf="data_is_ready">
+                                    <div class="card-body">
+                                        <i class='mdi mdi-24px mdi-book-account float-end'></i>
+                                        <h6 class="text-uppercase mt-0">Accounts</h6>
+                                        <h2 class="my-2" id="active-users-count">
+                                            {{dashboard_data.total_number_of_accounts}}</h2>
+                                        <p class="mb-0 text-muted">
+                                            <span class="text-nowrap">Number of created accounts</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="card" *ngIf="!data_is_ready">
+                                    <div class="card-body card__ is-loading">
+                                        <!-- <i class='mdi mdi-24px mdi-book-account float-end'></i> -->
+                                        <h6 class="text-uppercase mt-0 d_item_title"></h6>
+                                        <h2 class="my-2" id="active-users-count"></h2>
+                                        <p class="mb-0 text-muted">
+                                            <span class="text-nowrap"></span>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="card" *ngIf="data_is_ready">
+                                    <div class="card-body">
+                                        <i class='mdi mdi-24px mdi-currency-eur float-end'></i>
+                                        <h6 class="text-uppercase mt-0">Currencies</h6>
+                                        <h2 class="my-2" id="active-users-count">
+                                            {{dashboard_data.total_number_of_currencies}}</h2>
+                                        <p class="mb-0 text-muted">
+                                            <span class="text-nowrap">Number of created currencies</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="card" *ngIf="!data_is_ready">
+                                    <div class="card-body card__ is-loading">
+                                        <!-- <i class='mdi mdi-24px mdi-currency-eur float-end'></i> -->
+                                        <h6 class="text-uppercase mt-0 d_item_title"></h6>
+                                        <h2 class="my-2" id="active-users-count"></h2>
+                                        <p class="mb-0 text-muted">
+                                            <span class="text-nowrap"></span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card" *ngIf="data_is_ready">
+                                    <div class="card-body">
+                                        <i class='mdi mdi-24px mdi-comment float-end'></i>
+                                        <h6 class="text-uppercase mt-0">Currency remarks</h6>
+                                        <h2 class="my-2" id="active-users-count">{{number_of_Currency_remark}}</h2>
+                                        <p class="mb-0 text-muted">
+                                            <!-- <span class="text-success me-2"><span class="mdi mdi-arrow-up-bold"></span> 5.27%</span> -->
+                                            <span class="text-nowrap">Total number of currency remarks</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="card" *ngIf="!data_is_ready">
+                                    <div class="card-body card__ is-loading">
+                                        <!-- <i class='mdi mdi-24px mdi-file-chart float-end'></i> -->
+                                        <h6 class="text-uppercase mt-0 d_item_title"></h6>
+                                        <h2 class="my-2" id="active-users-count"></h2>
+                                        <p class="mb-0 text-muted">
+                                            <span class="text-nowrap"></span>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="card" *ngIf="data_is_ready">
+                                    <div class="card-body">
+                                        <i class='mdi mdi-24px mdi-comment float-end'></i>
+                                        <h6 class="text-uppercase mt-0">Account remarks</h6>
+                                        <h2 class="my-2" id="active-users-count">{{number_of_account_remark}}</h2>
+                                        <p class="mb-0 text-muted">
+                                            <!-- <span class="text-success me-2"><span class="mdi mdi-arrow-up-bold"></span> 5.27%</span> -->
+                                            <span class="text-nowrap">Total number of account remarks</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="card" *ngIf="!data_is_ready">
+                                    <div class="card-body card__ is-loading">
+                                        <!-- <i class='mdi mdi-24px mdi-file-chart float-end'></i> -->
+                                        <h6 class="text-uppercase mt-0 d_item_title"></h6>
+                                        <h2 class="my-2" id="active-users-count"></h2>
+                                        <p class="mb-0 text-muted">
+                                            <span class="text-nowrap"></span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="authService.isUser()">
+                <div class="row">
+                    <div class="col-md-6 ">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="card" *ngIf="data_is_ready">
+                                    <div class="card-body">
+                                        <i class='mdi mdi-24px mdi-book-account float-end'></i>
+                                        <h6 class="text-uppercase mt-0">Accounts</h6>
+                                        <h2 class="my-2" id="active-users-count">
+                                            {{dashboard_data.total_number_of_accounts}}</h2>
+                                        <p class="mb-0 text-muted">
+                                            <span class="text-nowrap">Number of created accounts</span>
+                                        </p>
+                                    </div>
+
+                                </div>
+                                <div class="card" *ngIf="!data_is_ready">
+                                    <div class="card-body card__ is-loading">
+                                        <!-- <i class='mdi mdi-24px mdi-book-account float-end'></i> -->
+                                        <h6 class="text-uppercase mt-0 d_item_title"></h6>
+                                        <h2 class="my-2" id="active-users-count"></h2>
+                                        <p class="mb-0 text-muted">
+                                            <span class="text-nowrap"></span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="card" *ngIf="data_is_ready">
+                                    <div class="card-body">
+                                        <i class='mdi mdi-24px mdi-currency-eur float-end'></i>
+                                        <h6 class="text-uppercase mt-0">Currencies</h6>
+                                        <h2 class="my-2" id="active-users-count">
+                                            {{dashboard_data.total_number_of_currencies}}</h2>
+                                        <p class="mb-0 text-muted">
+                                            <span class="text-nowrap">Number of created currencies</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="card" *ngIf="!data_is_ready">
+                                    <div class="card-body card__ is-loading">
+                                        <!-- <i class='mdi mdi-24px mdi-currency-eur float-end'></i> -->
+                                        <h6 class="text-uppercase mt-0 d_item_title"></h6>
+                                        <h2 class="my-2" id="active-users-count"></h2>
+                                        <p class="mb-0 text-muted">
+                                            <span class="text-nowrap"></span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 ">
+                        <div class="row">
+                            <div class="col-lg-6 col-xl-6">
+                                <div class="card" *ngIf="data_is_ready">
+                                    <div class="card-body">
+                                        <i class='mdi mdi-24px mdi-bank-transfer float-end'></i>
+                                        <h6 class="text-uppercase mt-0">Transactions</h6>
+                                        <h4 class="my-0" id="active-users-count">ATS &nbsp;&nbsp;&nbsp;:&nbsp; <span
+                                                class="dashboard-number-text">{{dashboard_data.total_number_of_transactions_ats}}</span>
+                                        </h4>
+                                        <h4 class="mb-1 mt-0" id="active-users-count">CORE&nbsp; :&nbsp; <span
+                                                class="dashboard-number-text">{{dashboard_data.total_number_of_transactions_core}}</span>
+                                        </h4>
+                                        <p class="mb-0 text-muted float-bottom">
+                                            <!-- <span class="text-success me-2"><span class="mdi mdi-arrow-up-bold"></span> 5.27%</span> -->
+                                            <span class="text-nowrap">Total number of transactions</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="card is-loading" *ngIf="!data_is_ready">
+                                    <div class="card-body card__ is-loading">
+                                        <!-- <i class='mdi mdi-24px mdi-bank-transfer float-end'></i> -->
+                                        <h6 class="text-uppercase mt-0 d_item_title"></h6>
+                                        <h2 class="my-2" id="active-users-count"></h2>
+                                        <p class="mb-0 text-muted">
+                                            <span class="text-nowrap"></span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-xl-6">
+                                <div class="card" *ngIf="data_is_ready">
+                                    <div class="card-body">
+                                        <i class='mdi mdi-24px mdi-file-chart float-end'></i>
+                                        <h6 class="text-uppercase mt-0">Files</h6>
+                                        <h2 class="my-2" id="active-users-count">
+                                            {{dashboard_data.total_number_of_files}}</h2>
+                                        <p class="mb-0 text-muted">
+                                            <!-- <span class="text-success me-2"><span class="mdi mdi-arrow-up-bold"></span> 5.27%</span> -->
+                                            <span class="text-nowrap">Total number of uploaded files</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="card" *ngIf="!data_is_ready">
+                                    <div class="card-body card__ is-loading">
+                                        <!-- <i class='mdi mdi-24px mdi-file-chart float-end'></i> -->
+                                        <h6 class="text-uppercase mt-0 d_item_title"></h6>
+                                        <h2 class="my-2" id="active-users-count"></h2>
+                                        <p class="mb-0 text-muted">
+                                            <span class="text-nowrap"></span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 ">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="card" *ngIf="data_is_ready">
+                                    <div class="card-body" style="height: 304px">
+                                        <i class='mdi mdi-24px mdi-bank-transfer float-end'></i>
+                                        <h6 class="text-uppercase mt-0">Current Transactions</h6>
+                                        <h5 class="my-2 text-center mt-3" id="active-users-count">Core Total
+                                            &nbsp;&nbsp;&nbsp;: <span
+                                                class="dashboard-number-text">{{outstanding_core_total}}</span></h5>
+                                        <h5 class="my-1 mt-3" id="active-users-count">Core Credit &nbsp;&nbsp;&nbsp;:
+                                            <span
+                                                class="dashboard-number-text">{{dashboard_data.outstanding_transactions_on_core_credit}}</span>
+                                        </h5>
+                                        <h5 class="my-1 mt-2" id="active-users-count">Core Debit &nbsp;&nbsp;&nbsp;:
+                                            <span
+                                                class="dashboard-number-text">{{dashboard_data.outstanding_transactions_on_core_debit}}</span>
+                                        </h5>
+                                        <h5 class="my-2 text-center mt-3" id="active-users-count">Ats Total
+                                            &nbsp;&nbsp;&nbsp;: <span
+                                                class="dashboard-number-text">{{outstanding_ats_total}}</span></h5>
+                                        <h5 class="my-1 mt-2" id="active-users-count">Ats Credit &nbsp;&nbsp;&nbsp;:
+                                            <span
+                                                class="dashboard-number-text">{{dashboard_data.outstanding_transactions_on_ats_credit}}</span>
+                                        </h5>
+                                        <h5 class="my-2 " id="active-users-count">Ats Debit &nbsp;&nbsp;&nbsp;: <span
+                                                class="dashboard-number-text">{{dashboard_data.outstanding_transactions_on_ats_debit}}</span>
+                                        </h5>
+                                        <!-- <h4 class="my-1" id="active-users-count">ATS &nbsp;&nbsp;&nbsp;: <span class="dashboard-number-text">6,784,457</span></h4> -->
+                                        <!-- <h4 class="mb-1 mt-0" id="active-users-count">CORE : <span class="dashboard-number-text">6,545,158</span></h4> -->
+
+                                        <p class="mb-0 text-muted ">
+                                            <!-- <span class="text-success me-2"><span class="mdi mdi-arrow-up-bold"></span> 5.27%</span> -->
+                                            <span class="text-nowrap">Current outstanding transactions</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="card" *ngIf="!data_is_ready">
+                                    <div class="card-body card__ is-loading">
+                                        <!-- <i class='mdi mdi-24px mdi-bank-transfer float-end'></i> -->
+                                        <h6 class="text-uppercase mt-0 d_item_title"></h6>
+                                        <h1 class="my-2" id="active-users-count"></h1>
+                                        <h3 class="my-2" id="active-users-count"></h3>
+                                        <h3 class="my-2" id="active-users-count"></h3>
+                                        <h1 class="my-2" id="active-users-count"></h1>
+                                        <h3 class="my-2" id="active-users-count"></h3>
+                                        <h3 class="my-2" id="active-users-count"></h3>
+                                        <p class="mb-0 text-muted">
+                                            <span class="text-nowrap"></span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card" *ngIf="data_is_ready">
+                                    <div class="card-body">
+                                        <i class='mdi mdi-24px mdi-currency-usd float-end'></i>
+                                        <h6 class="text-uppercase mt-0">Beginning balance at ats</h6>
+                                        <h2 class="my-2" id="active-users-count">
+                                            {{dashboard_data.beginning_balance_ats}}</h2>
+                                        <p class="mb-0 text-muted">
+                                            <span class="text-nowrap">Beginning balance of the last day</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="card" *ngIf="!data_is_ready">
+                                    <div class="card-body card__ is-loading">
+                                        <!-- <i class='mdi mdi-24px mdi-currency-usd float-end'></i> -->
+                                        <h6 class="text-uppercase mt-0 d_item_title"></h6>
+                                        <h2 class="my-2" id="active-users-count"></h2>
+                                        <p class="mb-0 text-muted">
+                                            <span class="text-nowrap"></span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="card" *ngIf="data_is_ready">
+                                    <div class="card-body">
+                                        <i class='mdi mdi-24px mdi-currency-usd float-end'></i>
+                                        <h6 class="text-uppercase mt-0">Ending balance at ats</h6>
+                                        <h2 class="my-2" id="active-users-count">{{dashboard_data.ending_balance_ats}}
+                                        </h2>
+                                        <p class="mb-0 text-muted">
+                                            <span class="text-nowrap">Ending balance of the last day</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="card" *ngIf="!data_is_ready">
+                                    <div class="card-body card__ is-loading">
+                                        <!-- <i class='mdi mdi-24px mdi-currency-usd float-end'></i> -->
+                                        <h6 class="text-uppercase mt-0 d_item_title"></h6>
+                                        <h2 class="my-2" id="active-users-count"></h2>
+                                        <p class="mb-0 text-muted">
+                                            <span class="text-nowrap"></span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 ">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-body" style="height: 304px !important">
+                                        <h6 class="text-uppercase mt-0">Transactions of the last 7 days</h6>
+                                        <div *ngIf="!chart1_no_data" class="row" style="    display: flex;
+                                            align-items: center;
+                                            justify-content: center;
+                                            height: 100%;
+                                            padding: 12px;">
+                                            <canvas id="MyChart">{{ chart1 }}</canvas>
+                                        </div>
+                                        <div *ngIf="chart1_no_data"
+                                            style="width: 100%; height: 100%; position: relative;">
+                                            <div
+                                                style="text-align: center; width: 100%; height: 100%; position: absolute; left: 0; top: 50%; z-index: 200;">
+                                                <b>No uploded transaction </b>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card" *ngIf="!data_is_ready" style="margin-top: -328px; z-index: 12;">
+                                    <div class="card-body card__ is-loading" style="height: 304px !important">
+                                        <h6 class="text-uppercase mt-0"></h6>
+                                        <h5></h5>
+                                    </div>
+                                </div>
+                                <!-- <div class="card" *ngIf="!data_is_ready">
+                                <div class="card-body card__ is-loading">
+                                    <i class='mdi mdi-24px mdi-currency-usd float-end'></i>
+                                    <h6 class="text-uppercase mt-0 d_item_title"></h6>
+                                    <h2 class="my-2" id="active-users-count"></h2>
+                                    <p class="mb-0 text-muted">
+                                        <span class="text-nowrap"></span>
+                                    </p>
+                                </div>
+                            </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 ">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-body" style="height: 468px !important">
+                                        <h6 class="text-uppercase mt-0">total Matched transactions</h6>
+                                        <div *ngIf="!chart2_no_data" class="row" style="    display: flex;
+                                            align-items: center;
+                                            justify-content: center;
+                                            height: 100%;
+                                            padding-bottom: 12px;">
+                                            <canvas id="MyChart2">{{ chart2 }}</canvas>
+                                        </div>
+                                        <div *ngIf="chart2_no_data"
+                                            style="width: 100%; height: 100%; position: relative;">
+                                            <div
+                                                style="text-align: center; width: 100%; height: 100%; position: absolute; left: 0; top: 50%; z-index: 200;">
+                                                <b>No matched transaction</b>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="card" *ngIf="!data_is_ready" style="margin-top: -492px; z-index: 12;">
+                                    <div class="card-body card__ is-loading" style="height: 468px !important">
+                                        <h6 class="text-uppercase mt-0"></h6>
+                                        <h5></h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 ">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="card" *ngIf="data_is_ready">
+                                    <div class="card-body" style="height: 304px">
+                                        <i class='mdi mdi-24px mdi-currency-usd float-end'></i>
+                                        <h6 class="text-uppercase mt-0">Current Balance</h6>
+                                        <h5 class="my-2 text-center mt-3" id="active-users-count">Core Total
+                                            &nbsp;&nbsp;&nbsp;: <span
+                                                class="dashboard-number-text">{{outstanding_balance_core_total}}</span>
+                                        </h5>
+                                        <h5 class="my-1 mt-3" id="active-users-count">Core Credit &nbsp;&nbsp;&nbsp;:
+                                            <span
+                                                class="dashboard-number-text">{{dashboard_data.outstanding_balance_on_core_credit}}</span>
+                                        </h5>
+                                        <h5 class="my-1 mt-2" id="active-users-count">Core Debit &nbsp;&nbsp;&nbsp;:
+                                            <span
+                                                class="dashboard-number-text">{{dashboard_data.outstanding_balance_on_core_debit}}</span>
+                                        </h5>
+                                        <h5 class="my-2 text-center mt-3" id="active-users-count">Ats Total
+                                            &nbsp;&nbsp;&nbsp;: <span
+                                                class="dashboard-number-text">{{outstanding_balance_ats_total}}</span>
+                                        </h5>
+                                        <h5 class="my-1 mt-2" id="active-users-count">Ats Credit &nbsp;&nbsp;&nbsp;:
+                                            <span
+                                                class="dashboard-number-text">{{dashboard_data.outstanding_balance_on_ats_credit}}</span>
+                                        </h5>
+                                        <h5 class="my-2 " id="active-users-count">Ats Debit &nbsp;&nbsp;&nbsp;: <span
+                                                class="dashboard-number-text">{{dashboard_data.outstanding_balance_on_ats_debit}}</span>
+                                        </h5>
+                                        <p class="mb-0 text-muted ">
+                                            <span class="text-nowrap">Current outstanding balance</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="card" *ngIf="!data_is_ready">
+                                    <div class="card-body card__ is-loading">
+                                        <!-- <i class='mdi mdi-24px mdi-bank-transfer float-end'></i> -->
+                                        <h6 class="text-uppercase mt-0 d_item_title"></h6>
+                                        <h1 class="my-2" id="active-users-count"></h1>
+                                        <h3 class="my-2" id="active-users-count"></h3>
+                                        <h3 class="my-2" id="active-users-count"></h3>
+                                        <h1 class="my-2" id="active-users-count"></h1>
+                                        <h3 class="my-2" id="active-users-count"></h3>
+                                        <h3 class="my-2" id="active-users-count"></h3>
+                                        <p class="mb-0 text-muted">
+                                            <span class="text-nowrap"></span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card" *ngIf="data_is_ready">
+                                    <div class="card-body">
+                                        <i class='mdi mdi-24px mdi-currency-usd float-end'></i>
+                                        <h6 class="text-uppercase mt-0">BEGINNING BALANCE AT core</h6>
+                                        <h4 class="my-0" id="active-users-count">IFB &nbsp;&nbsp;&nbsp;:&nbsp; <span
+                                                class="dashboard-number-text">{{dashboard_data.beginning_balance_core_ifb}}</span>
+                                        </h4>
+                                        <h4 class="mb-1 mt-0" id="active-users-count">CONV&nbsp; :&nbsp; <span
+                                                class="dashboard-number-text">{{dashboard_data.beginning_balance_core_conv}}</span>
+                                        </h4>
+                                        <p class="mb-0 text-muted float-bottom">
+                                            <!-- <span class="text-success me-2"><span class="mdi mdi-arrow-up-bold"></span> 5.27%</span> -->
+                                            <span class="text-nowrap">Beginning balance of the last day</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="card" *ngIf="!data_is_ready">
+                                    <div class="card-body card__ is-loading">
+                                        <!-- <i class='mdi mdi-24px mdi-currency-usd float-end'></i> -->
+                                        <h6 class="text-uppercase mt-0 d_item_title"></h6>
+                                        <h2 class="my-2" id="active-users-count"></h2>
+                                        <p class="mb-0 text-muted">
+                                            <span class="text-nowrap"></span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="card" *ngIf="data_is_ready">
+                                    <div class="card-body">
+                                        <i class='mdi mdi-24px mdi-currency-usd float-end'></i>
+                                        <h6 class="text-uppercase mt-0">ENDING BALANCE AT core</h6>
+                                        <h4 class="my-0" id="active-users-count">IFB &nbsp;&nbsp;&nbsp;:&nbsp; <span
+                                                class="dashboard-number-text">{{dashboard_data.ending_balance_core_ifb}}</span>
+                                        </h4>
+                                        <h4 class="mb-1 mt-0" id="active-users-count">CONV&nbsp; :&nbsp; <span
+                                                class="dashboard-number-text">{{dashboard_data.ending_balance_core_conv}}</span>
+                                        </h4>
+                                        <p class="mb-0 text-muted float-bottom">
+                                            <!-- <span class="text-success me-2"><span class="mdi mdi-arrow-up-bold"></span> 5.27%</span> -->
+                                            <span class="text-nowrap">Ending balance of the last day</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="card" *ngIf="!data_is_ready">
+                                    <div class="card-body card__ is-loading">
+                                        <!-- <i class='mdi mdi-24px mdi-currency-usd float-end'></i> -->
+                                        <h6 class="text-uppercase mt-0 d_item_title"></h6>
+                                        <h2 class="my-2" id="active-users-count"></h2>
+                                        <p class="mb-0 text-muted">
+                                            <span class="text-nowrap"></span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="card" *ngIf="data_is_ready">
+                                    <div class="card-body">
+                                        <i class='mdi mdi-24px mdi-currency-usd float-end'></i>
+                                        <h6 class="text-uppercase mt-0">total BEGINNING BALANCE AT CORE</h6>
+                                        <h2 class="my-2" id="active-users-count">{{total_beginning_balance_core}}</h2>
+                                        <p class="mb-0 text-muted float-bottom">
+                                            <span class="text-nowrap">Total beginning balance of the last day</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="card" *ngIf="!data_is_ready">
+                                    <div class="card-body card__ is-loading">
+                                        <!-- <i class='mdi mdi-24px mdi-currency-usd float-end'></i> -->
+                                        <h6 class="text-uppercase mt-0 d_item_title"></h6>
+                                        <h2 class="my-2" id="active-users-count"></h2>
+                                        <p class="mb-0 text-muted">
+                                            <span class="text-nowrap"></span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="card" *ngIf="data_is_ready">
+                                    <div class="card-body">
+                                        <i class='mdi mdi-24px mdi-currency-usd float-end'></i>
+                                        <h6 class="text-uppercase mt-0">total ENDING BALANCE AT core</h6>
+                                        <h2 class="my-2" id="active-users-count">{{total_ending_balance_core}}</h2>
+                                        <p class="mb-0 text-muted float-bottom">
+                                            <span class="text-nowrap">Total Ending balance of the last day</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="card" *ngIf="!data_is_ready">
+                                    <div class="card-body card__ is-loading">
+                                        <!-- <i class='mdi mdi-24px mdi-currency-usd float-end'></i> -->
+                                        <h6 class="text-uppercase mt-0 d_item_title"></h6>
+                                        <h2 class="my-2" id="active-users-count"></h2>
+                                        <p class="mb-0 text-muted">
+                                            <span class="text-nowrap"></span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 ">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="card" *ngIf="data_is_ready">
+                                    <div class="card-body">
+                                        <i class='mdi mdi-24px mdi-currency-usd float-end'></i>
+                                        <h6 class="text-uppercase mt-0">adjusted BALANCE AT ats</h6>
+                                        <h2 class="my-2" id="active-users-count">{{current_adjusted_balance_ats}}</h2>
+                                        <p class="mb-0 text-muted float-bottom">
+                                            <span class="text-nowrap">Total adjusted balance at ats</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="card" *ngIf="!data_is_ready">
+                                    <div class="card-body card__ is-loading">
+                                        <!-- <i class='mdi mdi-24px mdi-currency-usd float-end'></i> -->
+                                        <h6 class="text-uppercase mt-0 d_item_title"></h6>
+                                        <h2 class="my-2" id="active-users-count"></h2>
+                                        <p class="mb-0 text-muted">
+                                            <span class="text-nowrap"></span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="card" *ngIf="data_is_ready">
+                                    <div class="card-body">
+                                        <i class='mdi mdi-24px mdi-book-edit float-end'></i>
+                                        <h6 class="text-uppercase mt-0">edited transactions</h6>
+                                        <h2 class="my-2" id="active-users-count">
+                                            {{dashboard_data.number_of_edited_transactions}}</h2>
+                                        <p class="mb-0 text-muted float-bottom">
+                                            <span class="text-nowrap">Total number of edited transactions</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="card" *ngIf="!data_is_ready">
+                                    <div class="card-body card__ is-loading">
+                                        <!-- <i class='mdi mdi-24px mdi-book-edit float-end'></i> -->
+                                        <h6 class="text-uppercase mt-0 d_item_title"></h6>
+                                        <h2 class="my-2" id="active-users-count"></h2>
+                                        <p class="mb-0 text-muted">
+                                            <span class="text-nowrap"></span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card" *ngIf="data_is_ready">
+                                    <div class="card-body">
+                                        <i class='mdi mdi-24px mdi-currency-usd float-end'></i>
+                                        <h6 class="text-uppercase mt-0">adjusted BALANCE AT core</h6>
+                                        <h2 class="my-2" id="active-users-count">{{current_adjusted_balance_core}}</h2>
+                                        <p class="mb-0 text-muted float-bottom">
+                                            <span class="text-nowrap">Total adjusted balance at core</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="card" *ngIf="!data_is_ready">
+                                    <div class="card-body card__ is-loading">
+                                        <!-- <i class='mdi mdi-24px mdi-currency-usd float-end'></i> -->
+                                        <h6 class="text-uppercase mt-0 d_item_title"></h6>
+                                        <h2 class="my-2" id="active-users-count"></h2>
+                                        <p class="mb-0 text-muted">
+                                            <span class="text-nowrap"></span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="card" *ngIf="data_is_ready">
+                                    <div class="card-body">
+                                        <i class='mdi mdi-24px mdi-delete float-end'></i>
+                                        <h6 class="text-uppercase mt-0">deleted transactions</h6>
+                                        <h2 class="my-2" id="active-users-count">
+                                            {{dashboard_data.number_of_deleted_transactions}}</h2>
+                                        <p class="mb-0 text-muted float-bottom">
+                                            <span class="text-nowrap">Total number of deleted transactions</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="card" *ngIf="!data_is_ready">
+                                    <div class="card-body card__ is-loading">
+                                        <!-- <i class='mdi mdi-24px mdi-delete float-end'></i> -->
+                                        <h6 class="text-uppercase mt-0 d_item_title"></h6>
+                                        <h2 class="my-2" id="active-users-count"></h2>
+                                        <p class="mb-0 text-muted">
+                                            <span class="text-nowrap"></span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 ">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-body" style="height: 304px !important">
+                                        <h6 class="text-uppercase mt-0">BEGINNING-ENDING balance of the last 7 days</h6>
+                                        <div *ngIf="!chart3_no_data" class="row" style="    display: flex;
+                                                    align-items: center;
+                                                    justify-content: center;
+                                                    height: 100%;
+                                                    padding: 12px;">
+                                            <canvas id="MyChart3">{{ chart3 }}</canvas>
+                                        </div>
+                                        <div *ngIf="chart3_no_data"
+                                            style="width: 100%; height: 100%; position: relative;">
+                                            <div
+                                                style="text-align: center; width: 100%; height: 100%; position: absolute; left: 0; top: 50%; z-index: 200;">
+                                                <b>No uploded file </b>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card" *ngIf="!data_is_ready" style="margin-top: -328px; z-index: 12;">
+                                    <div class="card-body card__ is-loading" style="height: 304px !important">
+                                        <h6 class="text-uppercase mt-0"></h6>
+                                        <h5></h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--============Admin Dashboard===================-->
+            <div *ngIf="authService.isAdmin()">
+                <div class="row">
+                    <div class="col-xl-6 ">
+                        <div class="card">
+                            <div class="card-body" style="height: 347px !important">
+                                <h6 class="text-uppercase mt-0">Role functionalities</h6>
+                                <div *ngIf="!chart5_no_data" class="row" style="    display: flex;
+                                            align-items: center;
+                                            justify-content: center;
+                                            height: 100%;
+                                            padding-bottom: 12px;">
+                                    <canvas id="MyChart5">{{chart5}}</canvas>
+                                </div>
+                                <div *ngIf="chart5_no_data" style="width: 100%; height: 100%; position: relative;">
+                                    <div
+                                        style="text-align: center; width: 100%; height: 100%; position: absolute; left: 0; top: 50%; z-index: 200;">
+                                        <b>No user</b>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card" *ngIf="!admin_data_is_ready"
+                            style="margin-top: -370px !important; z-index: 12;">
+                            <div class="card-body card__ is-loading" style="height: 350px !important">
+                                <h6 class="text-uppercase mt-0"></h6>
+                                <h5></h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 ">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="card" *ngIf="admin_data_is_ready">
+                                    <div class="card-body" style="height: 180px;">
+                                        <i class='mdi mdi-24px mdi-account float-end'></i>
+                                        <h6 class="text-uppercase mt-0">Users</h6>
+                                        <h4 class="my-0" id="active-users-count">Active Users &nbsp;&nbsp;&nbsp;:&nbsp;
+                                            <span
+                                                class="dashboard-number-text">{{adminDashboard_data.total_number_active_users}}</span>
+                                        </h4>
+                                        <h4 class="mb-1 mt-0" id="active-users-count">Inactie Users&nbsp; :&nbsp; <span
+                                                class="dashboard-number-text">{{adminDashboard_data.total_number_inactive_users}}</span>
+                                        </h4>
+                                        <h4 class="my-2" id="active-users-count">Total&nbsp; :&nbsp; <span
+                                                class="dashboard-number-text">{{adminDashboard_data.total_number_of_Users}}</span>
+                                        </h4>
+                                        <p class="mb-0 text-muted">
+                                            <span class="text-nowrap">Users Information</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="card" *ngIf="!admin_data_is_ready">
+                                    <div class="card-body card__ is-loading">
+                                        <!-- <i class='mdi mdi-24px mdi-book-account float-end'></i> -->
+                                        <h6 class="text-uppercase mt-0 d_item_title"></h6>
+                                        <h2 class="my-2" id="active-users-count"></h2>
+                                        <p class="mb-0 text-muted">
+                                            <span class="text-nowrap"></span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="card" *ngIf="admin_data_is_ready">
+                                    <div class="card-body">
+                                        <i class='mdi mdi-24px mdi-login float-end'></i>
+                                        <h6 class="text-uppercase mt-0">Logins</h6>
+                                        <h2 class="my-2" id="active-users-count">
+                                            {{adminDashboard_data.total_logins}}</h2>
+                                        <p class="mb-0 text-muted float-bottom">
+
+                                            <span class="text-nowrap">Total number of login and logout</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="card is-loading" *ngIf="!admin_data_is_ready">
+                                    <div class="card-body card__ is-loading">
+                                        <!-- <i class='mdi mdi-24px mdi-bank-transfer float-end'></i> -->
+                                        <h6 class="text-uppercase mt-0 d_item_title"></h6>
+                                        <h2 class="my-2" id="active-users-count"></h2>
+                                        <p class="mb-0 text-muted">
+                                            <span class="text-nowrap"></span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card" *ngIf="admin_data_is_ready">
+                                    <div class="card-body" style="height: 180px;">
+                                        <i class='mdi mdi-24px mdi-account-key-outline float-end'></i>
+                                        <h6 class="text-uppercase mt-0">Functionalities</h6>
+                                        <h2 class="my-2" id="active-users-count">
+                                            {{adminDashboard_data.total_number_of_functionalities}}</h2>
+                                        <p class="mb-0 text-muted" style="margin-top: 26px">
+                                            <br>
+                                            <span class="text-nowrap">Total functionalities</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="card" *ngIf="!admin_data_is_ready">
+                                    <div class="card-body card__ is-loading">
+                                        <!-- <i class='mdi mdi-24px mdi-currency-eur float-end'></i> -->
+                                        <h6 class="text-uppercase mt-0 d_item_title"></h6>
+                                        <h2 class="my-2" id="active-users-count"></h2>
+                                        <p class="mb-0 text-muted">
+                                            <span class="text-nowrap"></span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="card" *ngIf="admin_data_is_ready">
+                                    <div class="card-body">
+                                        <i class='mdi mdi-24px mdi-clipboard-list-outline float-end'></i>
+                                        <h6 class="text-uppercase mt-0">User Activities</h6>
+                                        <h2 class="my-2" id="active-users-count">
+                                            {{adminDashboard_data.total_number_of_user_activity}}</h2>
+                                        <p class="mb-0 text-muted">
+                                            <!-- <span class="text-success me-2"><span class="mdi mdi-arrow-up-bold"></span> 5.27%</span> -->
+                                            <span class="text-nowrap">Total number of user activities</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="card" *ngIf="!admin_data_is_ready">
+                                    <div class="card-body card__ is-loading">
+                                        <!-- <i class='mdi mdi-24px mdi-file-chart float-end'></i> -->
+                                        <h6 class="text-uppercase mt-0 d_item_title"></h6>
+                                        <h2 class="my-2" id="active-users-count"></h2>
+                                        <p class="mb-0 text-muted">
+                                            <span class="text-nowrap"></span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- user dashboard ending-->
+
+            <!--============End of Admin Dashboard=====================-->
+
+        </div>
+    </div>
+</div>
+
+<swal #SwalSessionExpired title="Warning" text="Your session has expired! please login to continue." icon="warning"
+    [showCancelButton]="false" [showConfirmButton]="false" [timer]="3500" [focusCancel]="true">
+</swal>

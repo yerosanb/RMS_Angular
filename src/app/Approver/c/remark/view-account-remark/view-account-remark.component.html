@@ -1,0 +1,117 @@
+<div class="row">
+    <div class="col-12">
+      <div class="page-title-box">
+        <app-navigator-upper></app-navigator-upper>
+        <h4 class="page-title">Account Remark</h4>
+        <div class="card">
+          <div class="card-body">
+            <h4 class="header-title">Account Remark</h4>
+            <div class="container my-4">
+              <div class="row">
+                <table datatable [dtOptions]="dtOptions" id="CurrencyRequest_table"
+                  class="table table-bordered dt-responsive nowrap w-100">
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <swal #SwalSessionExpired title="Warning" text="Your session has expired! please login to continue." icon="warning"
+    [showCancelButton]="false" [showConfirmButton]="false" [timer]="3500" [focusCancel]="true">
+  </swal>
+  <swal
+  #SuccessSwalSendRemark
+  title="Success"
+  text="Response success!"
+  icon="success"
+  [showCancelButton]="true"
+  [showConfirmButton]="false"
+  [timer]="4500"
+  [focusCancel]="true"
+  ></swal>
+  
+  <div id="replay-modal-account" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Please enter title and description for your response</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
+        </div>
+        <div class="modal-body">
+  
+          <form class="ps-3 pe-3" (ngSubmit)="onSubmit()" [formGroup]="registerForm" >
+            <div class="mb-3">
+              <label for="title" class="form-label">Title</label>
+              <input 
+                class="form-control" 
+                type="text" id="title"
+                placeholder="Title"
+                formControlName="title"
+                autocomplete="off">
+                <div
+                class="valid-feedback"
+                *ngIf="
+                  submitted && registerForm.controls['title'].valid
+                "
+              >
+                Looks good!
+              </div>
+              <div
+                class="invalid-feedback"
+                *ngIf="submitted && registerForm.controls['title'].errors?.['required']"
+              >
+                Please enter title.
+              </div>
+              <div
+                class="invalid-feedback"
+                *ngIf="submitted && registerForm.controls['title'].errors?.['minlength']"
+              >
+                At least 2 Characters.
+              </div>
+              <div
+                class="invalid-feedback"
+                *ngIf="submitted && registerForm.controls['title'].errors?.['maxlength']"
+              >
+                At most 30 Characters.
+              </div>
+            </div>
+  
+            <div class="mb-3">
+              <label for="description" class="form-label">Description</label>
+              <textarea class="form-control" 
+              type="text" id="description" 
+              placeholder="Description"
+              formControlName="description"></textarea> 
+              <div class="valid-feedback"
+              *ngIf="submitted && registerForm.controls['description'].valid">
+              Looks good!
+          </div>
+          <div class="invalid-feedback"
+              *ngIf="submitted && registerForm.controls['description'].errors?.['required']">
+              Please enter description for your response.
+          </div>
+            </div>
+            <div class="mb-3 text-center modal-footer">
+              <button class="btn btn-primary" type="submit" >Submit</button>
+            </div>
+  
+          </form>
+  
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div>
+
+  <swal
+  #SwalSessionExpired
+  title="Warning"
+  text="Your session has expired! please login to continue."
+  icon="warning"
+  [showCancelButton]="false"
+  [showConfirmButton]="false"
+  [timer]="3500"
+  [focusCancel]="true"
+>
+</swal>

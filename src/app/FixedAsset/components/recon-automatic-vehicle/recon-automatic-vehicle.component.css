@@ -1,0 +1,36 @@
+
+#reset_button,
+#match_all_button,
+#match_button {
+  position: fixed;
+  /* height: 30px; */
+  width: fit-content;
+  z-index: 3;
+  right: 10px;
+  /* background: white; */
+  /* background: red; */
+  display: flex;
+  font-weight: bold;
+  flex-direction: column;
+  justify-content: center;
+  backdrop-filter: blur(3px);
+  /* padding: 0px 8px; */ 
+  border-radius: 2px;
+  -webkit-box-shadow: -2px -1px 15px 7px rgba(0,0,0,0.05);
+  -moz-box-shadow: -3px -2px 30px 14px rgba(0,0,0,0.125);
+  box-shadow: -4px -3px 45px 21px rgba(0,0,0,0.04);
+}
+#reset_button {
+  /* background-color: #2d3b90; */
+  top: 160px;
+}
+
+#match_button {
+  /* background-color: #ed8f3a; */
+  top: 210px;
+}
+
+#match_all_button {
+  /* background-color: #ed8f3a; */
+  top: 260px;
+}

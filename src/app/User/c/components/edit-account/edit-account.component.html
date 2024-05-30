@@ -1,0 +1,193 @@
+<div class="field-row">
+  <div class="col-12">
+    <div class="page-title-box">
+      <app-navigator-upper></app-navigator-upper>
+      <h4 class="page-title">Update Account</h4>
+      <div class="card">
+        <div class="card-body">
+          <!-- <h4 class="header-title">Currency</h4> -->
+          <div class="continer mb-4">
+            <div class="row mt-4">
+              <form
+                [formGroup]="submitAccountForm"
+                (ngSubmit)="submitAccount()"
+              >
+                <div class="row">
+                  <div class="col-sm">
+                    <div class="continer mb-2 col-sm-12">
+                      <div class="form-group">
+                        <label for="floatingInput">Name</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="exampleInputEmail1"
+                          aria-describedby="emailHelp"
+                          name="name"
+                          placeholder="Enter name"
+                          autocomplete="off"
+                          formControlName="name"
+                          [(ngModel)]="account.name"
+                        />
+                      </div>
+                      <div class="invalid-feedback" *ngIf="submitAccountForm.controls['name'].touched && submitAccountForm.controls['name'].errors?.['pattern']">Please enter valid name.
+                      </div>
+
+                      <div
+                        class="valid-feedback"
+                        *ngIf=" submitAccountForm.controls['name'].touched && submitAccountForm.controls['name'].valid
+
+                  "
+                      >
+                        Looks good!
+                      </div>
+                      <div
+                        class="invalid-feedback"
+                        *ngIf="submitted && submitAccountForm.controls['name'].errors?.['required']"
+                      >
+                        Please enter name.
+                      </div>
+                      <div
+                        class="invalid-feedback"
+                        *ngIf="  submitAccountForm.controls['name'].touched && submitAccountForm.controls['name'].errors?.['minlength']"
+                        >
+                        At least 2 Characters.
+                      </div>
+                      <div
+                        class="invalid-feedback"
+                        *ngIf="  submitAccountForm.controls['name'].touched && submitAccountForm.controls['name'].errors?.['maxlength']"
+                        >
+                        At most 200 Characters.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="w-100"></div>
+
+                  <div class="col-sm">
+                    <div class="continer mb-2">
+                      <div class="form-group">
+                        <label for="exampleInputPassword1">Code</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="exampleInputPassword1"
+                          name="code"
+                          placeholder="Enter code"
+                          autocomplete="off"
+                          formControlName="code"
+                          [(ngModel)]="account.code"
+
+                        />
+                      </div>
+                      <div
+                        class="valid-feedback"
+                        *ngIf=" submitAccountForm.controls['code'].touched && submitAccountForm.controls['code'].valid
+
+                        "
+                      >
+                        Looks good!
+                      </div>
+                      <div
+                        class="invalid-feedback"
+                        *ngIf=" submitted && submitAccountForm.controls['code'].errors?.['required']"
+                      >
+                        Please enter code.
+                      </div>
+
+                      <div
+                        class="invalid-feedback"
+                        *ngIf="  submitAccountForm.controls['code'].touched && submitAccountForm.controls['code'].errors?.['minlength']"
+                      >
+                        At least 1 Characters.
+                      </div>
+                      <div
+                        class="invalid-feedback"
+                        *ngIf="  submitAccountForm.controls['code'].touched && submitAccountForm.controls['code'].errors?.['maxlength']"
+                      >
+                        At most 200 Characters.
+                      </div>
+                    </div>
+                  </div>
+ 
+
+                  <div class="col-sm">
+                    <div class="continer mb-2">
+                      <div class="">
+                        <label for="currency" class="form-label mb-0" 
+                          >Currency</label
+                        >
+                        <select class="form-select"  [(ngModel)]='account.code' formControlName="currency"
+                          > 
+                          <option
+                            *ngFor="let curr of currency"
+                            [ngValue]="curr.id"
+                          >
+                            {{ curr.name }}
+                          </option>
+                        </select>
+                      </div>
+                      
+                      <div
+                        class="invalid-feedback"
+                        *ngIf="  submitted && submitAccountForm.controls['currency'].errors?.['required']"
+                      >
+                        Please enter Currency
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="continer mb-4">
+                    <div class="form-group mt-10">
+                      <quill-editor
+                        [placeholder]="'Enter Description'"
+                        formControlName="description"
+                        style="width:100%"
+                        [(ngModel)]="account.description"
+
+                       ></quill-editor>
+                    </div>
+
+                    <div
+                      class="invalid-feedback"
+                      *ngIf=" submitted && submitAccountForm.controls['description'].errors?.['required']"
+                      >
+                      Please enter description.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-12 text-center">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <swal
+    #SwalSessionExpired
+    title="Warning"
+    text="Your session has expired! please login to continue."
+    icon="warning"
+    [showCancelButton]="false"
+    [showConfirmButton]="false"
+    [timer]="3500"
+    [focusCancel]="true"
+  >
+  </swal>
+
+  
+
+  <!-- <swal
+    #SuccessSwalRegisterUser
+    title="Success"
+    text="User registered successfully!"
+    icon="success"
+    [showCancelButton]="false"
+    [showConfirmButton]="false"
+    [timer]="2500"
+    [focusCancel]="true"
+  ></swal> -->
+</div>
+<!-- </div> -->

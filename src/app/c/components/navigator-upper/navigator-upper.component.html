@@ -1,0 +1,9 @@
+<div class="page-title-right">
+
+    <ol class="breadcrumb m-0">
+
+        <li *ngFor="let link of links" class="breadcrumb-item" (click)="navigateTo(link)"><a
+                href="javascript: void(0);">{{link}}</a></li>
+        <li class="breadcrumb-item active">{{current_link}}</li>
+    </ol>
+</div>

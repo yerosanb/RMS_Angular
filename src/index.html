@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Transaction Reconciliation System</title>
+  <base href="/" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="icon" type="image/x-icon" href="" />
+  <link rel="shortcut icon" href="assets/template_assets/images/users/avatar-1.png" />
+
+  <script type="text/javascript"> 
+    var cfgApiBaseUrl = "http://localhost:5056";
+
+    //https://rms.awashbank.com:443/rmsb 
+  
+    /*--
+    IDE: http://localhost:5056
+    Tomcat local: https://localhost:8080/rmsb
+    Tomcat remote: https://10.10.13.152:8080/rmsb
+    */
+    window.cfgApiBaseUrl = cfgApiBaseUrl;
+  </script>
+  <!-- template css lins -->
+  <link rel="stylesheet" href="assets/template_assets/css/vendor/dataTables.bootstrap5.css" />
+  <link rel="stylesheet" href="assets/template_assets/css/vendor/responsive.bootstrap5.css" />
+  <!-- <link rel="stylesheet" href="assets/template_assets/css/vendor/buttons.bootstrap5.css">
+  <link rel="stylesheet" href="assets/template_assets/css/vendor/select.bootstrap5.css"> -->
+  <link rel="stylesheet" href="assets/template_assets/css/icons.min.css" />
+  <!-- <link rel="stylesheet" href="assets/template_assets/css/app.min.css"> -->
+  <link rel="stylesheet" href="assets/template_assets/css/vendor/jquery-jvectormap-1.2.2.css" />
+  <link rel="stylesheet" href="assets/template_assets/css/custom/datepicker/bs-datepicker.css" />
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+  <!-- <link
+      rel="stylesheet"
+      href="assets/template_assets/datatable_custom/css/font-awesome.min.css"
+    /> -->
+  <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css" /> -->
+  <link rel="stylesheet" href="assets/template_assets/datatable_custom/css/dataTables.bootstrap5.min.css" />
+  <!-- <link rel="stylesheet" type="text/css"
+    href="https://cdn.datatables.net/buttons/2.3.2/css/buttons.bootstrap5.min.css" /> -->
+  <link rel="stylesheet" href="assets/template_assets/datatable_custom/css/buttons.bootstrap5.min.css" />
+  <!-- <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css" /> -->
+  <link rel="stylesheet" href="assets/template_assets/datatable_custom/css/bootstrap.min.css" />
+  <!-- select -->
+  <link rel="stylesheet" href="assets/template_assets/css/vendor/select.bootstrap5.css" />
+  <!-- colreorder -->
+  <link rel="stylesheet" href="assets/template_assets/datatable_custom/css/colReorder.bootstrap5.min.css" />
+  <!-- ========================================================================================================= -->
+  <!-- Search builder -->
+  <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/searchbuilder/1.4.0/css/searchBuilder.bootstrap5.min.css" /> -->
+  <link rel="stylesheet" href="assets/template_assets/datatable_custom/css/searchBuilder.bootstrap5.min.css" />
+  <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/datetime/1.2.0/css/dataTables.dateTime.min.css" /> -->
+  <link rel="stylesheet" href="assets/template_assets/datatable_custom/css/dataTables.dateTime.min.css" />
+  <!-- ========================================================================================================= -->
+
+  <!-- ========================================================================================================= -->
+  <!-- Fixed Header -->
+  <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/fixedheader/3.3.1/css/fixedHeader.bootstrap5.min.css" /> -->
+  <!-- <link rel="stylesheet" href="assets/template_assets/datatable_custom/css/searchBuilder.bootstrap5.min.css"> -->
+  <!-- <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css" /> -->
+  <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css" /> -->
+  <link rel="stylesheet" href="assets/template_assets/datatable_custom/css/fixedHeader.bootstrap5.min.css" />
+  <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/fixedheader/3.3.1/css/fixedHeader.bootstrap5.min.css" /> -->
+  <!-- ========================================================================================================= -->
+
+  <!-- ========================================================================================================= -->
+  <!-- Fixed Column -->
+  <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/fixedheader/3.3.1/css/fixedHeader.bootstrap5.min.css" /> -->
+  <!-- <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css" /> -->
+  <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css" /> -->
+  <!-- <link rel="stylesheet" type="text/css"
+    href="https://cdn.datatables.net/fixedcolumns/4.2.1/css/fixedColumns.bootstrap5.min.css" /> -->
+  <link rel="stylesheet" href="assets/template_assets/datatable_custom/css/fixedColumns.bootstrap5.min.css" />
+  <!-- ========================================================================================================= -->
+  <!-- ========================================================================================================= -->
+  <!-- Keys -->
+  <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/fixedheader/3.3.1/css/fixedHeader.bootstrap5.min.css" /> -->
+  <!-- <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css" /> -->
+  <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css" /> -->
+  <!-- <link rel="stylesheet" type="text/css"
+    href="https://cdn.datatables.net/keytable/2.8.0/css/keyTable.bootstrap5.min.css" /> -->
+  <link rel="stylesheet" href="assets/template_assets/datatable_custom/css/select.keyTable.bootstrap5.min.css" />
+  <!-- ========================================================================================================= -->
+  <!-- ========================================================================================================= -->
+  <!-- Search panes -->
+
+  <!-- <link rel="stylesheet" type="text/css"
+    href="https://cdn.datatables.net/searchpanes/2.1.0/css/searchPanes.bootstrap5.min.css" /> -->
+  <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.5.0/css/select.bootstrap5.min.css" /> -->
+
+  <link rel="stylesheet" href="assets/template_assets/datatable_custom/css/searchPanes.bootstrap5.min.css" />
+  <link rel="stylesheet" href="assets/template_assets/datatable_custom/css/select.bootstrap5.min.css" />
+  <!-- ========================================================================================================= -->
+  <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css" />
+  <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css" /> -->
+  <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.13.1/datatables.min.css" /> -->
+  <!-- <link rel="stylesheet" href="https://unpkg.com/ngx-bootstrap/datepicker/bs-datepicker.css"> -->
+  <!-- <link rel="stylesheet" href="assets/template_assets/css/vendor/britecharts.min.css">
+  <link rel="stylesheet" href="assets/template_assets/css/vendor/frappe-gantt.css">
+  <link rel="stylesheet" href="assets/template_assets/css/vendor/fullcalendar.min.css">
+  <link rel="stylesheet" href="assets/template_assets/css/vendor/jstree.min.css">
+  <link rel="stylesheet" href="assets/template_assets/css/vendor/quill.bubble.css">
+  <link rel="stylesheet" href="assets/template_assets/css/vendor/quill.core.css">
+  <link rel="stylesheet" href="assets/template_assets/css/vendor/quill.snow.css">
+  <link rel="stylesheet" href="assets/template_assets/css/vendor/simplemde.min.css"> -->
+
+  <style>
+    .multiselect-dropdown {
+      position: relative;
+      width: 100%;
+      font-size: inherit;
+      font-family: inherit;
+    }
+
+    .multiselect-dropdown .dropdown-btn {
+      display: inline-block;
+      border: 1px solid #adadad !important;
+      width: 100%;
+      padding: 6px 12px;
+      margin-bottom: 0;
+      font-weight: 400;
+      line-height: 1.52857143;
+      text-align: left;
+      vertical-align: middle;
+      cursor: pointer;
+      background-image: none;
+      border-radius: 4px;
+    }
+
+    .multiselect-dropdown .dropdown-btn .selected-item-container {
+      display: flex;
+      float: left;
+      max-width: 93%;
+    }
+
+    .multiselect-dropdown .dropdown-btn .selected-item-container .selected-item {
+      border: 1px solid #727cf5 !important;
+      margin-right: 4px;
+      margin-bottom: 4px;
+      background: #727cf5 !important;
+      padding: 0 5px;
+      color: #fff !important;
+      border-radius: 2px;
+      float: left;
+    }
+
+    .multiselect-dropdown .dropdown-btn .selected-item-container .selected-item span {
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .multiselect-dropdown .dropdown-btn .selected-item-container .selected-item a {
+      text-decoration: none;
+    }
+
+    .multiselect-dropdown .dropdown-btn .selected-item:hover {
+      box-shadow: 1px 1px #959595 !important;
+    }
+
+    .multiselect-dropdown .dropdown-btn .dropdown-multiselect__caret {
+      line-height: 16px;
+      display: block;
+      position: absolute;
+      box-sizing: border-box;
+      width: 40px;
+      height: 38px;
+      right: 1px;
+      top: 0;
+      padding: 4px 8px;
+      margin: 0;
+      text-decoration: none;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .multiselect-dropdown .dropdown-btn .dropdown-multiselect__caret:before {
+      position: relative;
+      right: 0;
+      top: 65%;
+      color: #999 !important;
+      margin-top: 4px;
+      border-style: solid;
+      border-width: 8px 8px 0;
+      border-color: #999 transparent !important;
+      content: "";
+    }
+
+    .multiselect-dropdown .dropdown-btn .dropdown-multiselect--active .dropdown-multiselect__caret {
+      transform: rotateZ(180deg);
+    }
+
+    .multiselect-dropdown .disabled>span {
+      background-color: #eceeef !important;
+    }
+
+    .dropdown-list {
+      position: absolute;
+      padding-top: 6px;
+      width: 100%;
+      z-index: 9999;
+      border: 1px solid #ccc !important;
+      border-radius: 3px;
+      background: #fff !important;
+      margin-top: 10px;
+      box-shadow: 0 1px 5px #959595 !important;
+    }
+
+    .dropdown-list ul {
+      padding: 0;
+      list-style: none;
+      overflow: auto;
+      margin: 0;
+    }
+
+    .dropdown-list li {
+      padding: 6px 10px;
+      cursor: pointer;
+      text-align: left;
+    }
+
+    .dropdown-list .filter-textbox {
+      border-bottom: 1px solid #ccc !important;
+      position: relative;
+      padding: 10px;
+    }
+
+    .dropdown-list .filter-textbox input {
+      border: 0;
+      width: 100%;
+      padding: 0 0 0 26px;
+    }
+
+    .dropdown-list .filter-textbox input:focus {
+      outline: 0;
+    }
+
+    .multiselect-item-checkbox:hover {
+      background-color: #e4e3e3 !important;
+    }
+
+    .multiselect-item-checkbox input[type="checkbox"] {
+      border: 0;
+      clip: rect(0 0 0 0);
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      padding: 0;
+      position: absolute;
+      width: 1px;
+    }
+
+    .multiselect-item-checkbox input[type="checkbox"]:focus+div:before,
+    .multiselect-item-checkbox input[type="checkbox"]:hover+div:before {
+      border-color: #727cf5 !important;
+      background-color: #f2f2f2 !important;
+    }
+
+    .multiselect-item-checkbox input[type="checkbox"]:active+div:before {
+      transition-duration: 0s;
+    }
+
+    .multiselect-item-checkbox input[type="checkbox"]+div {
+      position: relative;
+      padding-left: 2em;
+      vertical-align: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      cursor: pointer;
+      margin: 0;
+      color: #000 !important;
+    }
+
+    .multiselect-item-checkbox input[type="checkbox"]+div:before {
+      box-sizing: content-box;
+      content: "";
+      color: #727cf5 !important;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 14px;
+      height: 14px;
+      margin-top: -9px;
+      border: 2px solid #727cf5 !important;
+      text-align: center;
+      transition: 0.4s;
+    }
+
+    .multiselect-item-checkbox input[type="checkbox"]+div:after {
+      box-sizing: content-box;
+      content: "";
+      position: absolute;
+      transform: scale(0);
+      transform-origin: 50%;
+      transition: transform 0.2s ease-out;
+      background-color: transparent;
+      top: 50%;
+      left: 4px;
+      width: 8px;
+      height: 3px;
+      margin-top: -4px;
+      border-style: solid;
+      border-color: #fff !important;
+      border-width: 0 0 3px 3px;
+      -o-border-image: none;
+      border-image: none;
+      transform: rotate(-45deg) scale(0);
+    }
+
+    .multiselect-item-checkbox input[type="checkbox"]:disabled+div:before {
+      border-color: #ccc !important;
+    }
+
+    .multiselect-item-checkbox input[type="checkbox"]:disabled:focus+div:before .multiselect-item-checkbox input[type="checkbox"]:disabled:hover+div:before {
+      background-color: inherit !important;
+    }
+
+    .multiselect-item-checkbox input[type="checkbox"]:disabled:checked+div:before {
+      background-color: #ccc !important;
+    }
+
+    .multiselect-item-checkbox input[type="checkbox"]:checked+div:after {
+      content: "";
+      transition: transform 0.2s ease-out;
+      transform: rotate(-45deg) scale(1);
+    }
+
+    .multiselect-item-checkbox input[type="checkbox"]:checked+div:before {
+      -webkit-animation: 0.2s ease-in;
+      animation: 0.2s ease-in;
+      background: #727cf5 !important;
+    }
+
+    @-webkit-keyframes _ngcontent-bhm-c48_borderscale {
+      50% {
+        box-shadow: 0 0 0 2px #727cf5 !important;
+      }
+    }
+
+    @keyframes _ngcontent-bhm-c48_borderscale {
+      50% {
+        box-shadow: 0 0 0 2px #727cf5 !important;
+      }
+    }
+
+    /* .multiselect-dropdown[_ngcontent-dux-c48]   .dropdown-btn[_ngcontent-dux-c48]   .selected-item-container[_ngcontent-dux-c48]   .selected-item[_ngcontent-dux-c48] */
+  </style>
+</head>
+
+<body>
+  <!-- <body data-leftbar-theme="light"> -->
+  <!-- [attr.data-layout-mode]="'detached'" -->
+  <app-root></app-root>
+
+  <!-- <div id="complex-header-datatable"></div> -->
+  <script src="assets/template_assets/js/vendor.min.js"></script>
+  <script src="assets/template_assets/js/app.min.js"></script>
+  <script src="assets/common/tinymce/js/tinymce/tinymce.min.js"></script>
+  <script src="assets/common/jquery-3.6.3.min.js"></script>
+  <!-- ======================================================================================================== -->
+  <script src="assets/template_assets/js/vendor/jquery.dataTables.min.js"></script>
+  <!--  -->
+  <script src="assets/template_assets/js/vendor/dataTables.bootstrap5.js"></script>
+  <!-- ======================================================================================================== -->
+  <script src="assets/template_assets/js/vendor/dataTables.buttons.min.js"></script>
+  <!-- <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.3.2/js/dataTables.buttons.min.js"></script> -->
+  <script src="assets/template_assets/js/vendor/buttons.bootstrap5.min.js"></script>
+  <!-- <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.bootstrap5.min.js"></script> -->
+  <script src="assets/template_assets/datatable_custom/js/jszip.min.js"></script>
+  <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script> -->
+  <script src="assets/template_assets/datatable_custom/js/pdfmake.min.js"></script>
+  <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script> -->
+  <script src="assets/template_assets/datatable_custom/js/vfs_fonts.js"></script>
+  <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script> -->
+  <script src="assets/template_assets/js/vendor/buttons.html5.min.js"></script>
+  <!-- <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.html5.min.js"></script> -->
+  <script src="assets/template_assets/js/vendor/buttons.print.min.js"></script>
+  <!-- <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.print.min.js"></script> -->
+  <script src="assets/template_assets/datatable_custom/js/buttons.colVis.min.js"></script>
+  <!-- select -->
+  <script src="assets/template_assets/js/vendor/dataTables.select.min.js"></script>
+  <!-- colreorder -->
+  <script src="assets/template_assets/datatable_custom/js/colReorder.bootstrap5.min.js"></script>
+  <!-- ========================================================================================================= -->
+  <!-- search builder -->
+  <script src="assets/template_assets/datatable_custom/js/dataTables.searchBuilder.min.js"></script>
+  <!-- <script type="text/javascript" src="https://cdn.datatables.net/searchbuilder/1.4.0/js/dataTables.searchBuilder.min.js"></script> -->
+  <script src="assets/template_assets/datatable_custom/js/searchBuilder.bootstrap5.js"></script>
+  <!-- <script type="text/javascript" src="https://cdn.datatables.net/searchbuilder/1.4.0/js/searchBuilder.bootstrap5.js"></script> -->
+  <script src="assets/template_assets/datatable_custom/js/dataTables.dateTime.min.js"></script>
+  <!-- <script type="text/javascript" src="https://cdn.datatables.net/datetime/1.2.0/js/dataTables.dateTime.min.js"></script> -->
+  <!-- ======================================================================================================== -->
+
+  <!-- ========================================================================================================= -->
+  <!-- Fixed header -->
+  <script src="assets/template_assets/datatable_custom/js/dataTables.fixeHeader.min.js"></script>
+  <!-- <script type="text/javascript" src="https://cdn.datatables.net/fixedheader/3.3.1/js/dataTables.fixeHeader.min.js"></script> -->
+  <!-- ======================================================================================================== -->
+
+  <!-- ========================================================================================================= -->
+  <!-- Fixed column -->
+  <!-- <script type="text/javascript"
+    src="https://cdn.datatables.net/fixedcolumns/4.2.1/js/dataTables.fixedColumns.min.js"></script> -->
+  <script src="assets/template_assets/datatable_custom/js/dataTables.fixedColumns.min.js"></script>
+  <!-- ======================================================================================================== -->
+  <!-- ========================================================================================================= -->
+  <!-- keys -->
+  <!-- <script type="text/javascript" src="https://cdn.datatables.net/keytable/2.8.0/js/dataTables.keyTable.min.js"></script> -->
+  <script src="assets/template_assets/datatable_custom/js/dataTables.keyTable.min.js"></script>
+  <!-- ======================================================================================================== -->
+  <!-- ========================================================================================================= -->
+  <!-- Search Panes -->
+  <!-- <script type="text/javascript" src="https://cdn.datatables.net/searchpanes/2.1.0/js/dataTables.searchPanes.min.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/select/1.5.0/js/dataTables.select.min.js"></script> -->
+  <!-- <script type="text/javascript"
+    src="https://cdn.datatables.net/searchpanes/2.1.0/js/dataTables.searchPanes.min.js"></script> -->
+  <script src="assets/template_assets/datatable_custom/js/dataTables.searchPanes.min.js"></script>
+  <!-- <script type="text/javascript"
+    src="https://cdn.datatables.net/searchpanes/2.1.0/js/searchPanes.bootstrap5.min.js"></script> -->
+  <script src="assets/template_assets/datatable_custom/js/searchPanes.bootstrap5.min.js"></script>
+  <!-- <script type="text/javascript" src="https://cdn.datatables.net/select/1.5.0/js/dataTables.select.min.js"></script> -->
+  <script src="assets/template_assets/datatable_custom/js/dataTables.select.min.js"></script>
+  <!-- ======================================================================================================== -->
+  <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script> -->
+  <!-- <script type="text/javascript" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script> -->
+  <!-- <script type="text/javascript" src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script> -->
+  <!-- <script type="text/javascript" src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script> -->
+  <!-- <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.13.1/datatables.min.js"></script> -->
+  <!-- src\assets\common\tinymce\js\tinymce\tinymce.min.js -->
+
+  <!--  -->
+  <!-- 
+
+  <script src="assets/template_assets/js/vendor/dataTables.responsive.min.js"></script>
+  <script src="assets/template_assets/js/vendor/responsive.bootstrap5.min.js"></script>
+  <script src="assets/template_assets/js/vendor/dataTables.buttons.min.js"></script>
+
+
+  <script src="assets/template_assets/js/vendor/dataTables.keyTable.min.js"></script>
+  <script src="assets/template_assets/js/vendor/dataTables.select.min.js"></script>
+  <script src="assets/template_assets/js/pages/demo.datatable-init.js"></script> -->
+
+  <!-- <script src="assets/template_assets/js/vendor/dataTables.checkboxes.min.js"></script> -->
+  <!-- <script src="assets/template_assets/js/pages/demo.apex-area.js"></script>
+<script src="assets/template_assets/js/pages/demo.apex-bar.js"></script>
+<script src="assets/template_assets/js/pages/demo.apex-bubble.js"></script>
+<script src="assets/template_assets/js/pages/demo.apex-candlestick.js"></script>
+<script src="assets/template_assets/js/pages/demo.apex-column.js"></script>
+<script src="assets/template_assets/js/pages/demo.apex-heatmap.js"></script>
+<script src="assets/template_assets/js/pages/demo.apex-line.js"></script>
+<script src="assets/template_assets/js/pages/demo.apex-mixed.js"></script>
+<script src="assets/template_assets/js/pages/demo.apex-pie.js"></script>
+<script src="assets/template_assets/js/pages/demo.apex-radar.js"></script>
+<script src="assets/template_assets/js/pages/demo.apex-radialbar.js"></script>
+<script src="assets/template_assets/js/pages/demo.apex-scatter.js"></script>
+<script src="assets/template_assets/js/pages/demo.apex-sparklines.js"></script>
+<script src="assets/template_assets/js/pages/demo.britechart.js"></script>
+<script src="assets/template_assets/js/pages/demo.calendar.js"></script>
+<script src="assets/template_assets/js/pages/demo.chartjs.js"></script>
+<script src="assets/template_assets/js/pages/demo.customers.js"></script>
+<script src="assets/template_assets/js/pages/demo.dashboard-analytics.js"></script>
+<script src="assets/template_assets/js/pages/demo.dashboard-crm.js"></script>
+<script src="assets/template_assets/js/pages/demo.dashboard-projects.js"></script>
+<script src="assets/template_assets/js/pages/demo.dashboard.js"></script>
+<script src="assets/template_assets/js/pages/demo.form-wizard.js"></script>
+<script src="assets/template_assets/js/pages/demo.google-maps.js"></script>
+<script src="assets/template_assets/js/pages/demo.inbox.js"></script>
+<script src="assets/template_assets/js/pages/demo.jstree.js"></script>
+<script src="assets/template_assets/js/pages/demo.materialdesignicons.js"></script>
+<script src="assets/template_assets/js/pages/demo.products.js"></script>
+<script src="assets/template_assets/js/pages/demo.profile.js"></script>
+<script src="assets/template_assets/js/pages/demo.project-detail.js"></script>
+<script src="assets/template_assets/js/pages/demo.project-gantt.js"></script>
+<script src="assets/template_assets/js/pages/demo.quilljs.js"></script>
+<script src="assets/template_assets/js/pages/demo.sellers.js"></script>
+<script src="assets/template_assets/js/pages/demo.simplemde.js"></script>
+<script src="assets/template_assets/js/pages/demo.sparkline.js"></script>
+<script src="assets/template_assets/js/pages/demo.tasks.js"></script>
+<script src="assets/template_assets/js/pages/demo.timepicker.js"></script>
+<script src="assets/template_assets/js/pages/demo.toastr.js"></script>
+<script src="assets/template_assets/js/pages/demo.typehead.js"></script>
+<script src="assets/template_assets/js/pages/demo.vector-maps.js"></script>
+<script src="assets/template_assets/js/pages/demo.widgets.js"></script>
+
+
+
+
+<script src="assets/template_assets/js/ui/component.chat.js"></script>
+<script src="assets/template_assets/js/ui/component.dragula.js"></script>
+<script src="assets/template_assets/js/ui/component.fileupload.js"></script>
+<script src="assets/template_assets/js/ui/component.range-slider.js"></script>
+<script src="assets/template_assets/js/ui/component.rating.js"></script>
+<script src="assets/template_assets/js/ui/component.todo.js"></script>
+
+
+
+
+<script src="assets/template_assets/js/vendor/britecharts.min.js"></script>
+<script src="assets/template_assets/js/vendor/Chart.bundle.min.js"></script>
+<script src="assets/template_assets/js/vendor/d3.min.js"></script>
+
+<script src="assets/template_assets/js/vendor/dragula.min.js"></script>
+<script src="assets/template_assets/js/vendor/dropzone.min.js"></script>
+<script src="assets/template_assets/js/vendor/frappe-gantt.min.js"></script>
+<script src="assets/template_assets/js/vendor/fullcalendar.min.js"></script>
+<script src="assets/template_assets/js/vendor/gmaps.min.js"></script>
+<script src="assets/template_assets/js/vendor/handlebars.min.js"></script>
+<script src="assets/template_assets/js/vendor/ion.rangeSlider.min.js"></script>
+<script src="assets/template_assets/js/vendor/jquery-jvectormap-au-mill-en.js"></script>
+<script src="assets/template_assets/js/vendor/jquery-jvectormap-ca-lcc-en.js"></script>
+<script src="assets/template_assets/js/vendor/jquery-jvectormap-es-merc.js"></script>
+<script src="assets/template_assets/js/vendor/jquery-jvectormap-es-mill.js"></script>
+<script src="assets/template_assets/js/vendor/jquery-jvectormap-europe-mill-en.js"></script>
+<script src="assets/template_assets/js/vendor/jquery-jvectormap-fr-merc-en.js"></script>
+<script src="assets/template_assets/js/vendor/jquery-jvectormap-in-mill-en.js"></script>
+<script src="assets/template_assets/js/vendor/jquery-jvectormap-uk-mill-en.js"></script>
+<script src="assets/template_assets/js/vendor/jquery-jvectormap-us-il-chicago-mill-en.js"></script>
+<script src="assets/template_assets/js/vendor/jquery-jvectormap-us-merc-en.js"></script>
+<script src="assets/template_assets/js/vendor/jquery-jvectormap-world-mill-en.js"></script>
+
+<script src="assets/template_assets/js/vendor/jquery.rateit.min.js"></script>
+<script src="assets/template_assets/js/vendor/jquery.sparkline.min.js"></script>
+<script src="assets/template_assets/js/vendor/jstree.min.js"></script>
+<script src="assets/template_assets/js/vendor/quill.min.js"></script>
+
+<script src="assets/template_assets/js/vendor/simplemde.min.js"></script>
+<script src="assets/template_assets/js/vendor/typeahead.bundle.min.js"></script>
+<script src="assets/template_assets/js/vendor/apexcharts.min.js"></script>
+<script src="assets/template_assets/js/vendor/jquery-jvectormap-1.2.2.min.js"></script> -->
+  <script src="assets/custom.js"></script>
+</body>
+
+</html>

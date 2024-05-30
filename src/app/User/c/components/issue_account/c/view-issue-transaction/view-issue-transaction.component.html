@@ -1,0 +1,48 @@
+<div class="row">
+    <div class="col-12">
+      <div class="page-title-box">
+        <app-navigator-upper></app-navigator-upper>
+        <h4 class="page-title">View Transactions</h4>
+        <div class="card">
+          <div class="card-body">
+            <h4 class="header-title">Transactions</h4>
+            <div class="my-4">
+              <div>
+                <tabset type="pills" #reconTab>
+                  <tab heading="{{tabTitles[0]}}" (selectTab)="onSelect($event)" [active]="this.localStorageService.retrieve('recon-selected-tab') != null && 
+                    this.localStorageService.retrieve('recon-selected-tab-tra') == 0">
+                    <app-issue-matched *ngIf="reconTab.tabs[0]?.active"></app-issue-matched>
+                  </tab>
+                  <tab heading="{{tabTitles[1]}}" (selectTab)="onSelect($event)" [active]="this.localStorageService.retrieve('recon-selected-tab') != null && 
+                    this.localStorageService.retrieve('recon-selected-tab-tra') == 1">
+                    <app-issue-unmatched *ngIf="reconTab.tabs[1]?.active"></app-issue-unmatched>
+                  </tab>
+
+                  <tab heading="{{tabTitles[2]}}" (selectTab)="onSelect($event)" [active]="this.localStorageService.retrieve('recon-selected-tab') != null && 
+                  this.localStorageService.retrieve('recon-selected-tab-tra') == 2">
+                  <app-matched-reason *ngIf="reconTab.tabs[2]?.active"></app-matched-reason>
+                </tab>
+                <tab heading="{{tabTitles[3]}}" (selectTab)="onSelect($event)" [active]="this.localStorageService.retrieve('recon-selected-tab') != null && 
+                this.localStorageService.retrieve('recon-selected-tab-tra') == 3">
+                <app-edited-issue-qbs *ngIf="reconTab.tabs[3]?.active"></app-edited-issue-qbs>
+              </tab>
+              <tab heading="{{tabTitles[4]}}" (selectTab)="onSelect($event)" [active]="this.localStorageService.retrieve('recon-selected-tab') != null && 
+              this.localStorageService.retrieve('recon-selected-tab-tra') == 4">
+              <app-edited-issue-core *ngIf="reconTab.tabs[4]?.active"></app-edited-issue-core>
+            </tab>
+            <tab heading="{{tabTitles[5]}}" (selectTab)="onSelect($event)" [active]="this.localStorageService.retrieve('recon-selected-tab') != null && 
+            this.localStorageService.retrieve('recon-selected-tab-tra') == 5">
+            <app-issue-core-reversal-matched *ngIf="reconTab.tabs[5]?.active"></app-issue-core-reversal-matched>
+          </tab>
+          <tab heading="{{tabTitles[6]}}" (selectTab)="onSelect($event)" [active]="this.localStorageService.retrieve('recon-selected-tab') != null && 
+          this.localStorageService.retrieve('recon-selected-tab-tra') == 6">
+          <app-issue-qbs-reversalmatched *ngIf="reconTab.tabs[6]?.active"></app-issue-qbs-reversalmatched>
+        </tab>
+                </tabset>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

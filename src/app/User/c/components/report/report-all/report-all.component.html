@@ -1,0 +1,117 @@
+<div class="row">
+  <div class="col-12">
+    <div class="page-title-box">
+      <app-navigator-upper></app-navigator-upper>
+      <h4 class="page-title">Report</h4>
+      <div class="card">
+        <div class="card-body">
+          <h4 class="header-title">Generate Report</h4>
+          <div class="container my-4">
+            <div class="row">
+              <div class="mb-3 col-sm-12">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="form-floating">
+                      <select [(ngModel)]="sign_value_con" class="form-select" id="floatingSelect"
+                        aria-label="Floating label select example">
+
+                        <option value="1" *ngIf="authService.isUser">Posetive Value (+)</option>
+                        <option value="0" *ngIf="authService.isUser">Negative Value (-)</option>
+                      </select>
+                      <label for="floatingInput">Conventional</label>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-floating">
+                      <select [(ngModel)]="sign_value_ifb" class="form-select" aria-label="Floating label select example">
+
+                        <option value="1" *ngIf="authService.isUser">Posetive Value (+)</option>
+                        <option value="0" *ngIf="authService.isUser">Negative Value (-)</option>
+                      </select>
+                      <label for="floatingInput">IFB</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="mb-3 col-sm-6">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="form-floating">
+                      <input type="text" placeholder="Datepicker" class="form-control" autocomplete="off"
+                        (bsValueChange)="dateChange($event)" id="floatingInput" bsDatepicker
+                        [bsConfig]="{ adaptivePosition: true }" [maxDate]="maxDate" />
+                      <label for="floatingInput">Transaction Date</label>
+                      <div id="date_error" class="invalid-feedback d-none">
+                        Please select the report date.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-floating">
+                      <select [(ngModel)]="report_type_selected" class="form-select" id="floatingSelect"
+                        aria-label="Floating label select example">
+                        <option selected value="PAS" *ngIf="authService.isUser()">PAS </option>
+                        <option value="Payable" *ngIf="authService.isUser()">Payable </option>
+                        <option value="Receivable" *ngIf="authService.isUser()">Receivable </option>
+                        <option value="Issue" *ngIf="authService.isIssueAccount()">Issue Account </option>
+                        <option value="Fur_Fixed" *ngIf="authService.isFixedAsset()">Fixed Asset Furniture</option>
+                        <option value="Comp_Fixed" *ngIf="authService.isFixedAsset()">Fixed Asset Computer</option>
+                        <option value="Vehi_Fixed" *ngIf="authService.isFixedAsset()">Fixed Asset Vehicle</option>
+                        <option value="Equp_Fixed" *ngIf="authService.isFixedAsset()"> Fixed Asset Equpment</option>
+
+                        <option value="121_stationary" *ngIf="authService.isFixedAsset()">Stock Stationary</option>
+                        <option value="111_tools" *ngIf="authService.isFixedAsset()">Stock Tools</option>
+                        <option value="113_spares" *ngIf="authService.isFixedAsset()">Stock Spares</option>
+                        <option value="105_uniform" *ngIf="authService.isFixedAsset()">Stock Uniform</option>
+                        <option value="119_accessory" *ngIf="authService.isFixedAsset()">Stock Accessory</option>
+                        <option value="120_check" *ngIf="authService.isFixedAsset()">Stock Check</option>
+                        <option value="112_sanitory" *ngIf="authService.isFixedAsset()">Stock Sanitory</option>
+                        <option value="106_computer" *ngIf="authService.isFixedAsset()">Stock Computer Stock</option>
+                        <option value="107_furniture" *ngIf="authService.isFixedAsset()">Stock Furniture Stock</option>
+                        <option value="104_office_equipment" *ngIf="authService.isFixedAsset()">Stock O/Equipment Stock
+                        </option>
+                      </select>
+                      <label for="floatingInput">Report type</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="mb-3 col-sm-6"
+                style="display: flex; align-items: center; justify-content: center; gap: 12px;">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-primary" (click)="downloadPdf()"><i
+                      class="mdi mdi-file-pdf me-1"></i>
+                    <span>Download</span></button>
+                  <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split"
+                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="visually-hidden">Toggle Dropdown</span>
+                  </button>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="javascript:void(0);" (click)="downloadPdf()"><i
+                        class="mdi mdi-file-pdf me-1"></i>
+                      <span>PDF</span></a>
+                    <a class="dropdown-item" href="javascript:void(0);" (click)="downloadExcel()"><i
+                        class="mdi mdi-microsoft-excel me-1"></i>
+                      <span>Excel</span></a>
+                  </div>
+                </div>
+                <button type="button" class="btn btn-primary" (click)="previewPdf()"><i
+                    class="mdi mdi-file-eye me-1"></i> <span>Preview PDF</span> </button>
+              </div>
+            </div>
+            <div class="row" *ngIf="preview">
+              <pdf-viewer [src]="file_to_preview" [render-text]="true" [original-size]="true"
+                style="width: 100%; height: 100vh;" [show-all]="true"></pdf-viewer>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<swal #SwalSessionExpired title="Warning" text="Your session has expired! please login to continue." icon="warning"
+  [showCancelButton]="false" [showConfirmButton]="false" [timer]="3500" [focusCancel]="true">
+</swal>

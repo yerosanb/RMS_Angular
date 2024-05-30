@@ -1,0 +1,64 @@
+<div class="row">
+  <div class="col-12">
+    <div class="page-title-box">
+      <app-navigator-upper></app-navigator-upper>
+      <h4 class="page-title">View Transactions</h4>
+      <div class="card">
+        <div class="card-body">
+          <h4 class="header-title">Transactions</h4>
+          <div class="my-4">
+            <div>
+              <tabset type="pills" #reconTab>
+                <tab heading="{{tabTitles[0]}}" (selectTab)="onSelect($event)" [active]="this.localStorageService.retrieve('recon-selected-tab-tra-fixed-asset') != null && 
+                  this.localStorageService.retrieve('recon-selected-tab-tra-fixed-asset') == 0">
+                  <app-view-computer-tabs *ngIf="reconTab.tabs[0]?.active"></app-view-computer-tabs>
+                </tab>
+                <tab heading="{{tabTitles[1]}}" (selectTab)="onSelect($event)" [active]="this.localStorageService.retrieve('recon-selected-tab-tra-fixed-asset') != null && 
+                  this.localStorageService.retrieve('recon-selected-tab-tra-fixed-asset') == 1">
+                  <app-view-furniture-tabs *ngIf="reconTab.tabs[1]?.active"></app-view-furniture-tabs>
+                </tab>
+
+                <tab heading="{{tabTitles[2]}}" (selectTab)="onSelect($event)" [active]="this.localStorageService.retrieve('recon-selected-tab-tra-fixed-asset') != null && 
+                this.localStorageService.retrieve('recon-selected-tab-tra-fixed-asset') == 2">
+                  <app-view-equipment-tabs *ngIf="reconTab.tabs[2]?.active"></app-view-equipment-tabs>
+                </tab>
+                <tab heading="{{tabTitles[3]}}" (selectTab)="onSelect($event)" [active]="this.localStorageService.retrieve('recon-selected-tab-tra-fixed-asset') != null && 
+              this.localStorageService.retrieve('recon-selected-tab-tra-fixed-asset') == 3">
+                  <app-view-vehicle-tabs *ngIf="reconTab.tabs[3]?.active"></app-view-vehicle-tabs>
+                </tab>
+                <tab heading="{{tabTitles[4]}}" (selectTab)="onSelect($event)" [active]="this.localStorageService.retrieve('recon-selected-tab-tra-fixed-asset') != null && 
+                this.localStorageService.retrieve('recon-selected-tab-tra-fixed-asset') == 4">
+                  <app-view-fixed-asset-with-reason></app-view-fixed-asset-with-reason>
+                </tab>
+                <tab heading="{{tabTitles[5]}}" (selectTab)="onSelect($event)" [active]="this.localStorageService.retrieve('recon-selected-tab-tra-fixed-asset') != null && 
+              this.localStorageService.retrieve('recon-selected-tab-tra-fixed-asset') == 5">
+                  <app-fixed-core-edited-deleted></app-fixed-core-edited-deleted>
+                </tab>
+                <tab heading="{{tabTitles[6]}}" (selectTab)="onSelect($event)" [active]="this.localStorageService.retrieve('recon-selected-tab-tra-fixed-asset') != null && 
+                  this.localStorageService.retrieve('recon-selected-tab-tra-fixed-asset') == 6">
+                  <app-fixed-mms-edited-deleted></app-fixed-mms-edited-deleted>
+                </tab>
+                <tab heading="{{tabTitles[7]}}" (selectTab)="onSelect($event)" [active]="this.localStorageService.retrieve('recon-selected-tab-tra-fixed-asset') != null && 
+                  this.localStorageService.retrieve('recon-selected-tab-tra-fixed-asset') == 7">
+                  <app-view-waiting></app-view-waiting>
+                </tab>
+                <tab heading="{{tabTitles[8]}}" (selectTab)="onSelect($event)" [active]="this.localStorageService.retrieve('recon-selected-tab-tra-fixed-asset') != null && 
+                  this.localStorageService.retrieve('recon-selected-tab-tra-fixed-asset') == 8">
+                  <app-view-disposed></app-view-disposed>
+                </tab>
+                <tab heading="{{tabTitles[9]}}" (selectTab)="onSelect($event)" [active]="this.localStorageService.retrieve('recon-selected-tab-tra-fixed-asset') != null && 
+                this.localStorageService.retrieve('recon-selected-tab-tra-fixed-asset') == 9">
+                  <app-view-removed></app-view-removed>
+                </tab>
+                <tab heading="{{tabTitles[10]}}" (selectTab)="onSelect($event)" [active]="this.localStorageService.retrieve('recon-selected-tab-tra-fixed-asset') != null && 
+                this.localStorageService.retrieve('recon-selected-tab-tra-fixed-asset') == 10">
+                  <app-view-core-reversal></app-view-core-reversal>
+                </tab>
+              </tabset>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

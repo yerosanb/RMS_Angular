@@ -1,0 +1,226 @@
+
+<br>
+<div class="row d-flex">
+  <div class="col-sm-6" style="margin-top: 4px;">
+    <div class="form-floating">
+      <input type="text" placeholder="Datepicker" class="form-control" autocomplete="off" id="floatingInput"
+        bsDatepicker [bsValue]="initialDateValue" [bsConfig]="{ adaptivePosition: true }"
+        (bsValueChange)="onReconDateChange($event)">
+      <label for="floatingInput">Transaction Date</label>
+    </div>
+  </div>
+  <div class="col-sm-6" style="display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      margin-top: 4px;">
+    <!-- <h1>Pure Css iOS Toggle</h1> -->
+    
+    <!-- <h2>Active</h2> -->
+    <div class="toggleWrapper">
+      Restricted &nbsp;
+      <input type="checkbox" name="toggle1" class="mobileToggle" id="toggle1" checked [(ngModel)]="restricted"
+        (change)="restrictedChange()">
+      <label for="toggle1"></label>
+    </div>
+
+
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-6">
+    <table datatable [dtOptions]="dtOptions_mms" id="mms_table" class="table table-bordered dt-responsive nowrap w-100">
+      <tfoot class="foot-datatables-container">
+        <tr style="border-top: none !important">
+          <th class="foot-datatables">
+            <div class="form-floating">
+              <input type="text" id="floatingInput" [ngModel]="mms_input_0" id="{{ mms_first_column_id }}"
+                name="mms_input_0" class="form-control {{ mms_first_column_id }} _id" />
+              <label for="floatingInput">Id</label>
+            </div>
+          </th>
+          <th class="foot-datatables">
+            <div class="form-floating">
+              <input type="text" id="floatingInput" id="{{ mms_second_column_id }}" name="mms_input_1"
+                [ngModel]="mms_input_1" class="form-control {{ mms_second_column_id }} _firstname" />
+              <label for="floatingInput">Giv No</label>
+            </div>
+          </th>
+
+          <th class="foot-datatables">
+            <div class="form-floating">
+              <input type="text" id="floatingInput" id="{{ mms_third_column_id }}" name="mms_input_2"
+                [ngModel]="mms_input_2" class="form-control {{ mms_third_column_id }} _middlename" />
+              <label for="floatingInput">Grv No </label>
+            </div>
+          </th>
+
+          <th class="foot-datatables">
+            <div class="form-floating">
+              <input type="text" id="floatingInput" id="{{ mms_fourth_column_id }}" name="mms_input_3"
+                [ngModel]="mms_input_3" class="form-control {{ mms_fourth_column_id }} _middlename" />
+              <label for="floatingInput">Original cost</label>
+            </div>
+          </th>
+
+          <th class="foot-datatables">
+            <div class="form-floating">
+              <input type="text" id="floatingInput" id="{{ mms_fifth_column_id }}" name="mms_input_4"
+                [ngModel]="mms_input_4" class="form-control {{ mms_fifth_column_id }} _lastname" />
+              <label for="floatingInput">Main pg</label>
+            </div>
+          </th>
+          <th class="foot-datatables">
+            <div class="form-floating">
+              <input type="text" id="floatingInput" id="{{ mms_seventh_column_id }}" name="mms_input_6"
+                [ngModel]="mms_input_6" class="form-control {{ mms_seventh_column_id }} _email" />
+
+              <label for="floatingInput">Tag No</label>
+            </div>
+          </th>
+          <th class="foot-datatables">
+            <div class="form-floating">
+              <input type="text" id="floatingInput" id="{{ mms_eighth_column_id }}" name="mms_input_7"
+                [ngModel]="mms_input_7" class="form-control {{ mms_eighth_column_id
+                }} _phonenumber" />
+
+              <label for="floatingInput">Created Date</label>
+            </div>
+          </th>
+
+
+          <th class="foot-datatables">
+            <div class="form-floating">
+              <input type="text" id="floatingInput" id="{{ mms_ninth_column_id }}" name="mms_input_8"
+                [ngModel]="mms_input_8" class="form-control {{ mms_ninth_column_id }} _middlename" />
+
+              <label for="floatingInput">Branch</label>
+            </div>
+          </th>
+
+
+          <th class="foot-datatables">
+            <div class="form-floating">
+              <input type="text" id="floatingInput" id="{{ mms_tenth_column_id }}" name="mms_input_9"
+                [ngModel]="mms_input_9" class="form-control {{ mms_tenth_column_id }} _middlename" />
+
+              <label for="floatingInput">Asset Description</label>
+            </div>
+          </th>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <div class="col-lg-6">
+    <table datatable [dtOptions]="dtOptions_core" id="core_table"
+      class="table table-bordered dt-responsive nowrap w-100">
+      <tfoot class="foot-datatables-container">
+        <tr style="border-top: none !important">
+          <th class="foot-datatables">
+            <div class="form-floating">
+              <input type="text" id="floatingInput" [ngModel]="core_input_0" id="{{ core_first_column_id }}"
+                name="core_first_column_id" class="form-control {{ core_first_column_id }} _id" />
+              <label for="floatingInput">Id</label>
+            </div>
+          </th>
+          <th class="foot-datatables">
+            <div class="form-floating">
+              <input type="text" id="floatingInput" id="{{ core_second_column_id }}" name="core_input_1"
+                [ngModel]="core_input_1" class="form-control {{ core_second_column_id }} _firstname" />
+              <label for="floatingInput">Narration</label>
+            </div>
+          </th>
+          <th class="foot-datatables">
+            <div class="form-floating">
+              <input type="text" id="floatingInput" id="{{ core_third_column_id }}" name="core_input_2"
+                [ngModel]="core_input_2" class="form-control {{ core_third_column_id }} _middlename" />
+              <label for="floatingInput">Credit</label>
+            </div>
+          </th>
+
+          <th class="foot-datatables">
+            <div class="form-floating">
+              <input type="text" id="floatingInput" id="{{ core_fourth_column_id }}" name="core_input_3"
+                [ngModel]="core_input_3" class="form-control {{ core_fourth_column_id }} _lastname" />
+
+              <label for="floatingInput">Debit</label>
+            </div>
+          </th>
+          <th class="foot-datatables">
+            <div class="form-floating">
+              <input type="text" id="floatingInput" id="{{ core_fifth_column_id }}" name="core_input_4"
+                [ngModel]="core_input_4" class="form-control {{ core_fifth_column_id }} _gender" />
+
+              <label for="floatingInput">Reference</label>
+            </div>
+          </th>
+          <th class="foot-datatables">
+            <div class="form-floating">
+              <input type="text" id="floatingInput" id="{{ core_sixth_column_id }}" name="core_input_5"
+                [ngModel]="core_input_5" class="form-control {{ core_sixth_column_id }} _gender" />
+              <label for="floatingInput">Account Number</label>
+            </div>
+          </th>
+          <th class="foot-datatables">
+            <div class="form-floating">
+              <input type="text" id="floatingInput" id="{{ core_seventh_column_id }}" name="core_input_6"
+                [ngModel]="core_input_6" class="form-control {{ core_seventh_column_id }} _role" />
+
+              <label for="floatingInput">Transaction Date</label>
+            </div>
+          </th>
+          <th class="foot-datatables">
+            <div class="form-floating">
+              <input type="text" id="floatingInput" id="{{ core_eighth_column_id }}" name="core_input_7"
+                [ngModel]="core_input_7" class="form-control {{ core_eighth_column_id }} _email" />
+              <label for="floatingInput">Posting Date</label>
+            </div>
+          </th>
+          <th class="foot-datatables">
+            <div class="form-floating">
+              <input type="text" id="floatingInput" id="{{ core_ninth_column_id }}" name="core_input_8"
+                [ngModel]="core_input_8" class="form-control {{ core_ninth_column_id }} _phonenumber" />
+
+              <label for="floatingInput">Value Date</label>
+            </div>
+          </th>
+          <th class="foot-datatables">
+            <div class="form-floating">
+              <input type="text" id="floatingInput" id="{{ core_tenth_column_id }}" name="core_input_9"
+                [ngModel]="core_input_9" class="form-control {{ core_tenth_column_id }} _reg_date" />
+
+              <label for="floatingInput">Branch Code</label>
+            </div>
+          </th>
+          <th class="foot-datatables">
+            <div class="form-floating">
+              <input type="text" id="floatingInput" id="{{ core_eleventh_column_id }}" name="core_input_10"
+              [ngModel]="core_input_10"  class="form-control {{ core_eleventh_column_id }} _status" />
+
+              <label for="floatingInput">Account Description</label>
+            </div>
+          </th>
+          <th class="foot-datatables">
+            <div class="form-floating">
+              <input type="text" id="floatingInput" id="{{ core_twelfth_column_id }}" name="core_input_11"
+              [ngModel]="core_input_11"  class="form-control {{ core_twelfth_column_id }} _status" />
+
+              <label for="floatingInput">Account Name</label>
+            </div>
+          </th>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>
+<!-- <div class="d-flex justify-content-center align-items-center my-1 gap-2"> -->
+<button id="reset_button" class="btn btn-primary" (click)="clearAllSearches()">Reset</button>
+<button id="match_button" class="btn btn-primary" (click)="matchTransactions()">Match</button>
+<button *ngIf="!restricted" id="reversal_match_button" class="btn btn-primary" (click)="reversal_matchTransactions()">Reversal</button>
+<lib-ng-toast></lib-ng-toast>
+
+<swal #SwalSessionExpired title="Warning" text="Your session has expired! please login to continue." icon="warning"
+  [showCancelButton]="false" [showConfirmButton]="false" [timer]="3500" [focusCancel]="true">
+</swal>
+

@@ -1,0 +1,55 @@
+<div class="row">
+  <div class="col-12">
+    <div class="page-title-box">
+      <app-navigator-upper></app-navigator-upper>
+      <h4 class="page-title">Reconciliation</h4>
+      <div class="card">
+        <div class="card-body">
+          <h4 class="header-title">Reconcile</h4>
+          <div class="containerr my-3">
+            <div>
+              <tabset type="pills" #reconTab>
+                <tab heading="{{tabTitles[0]}}" (selectTab)="onSelect($event)" [active]="this.localStorageService.retrieve('recon-selected-tab') != null && 
+                this.localStorageService.retrieve('recon-selected-tab') == 0">
+                  <app-recon-pas-tabs *ngIf="reconTab.tabs[0]?.active"></app-recon-pas-tabs>
+                </tab>
+                <!-- <tab heading="{{tabTitles[1]}}" (selectTab)="onSelect($event)" [active]="this.localStorageService.retrieve('recon-selected-tab') != null && 
+                this.localStorageService.retrieve('recon-selected-tab') == 1">
+                  <app-recon-manual-phase-by-phase *ngIf="reconTab.tabs[1]?.active"></app-recon-manual-phase-by-phase>
+                </tab> -->
+                <!-- ===============  payable and recievable begin==================== -->
+                <tab heading="{{tabTitles[1]}}" (selectTab)="onSelect($event)" [active]="this.localStorageService.retrieve('recon-selected-tab') != null && 
+                this.localStorageService.retrieve('recon-selected-tab') == 1">
+                  <app-payable-reco *ngIf="reconTab.tabs[1]?.active"></app-payable-reco>
+                </tab> 
+                
+                <tab heading="{{tabTitles[2]}}" (selectTab)="onSelect($event)" [active]="this.localStorageService.retrieve('recon-selected-tab') != null && 
+                this.localStorageService.retrieve('recon-selected-tab') == 2">
+                  <app-recon-receivable *ngIf="reconTab.tabs[2]?.active"></app-recon-receivable>
+                </tab>
+                <!-- ================================================ -->
+
+                <!-- <tab heading="{{tabTitles[3]}}" (selectTab)="onSelect($event)" [active]="this.localStorageService.retrieve('recon-selected-tab') != null && 
+                this.localStorageService.retrieve('recon-selected-tab') == 3">
+                  <app-partial-matched *ngIf="reconTab.tabs[3]?.active"></app-partial-matched>
+                </tab>
+                <tab heading="{{tabTitles[4]}}" (selectTab)="onSelect($event)" [active]="this.localStorageService.retrieve('recon-selected-tab') != null && 
+                this.localStorageService.retrieve('recon-selected-tab') == 4">
+                  <app-payable-reco *ngIf="reconTab.tabs[4]?.active"></app-payable-reco>
+                </tab>
+                
+                <tab heading="{{tabTitles[5]}}" (selectTab)="onSelect($event)" [active]="this.localStorageService.retrieve('recon-selected-tab') != null && 
+                this.localStorageService.retrieve('recon-selected-tab') == 5">
+                  <app-recon-receivable *ngIf="reconTab.tabs[5]?.active"></app-recon-receivable>
+
+                </tab> -->
+              </tabset>
+            </div>
+            <!-- <hr> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<hr>
+</div>

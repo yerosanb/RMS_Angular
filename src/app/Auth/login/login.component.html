@@ -1,0 +1,243 @@
+<div class="account-pages pt-2 pt-sm-5 pb-4 pb-sm-5" style="
+    background-image: url(/rms/assets/template_assets/images/bg-pattern-light.svg);
+    background-size: cover;
+    background-position: center;
+
+    height: 100vh !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 100% !important;
+  ">
+  <!--     position: absolute; -->
+  <div class="container">
+    <div class="row justify-content-center">
+      <!-- <h3 style="color:midnightblue; text-align: center;"><b><i>Transaction Reconciliation System</i></b></h3> -->
+      <div class="col-xxl-4 col-lg-5">
+
+        <div class="card">
+          <!-- Logo -->
+          <!-- <div class="card-header pt-4 pb-4 text-center bg-primary">
+                        <a href="index.html">
+                            <span><img src="/rms/assets/template_assets/images/logo.png" alt="" height="18"></span>
+                        </a>
+                    </div> -->
+
+
+          <div class="card-body p-4 mb-3">
+            <div class="text-center w-85 mx-auto my-2">
+              <span><img class="w-75" src="/rms/assets/template_assets/images/awash_assets/awash_logo_003.svg"
+                  alt="awash-bank-logo" /></span>
+              <p style="margin-top: 12px;">AWASH BANK RECONCILIATION SYSTEM</p>
+            </div>
+
+            <div class="alert alert-danger d-none" role="alert" id="bad-credential-message">
+              <h4 class="alert-heading">Error!</h4>
+              <p *ngIf="user_disabled">Your account has been blocked. <br> Please contact system administrators for more
+                information.</p>
+              <p *ngIf="login_trial_exceeded">Login trial exceeded. <br>Your account has been temporarily blocked. <br>
+                Please contact system administrators for more information.</p>
+              <p *ngIf="this.localStorageService.retrieve('pt') == null && !user_disabled && !login_trial_exceeded">
+                Incorrect email or password.</p>
+              <p
+                *ngIf="this.localStorageService.retrieve('pt') != null && !user_disabled && !login_trial_exceeded && this.localStorageService.retrieve('pts') == null">
+                Incorrect email or password. {{this.localStorageService.retrieve('pt')}} attempts remaining.</p>
+              <p
+                *ngIf="this.localStorageService.retrieve('pts') != null && !user_disabled && !login_trial_exceeded && this.localStorageService.retrieve('pt') == null">
+                Incorrect email or password. {{difference_trial}} attempts remaining.</p>
+            </div>
+
+            <div class="alert alert-danger d-none" role="alert" id="server-error-message">
+              <h4 class="alert-heading">Error!</h4>
+              <p>Error has occurred on the server.</p>
+            </div>
+
+            <form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
+              <div class="mb-3">
+                <label for="emailaddress" class="form-label">Email</label>
+                <div class="input-group">
+                  <!-- <span class="input-group-text" id="basic-addon1">M</span> -->
+                  <input type="text" class="form-control" placeholder="Email" formControlName="email" aria-label="email"
+                    aria-describedby="basic-addon1" />
+
+                  <div class="valid-feedback" *ngIf="submitted && loginForm.controls['email'].valid">
+                    Looks good!
+                  </div>
+                  <div class="invalid-feedback" *ngIf="submitted && loginForm.controls['email'].errors?.['required']">
+                    Please enter email.
+                  </div>
+                  <div class="invalid-feedback" *ngIf="submitted && loginForm.controls['email'].errors?.['minlength']">
+                    At least 4 Characters.
+                  </div>
+                  <div class="invalid-feedback" *ngIf="submitted && loginForm.controls['email'].errors?.['maxlength']">
+                    At most 320 Characters.
+                  </div>
+                  <div class="invalid-feedback" *ngIf="submitted && loginForm.controls['email'].errors?.['email']">
+                    Invalid email.
+                  </div>
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <div class="input-group input-group-merge">
+                  <input type="password" id="password" class="form-control" formControlName="password"
+                    placeholder="Password" />
+                  <div class="input-group-text" data-password="true" id="pass-eye-change">
+                    <span class="password-eye"></span>
+                  </div>
+                  <div class="valid-feedback" *ngIf="submitted && loginForm.controls['password'].valid">
+                    Looks good!
+                  </div>
+                  <div class="invalid-feedback"
+                    *ngIf="submitted && loginForm.controls['password'].errors?.['required']">
+                    Please enter password.
+                  </div>
+                  <div class="invalid-feedback"
+                    *ngIf="submitted && loginForm.controls['password'].errors?.['minlength']">
+                    At least 8 Characters.
+                  </div>
+                  <div class="invalid-feedback"
+                    *ngIf="submitted && loginForm.controls['password'].errors?.['maxlength']">
+                    At most 20 Characters.
+                  </div>
+                  <div class="invalid-feedback" *ngIf="submitted && loginForm.controls['password'].errors?.['passwordStrength'] && 
+                            !loginForm.controls['password'].errors?.['minlength'] && 
+                            !loginForm.controls['password'].errors?.['maxlength']">
+                    Your password must have lower case, upper case and numeric
+                    characters.
+                  </div>
+                </div>
+              </div>
+
+              <!-- <div class="mb-3 mb-3">
+                <div class="form-check">
+                  <input
+                    type="checkbox"
+                    class="form-check-input"
+                    id="checkbox-signin"
+                    checked
+                  />
+                  <label class="form-check-label" for="checkbox-signin"
+                    >Remember me</label
+                  >
+                </div>
+              </div> -->
+
+              <div class="mb-0 text-center">
+                <button class="btn btn-primary" type="submit">Log In</button>
+              </div>
+
+            </form>
+            <div>
+            <div class="text-md-end" style="margin-top: 35px; font-size: 13px;
+            margin-bottom: -35px;">
+             <p> Don't have an account? &nbsp;&nbsp;
+              <a href="javascript: void(0);" (click)="forSignUp()">
+               <b> Sign Up</b> 
+              </a></p>
+            </div>
+            
+            <div class="text-md-end" style="margin-top: 35px; font-size: 13px;
+            margin-bottom: -35px;">
+              <a href="javascript: void(0);" (click)="forgotPassword()">
+                Forget Password
+              </a>
+            </div>
+          </div>
+          <!-- end card -->
+
+          <!-- <div class="row mt-3">
+            <div class="col-12 text-center">
+              <p class="text-muted">
+                Don't have an account?
+                <a
+                  style="cursor: pointer"
+                  (click)="goToPage('signup')"
+                  class="text-muted ms-1"
+                  ><b>Sign Up</b></a
+                >
+              </p>
+            </div>
+          </div> -->
+          <!-- end row -->
+        </div>
+        <!-- end col -->
+      </div>
+      <!-- end row -->
+    </div>
+    <!-- end container -->
+  </div>
+  <!-- end page -->
+  <footer class="footer">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-6">
+          {{fullYear}} ©Awash Bank
+        </div>
+        <div class="col-md-6">
+          <div class="text-md-end footer-links d-none d-md-block">
+            <a href="javascript: void(0);">About</a>
+            <a href="javascript: void(0);">Support</a>
+            <a href="javascript: void(0);">Contact Us</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+
+<div id="forgot-passoword" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" data-bs-backdrop="static"
+  data-bs-keyboard="false">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Provide your email and click on send new password.</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <form class="ps-3 pe-3" (ngSubmit)="Submit()" [formGroup]="forgotForm">
+          <div class="mb-3">
+            <label for="title" class="form-label">Email</label>
+            <input class="form-control" type="text" id="title" placeholder="Email" formControlName="email"
+              autocomplete="off">
+
+            <div class="invalid-feedback" *ngIf="message && forgotForm.controls['email'].valid">
+              Email not exist!
+            </div>
+            <div class="invalid-feedback"
+              *ngIf="submitted_forgot_password && forgotForm.controls['email'].errors?.['required']">
+              Please enter email.
+            </div>
+            <div class="invalid-feedback"
+              *ngIf="submitted_forgot_password && forgotForm.controls['email'].errors?.['minlength']">
+              At least 4 Characters.
+            </div>
+            <div class="invalid-feedback"
+              *ngIf="submitted_forgot_password && forgotForm.controls['email'].errors?.['maxlength']">
+              At most 320 Characters.
+            </div>
+            <div class="invalid-feedback"
+              *ngIf="submitted_forgot_password && forgotForm.controls['email'].errors?.['email']">
+              Invalid email.
+            </div>
+          </div>
+
+          <div class="mb-3 text-center modal-footer">
+            <button class="btn btn-primary" type="submit">Send new password</button>
+          </div>
+
+        </form>
+
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div>
+
+<swal #SwalSessionExpired title="Warning" text="Your session has expired! please login to continue." icon="warning"
+  [showCancelButton]="false" [showConfirmButton]="false" [timer]="3500" [focusCancel]="true">
+</swal>
+<swal #SuccessSendForgetPassword title="Success" text="password sent via your email!" icon="success"
+  [showCancelButton]="true" [showConfirmButton]="false" [timer]="4500" [focusCancel]="true"></swal>

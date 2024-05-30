@@ -1,0 +1,55 @@
+<div class="row">
+  <div class="col-12">
+    <div class="page-title-box">
+      <app-navigator-upper></app-navigator-upper>
+      <h4 class="page-title">View Transactions</h4>
+      <div class="card">
+        <div class="card-body">
+          <h4 class="header-title">Transactions</h4>
+          <div class="my-4">
+            <div>
+              <tabset type="pills" #reconTab>
+                <tab heading="{{tabTitles[0]}}" (selectTab)="onSelect($event)" [active]="this.localStorageService.retrieve('recon-selected-tab') != null && 
+                  this.localStorageService.retrieve('recon-selected-tab-tra') == 0">
+                  <app-all-view *ngIf="reconTab.tabs[0]?.active"></app-all-view>
+                </tab>
+                <tab heading="{{tabTitles[1]}}" (selectTab)="onSelect($event)" [active]="this.localStorageService.retrieve('recon-selected-tab') != null && 
+                  this.localStorageService.retrieve('recon-selected-tab-tra') == 1">
+                  <app-rtgs-view *ngIf="reconTab.tabs[1]?.active"></app-rtgs-view>
+                </tab>
+                <tab heading="{{tabTitles[2]}}" (selectTab)="onSelect($event)" [active]="this.localStorageService.retrieve('recon-selected-tab') != null && 
+                  this.localStorageService.retrieve('recon-selected-tab-tra') == 2">
+                  <app-erca-view *ngIf="reconTab.tabs[2]?.active"></app-erca-view>
+                </tab>
+                <tab class="drop-down" heading="{{tabTitles[3]}}" (selectTab)="onSelect($event)" [active]="this.localStorageService.retrieve('recon-selected-tab') != null && 
+                  this.localStorageService.retrieve('recon-selected-tab-tra') == 3">
+                  <app-btb-view *ngIf="reconTab.tabs[3]?.active"></app-btb-view>
+                </tab>
+                <tab class="drop-down" heading="{{tabTitles[4]}}" (selectTab)="onSelect($event)" [active]="this.localStorageService.retrieve('recon-selected-tab') != null && 
+                  this.localStorageService.retrieve('recon-selected-tab-tra') == 4">
+                  <app-sos-view *ngIf="reconTab.tabs[4]?.active"></app-sos-view>
+                </tab>
+                <tab class="drop-down" heading="{{tabTitles[5]}}" (selectTab)="onSelect($event)" [active]="this.localStorageService.retrieve('recon-selected-tab') != null && 
+                this.localStorageService.retrieve('recon-selected-tab-tra') == 5">
+                  <app-pas-core-reversal-matched *ngIf="reconTab.tabs[5]?.active"></app-pas-core-reversal-matched>
+                </tab>
+                <tab class="drop-down" heading="{{tabTitles[6]}}" (selectTab)="onSelect($event)" [active]="this.localStorageService.retrieve('recon-selected-tab') != null && 
+                this.localStorageService.retrieve('recon-selected-tab-tra') == 6">
+                  <app-view-payable *ngIf="reconTab.tabs[6]?.active"></app-view-payable>
+                </tab>
+                <tab class="drop-down" heading="{{tabTitles[7]}}" (selectTab)="onSelect($event)" [active]="this.localStorageService.retrieve('recon-selected-tab') != null && 
+                this.localStorageService.retrieve('recon-selected-tab-tra') == 7">
+                  <app-view-receivable *ngIf="reconTab.tabs[7]?.active"></app-view-receivable>
+                </tab>
+                <tab class="drop-down" heading="{{tabTitles[8]}}" (selectTab)="onSelect($event)" [active]="this.localStorageService.retrieve('recon-selected-tab') != null && 
+                this.localStorageService.retrieve('recon-selected-tab-tra') == 8">
+                  <app-view-edited-transaction *ngIf="reconTab.tabs[8]?.active"></app-view-edited-transaction>
+                </tab>
+              </tabset>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

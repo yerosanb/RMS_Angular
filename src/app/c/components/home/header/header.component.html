@@ -1,0 +1,563 @@
+<div class="navbar-custom topnav-navbar" id="navbar-custom-id_">
+  <div class="container-fluid">
+    <!-- <a href="" class="topnav-logo">
+      <span class="topnav-logo-lg">
+          <img src="assets/images/logo-light.png" alt="" height="16">
+      </span>
+      <span class="topnav-logo-sm">
+          <img src="assets/images/logo_sm_dark.png" alt="" height="16">
+      </span>
+  </a> -->
+    <a href="javascript: void(0);" class="topnav-logo"
+      *ngIf=" 
+        this.localStorageService.retrieve('theme').trim() == 'dark'.trim() && (authService.isUser() || authService.isIssueAccount() || authService.isFixedAsset())">
+
+      <img src="/rms/assets/template_assets/images/awash_assets/awash_logo_003.svg" alt="Awash bank logo" height="45"
+        class="" style="background: #f1f1f1d9; padding: 2px" />
+      <!-- <span class="leftbar-user-name" style="margin-left: 0px">Awash Bank Reconciliation System</span> -->
+    </a>
+    <a href="javascript: void(0);" class="topnav-logo"
+      *ngIf="
+        this.localStorageService.retrieve('theme').trim() == 'light'.trim() && (authService.isUser() || authService.isIssueAccount() || authService.isFixedAsset())">
+
+      <img src="/rms/assets/template_assets/images/awash_assets/awash_logo_003.svg" alt="Awash bank logo" height="45"
+        class="" />
+      <!-- <span class="leftbar-user-name" style="margin-left: 0px">Awash Bank Reconciliation System</span> -->
+    </a>
+
+    <ul class="list-unstyled topbar-menu float-end mb-0 d-flex align-items-center">
+      <li class="side-nav-item" *ngIf="(authService.isUser() && !authService.isRoleMulti())">
+        <a href="javascript: void(0);" (click)="goToPage('user/reconcile')" class="dropdown-item"
+          style="margin: 0 5px; width: fit-content; padding: 4px;">
+          <i class="mdi mdi-handshake-outline"></i>
+          <span class="nav-overflows"> Reconcile</span>
+        </a>
+      </li>
+      <li class="side-nav-item" *ngIf="(authService.isIssueAccount() && !authService.isRoleMulti())">
+        <a href="javascript: void(0);" (click)="goToPage('issueaccount/reconcile')" class="dropdown-item"
+          style="margin: 0 5px; width: fit-content; padding: 4px;">
+          <i class="mdi mdi-handshake-outline"></i>
+          <span class="nav-overflows"> Reconcile</span>
+        </a>
+      </li>
+      <li class="side-nav-item" *ngIf="(authService.isFixedAsset() && !authService.isRoleMulti())">
+        <a href="javascript: void(0);" (click)="goToPage('fixedasset/reconcile')" class="dropdown-item"
+          style="margin: 0 5px; width: fit-content; padding: 4px;">
+          <i class="mdi mdi-handshake-outline"></i>
+          <span class="nav-overflows"> Reconcile FixedAsset</span>
+        </a>
+      </li>
+      <li class="side-nav-item" *ngIf="(authService.isFixedAsset() && !authService.isRoleMulti())">
+        <a *ngIf="authService.isFixedAsset()" href="javascript:void(0);" class="dropdown-item notify-item"
+        (click)="goToPage('Stock/000')">
+        <span class="align-middle" style="display: flex !important; align-items: center;">
+          <i class="mdi mdi-handshake-outline" style="margin-right: 6px;"></i> Reconcile Stock <span
+            class="badge bg-success float-end" style="margin-left: 12px !important">
+          </span></span>
+      </a>
+      </li>
+      <li class="dropdown notification-list topbar-dropdown d-lg-block" *ngIf="(authService.isRoleMulti())">
+        <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" id="topbar-languagedrop" href="#"
+          role="button" aria-haspopup="true" aria-expanded="false">
+          <span class="align-middle nav-overflows-2" style="color: #6c757d;
+          font-weight: 500;">Reconcile</span> <i class="mdi mdi-chevron-down"></i>
+        </a>
+
+        <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu"
+          aria-labelledby="topbar-languagedrop">
+
+          <a href="javascript:void(0);" class="dropdown-item notify-item"
+            (click)="goToPage(item.name.toLowerCase() + '/reconcile')" *ngFor="let item of this.roles">
+            <!-- <span ngIf="item.name.toLowerCase() == 'admin'" class="align-middle" style="display: flex !important; align-items: center;"> -->
+            <span class="align-middle" style="display: flex !important; align-items: center;">
+              <i class="mdi mdi-handshake-outline" style="margin-right: 6px;"></i> {{(item.name == "User" ? "PAS" :
+              item.name)}}<span class="badge bg-success float-end" style="margin-left: 12px !important">
+              </span></span>
+          </a>
+          <a *ngIf="authService.isFixedAsset()" href="javascript:void(0);" class="dropdown-item notify-item"
+            (click)="goToPage('Stock/000')">
+            <span class="align-middle" style="display: flex !important; align-items: center;">
+              <i class="mdi mdi-handshake-outline" style="margin-right: 6px;"></i> Reconcile Stock <span
+                class="badge bg-success float-end" style="margin-left: 12px !important">
+              </span></span>
+          </a>
+        </div>
+      </li>
+      <li class="side-nav-item" *ngIf="authService.isUserApprover() || authService.isIssueApprover()">
+        <a href="javascript: void(0);" (click)="goToPage('User-Approver/pending-users')" class="side-nav-link"
+          style="margin-right: 20px; width: fit-content; padding: 4px;">
+          <i class="mdi mdi-account-details"></i>
+          <span> Pending Users </span>
+        </a>
+      </li>
+      <li class="side-nav-item" *ngIf="authService.isUserApprover() || authService.isIssueApprover()">
+        <a href="javascript: void(0);" (click)="goToPage('User-Approver/Approved-Rejected-users')" class="side-nav-link"
+          style="margin-right: 20px; width: fit-content; padding: 4px;">
+          <i class="mdi mdi-account-details"></i>
+          <span> Approved and Rejected Users </span>
+        </a>
+      </li>
+      <li class="side-nav-item" *ngIf="(authService.isUser() && !authService.isRoleMulti())">
+        <a href="javascript: void(0);" (click)="goToPage('user/view_transaction')" class="dropdown-item"
+          style="margin: 0 5px; width: fit-content; padding: 4px;">
+          <i class="mdi mdi-handshake-outline"></i>
+          <span class="nav-overflows"> View Transaction</span>
+        </a>
+      </li>
+      <li class="side-nav-item" *ngIf="(authService.isIssueAccount() && !authService.isRoleMulti())">
+        <a href="javascript: void(0);" (click)="goToPage('issueaccount/view_transaction')" class="dropdown-item"
+          style="margin: 0 5px; width: fit-content; padding: 4px;">
+          <i class="mdi mdi mdi-eye"></i>
+          <span class="nav-overflows"> View Transaction</span>
+        </a>
+      </li>
+      <li class="side-nav-item" *ngIf="(authService.isFixedAsset() && !authService.isRoleMulti())">
+        <a href="javascript: void(0);" (click)="goToPage('fixedasset/view_transaction')" class="dropdown-item"
+          style="margin: 0 5px; width: fit-content; padding: 4px;">
+          <i class="mdi mdi mdi-eye"></i>
+          <span class="nav-overflows">View FixedAsset</span>
+        </a>
+      </li>
+      <li class="side-nav-item" *ngIf="(authService.isFixedAsset() && !authService.isRoleMulti())">
+        <a *ngIf="authService.isFixedAsset()" href="javascript:void(0);" class="dropdown-item notify-item"
+        (click)="goToPage('Stock/View-transaction-tab')">
+        <span class="align-middle" style="display: flex !important; align-items: center;">
+          <i class="mdi mdi-eye" style="margin-right: 6px;"></i>View Stock <span
+            class="badge bg-success float-end" style="margin-left: 12px !important">
+          </span></span>
+      </a>
+      </li>
+      <li class="dropdown notification-list topbar-dropdown d-lg-block" *ngIf="(authService.isRoleMulti())">
+        <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" id="topbar-languagedrop" href="#"
+          role="button" aria-haspopup="true" aria-expanded="false">
+          <span class="align-middle nav-overflows-2" style="color: #6c757d;
+          font-weight: 500;">View Transaction</span> <i class="mdi mdi-chevron-down"></i>
+        </a>
+
+        <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu"
+          aria-labelledby="topbar-languagedrop">
+
+          <a href="javascript:void(0);" class="dropdown-item notify-item"
+            (click)="goToPage(item.name.toLowerCase() + '/view_transaction')" *ngFor="let item of this.roles
+            ">
+            <span class="align-middle" style="display: flex !important; align-items: center;">
+              <i class="mdi mdi mdi-eye" style="margin-right: 6px;"></i> {{(item.name == "User" ? "PAS" :
+              item.name)}}<span class="badge bg-success float-end" style="margin-left: 12px !important">
+              </span></span>
+          </a>
+          <a *ngIf="authService.isFixedAsset()" href="javascript:void(0);" class="dropdown-item notify-item"
+          (click)="goToPage('Stock/View-transaction-tab')">
+          <span class="align-middle" style="display: flex !important; align-items: center;">
+            <i class="mdi mdi-eye" style="margin-right: 6px;"></i>View Stock <span
+              class="badge bg-success float-end" style="margin-left: 12px !important">
+            </span></span>
+        </a>
+        </div>
+      </li>
+
+
+
+
+
+
+
+
+
+
+      <li class="side-nav-item" *ngIf="(authService.isUser() || authService.isIssueAccount())">
+        <a href="javascript: void(0);" (click)="goToPage('user/file-upload')" class="dropdown-item" style="margin: 0 5px; width: fit-content;
+           padding: 4px;">
+          <i class="mdi mdi-file-upload-outline"></i>
+          <span class="nav-overflows">Upload</span>
+        </a>
+      </li>
+      <li class="dropdown notification-list topbar-dropdown d-lg-block"
+        *ngIf="(authService.isUser() || authService.isIssueAccount() || authService.isFixedAsset())">
+        <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" id="topbar-languagedrop" href="#"
+          role="button" aria-haspopup="true" aria-expanded="false">
+          <span class="align-middle nav-overflows-2" style="color: #6c757d;
+          font-weight: 500;">Data</span> <i class="mdi mdi-chevron-down"></i>
+        </a>
+
+        <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu"
+          aria-labelledby="topbar-languagedrop">
+
+          <a href="javascript:void(0);" class="dropdown-item notify-item"
+            (click)="goToPage('user/view-transaction-history')"
+            *ngIf="(authService.isUser() || authService.isIssueAccount() || authService.isFixedAsset())">
+            <span class="align-middle" style="display: flex !important; align-items: center;">
+              <i class="mdi mdi-eye" style="margin-right: 6px;"></i> View transaction history<span
+                class="badge bg-success float-end" style="margin-left: 12px !important">
+              </span></span>
+          </a>
+
+          <a href="javascript:void(0);" class="dropdown-item notify-item" (click)="goToPage('user/report-all')"
+            *ngIf="(authService.isUser() || authService.isIssueAccount() || authService.isFixedAsset())">
+            <span class="align-middle" style="display: flex !important; align-items: center;">
+              <i class="mdi mdi-file-document" style="margin-right: 6px;"></i>Generate Report <span
+                class="badge bg-success float-end" style="margin-left: 12px !important">
+              </span></span>
+          </a>
+
+        </div>
+      </li>
+      <li class="dropdown notification-list topbar-dropdown d-lg-block" *ngIf="authService.isUser() || authService.isIssueAccount()">
+        <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" id="topbar-languagedrop" href="#"
+          role="button" aria-haspopup="true" aria-expanded="false">
+          <span class="nav-overflows-2" style="color: #6c757d;
+          font-weight: 500;">Requests</span> <i class="mdi mdi-chevron-down"></i>
+        </a>
+        <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu"
+          aria-labelledby="topbar-languagedrop">
+
+          <a href="javascript:void(0);" class="dropdown-item notify-item"
+            (click)="goToPage('user/view-account-request')" *ngIf="authService.isUser() || authService.isIssueAccount()">
+            <span class="align-middle" style="display: flex !important; align-items: center;">
+              <i class="mdi mdi-currency-usd-circle-outline" style="margin-right: 6px;"></i>Account Requests <span
+                class="badge bg-success float-end" style="margin-left: 12px !important">
+                <!-- {{totalCurrencyRemarks}} -->
+              </span></span>
+          </a>
+          <a href="javascript:void(0);" class="dropdown-item notify-item"
+            (click)="goToPage('user/view-currency-request')" *ngIf="authService.isUser() ||  authService.isIssueAccount()">
+            <span class="align-middle" style="display: flex !important; align-items: center;">
+              <i class="mdi mdi-currency-cny" style="margin-right: 6px;"></i>Currency Requests <span
+                class="badge bg-success float-end" style="margin-left: 12px !important">
+                <!-- {{totalCurrencyRemarks}} -->
+              </span></span>
+          </a>
+          <!-- item-->
+          <a href="javascript:void(0);" class="dropdown-item notify-item" (click)="goToPage('user/view-account-remark')"
+            *ngIf="authService.isUser() || authService.isIssueAccount()">
+            <span class="align-middle" style="display: flex !important; align-items: center;">
+              <i class="uil-comments" style="margin-right: 6px;"></i>Account Remarks <span
+                class="badge bg-success float-end" style="margin-left: 12px !important">
+                <!-- {{totalCurrencyRemarks}} -->
+              </span></span>
+          </a>
+          <a href="javascript:void(0);" class="dropdown-item notify-item"
+            (click)="goToPage('user/view-currency-remark')" *ngIf="authService.isUser()|| authService.isIssueAccount()">
+            <span class="align-middle" style="display: flex !important; align-items: center;">
+              <i class="uil-comments" style="margin-right: 6px;"></i>Currency Remarks <span
+                class="badge bg-success float-end" style="margin-left: 12px !important">
+                <!-- {{totalCurrencyRemarks}} -->
+              </span></span>
+          </a>
+        </div>
+      </li>
+
+      <li class="dropdown notification-list">
+        <div class="tumbler-wrapper" (click)="toggleNightMode()">
+          <div class="tumbler" id="tumbler"> </div>
+
+          <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+            x="0px" y="0px" viewBox="0 0 60 60" style="enable-background: new 0 0 60 60" xml:space="preserve">
+            <g>
+              <path style="fill: #f0c419"
+                d="M30,0c-0.552,0-1,0.448-1,1v6c0,0.552,0.448,1,1,1s1-0.448,1-1V1C31,0.448,30.552,0,30,0z" />
+              <path style="fill: #f0c419"
+                d="M30,52c-0.552,0-1,0.448-1,1v6c0,0.552,0.448,1,1,1s1-0.448,1-1v-6C31,52.448,30.552,52,30,52z" />
+              <path style="fill: #f0c419"
+                d="M59,29h-6c-0.552,0-1,0.448-1,1s0.448,1,1,1h6c0.552,0,1-0.448,1-1S59.552,29,59,29z" />
+              <path style="fill: #f0c419"
+                d="M8,30c0-0.552-0.448-1-1-1H1c-0.552,0-1,0.448-1,1s0.448,1,1,1h6C7.552,31,8,30.552,8,30z" />
+              <path style="fill: #f0c419"
+                d="M46.264,14.736c0.256,0,0.512-0.098,0.707-0.293l5.736-5.736c0.391-0.391,0.391-1.023,0-1.414
+                            		s-1.023-0.391-1.414,0l-5.736,5.736c-0.391,0.391-0.391,1.023,0,1.414C45.752,14.639,46.008,14.736,46.264,14.736z" />
+              <path style="fill: #f0c419"
+                d="M13.029,45.557l-5.736,5.736c-0.391,0.391-0.391,1.023,0,1.414C7.488,52.902,7.744,53,8,53
+                            		s0.512-0.098,0.707-0.293l5.736-5.736c0.391-0.391,0.391-1.023,0-1.414S13.42,45.166,13.029,45.557z" />
+              <path style="fill: #f0c419"
+                d="M46.971,45.557c-0.391-0.391-1.023-0.391-1.414,0s-0.391,1.023,0,1.414l5.736,5.736
+                            		C51.488,52.902,51.744,53,52,53s0.512-0.098,0.707-0.293c0.391-0.391,0.391-1.023,0-1.414L46.971,45.557z" />
+              <path style="fill: #f0c419"
+                d="M8.707,7.293c-0.391-0.391-1.023-0.391-1.414,0s-0.391,1.023,0,1.414l5.736,5.736
+                            		c0.195,0.195,0.451,0.293,0.707,0.293s0.512-0.098,0.707-0.293c0.391-0.391,0.391-1.023,0-1.414L8.707,7.293z" />
+              <path style="fill: #f0c419"
+                d="M50.251,21.404c0.162,0.381,0.532,0.61,0.921,0.61c0.13,0,0.263-0.026,0.39-0.08l2.762-1.172
+                            		c0.508-0.216,0.746-0.803,0.53-1.311s-0.804-0.746-1.311-0.53l-2.762,1.172C50.272,20.309,50.035,20.896,50.251,21.404z" />
+              <path style="fill: #f0c419" d="M9.749,38.596c-0.216-0.508-0.803-0.746-1.311-0.53l-2.762,1.172
+                            		c-0.508,0.216-0.746,0.803-0.53,1.311c0.162,0.381,0.532,0.61,0.921,0.61c0.13,0,0.263-0.026,0.39-0.08l2.762-1.172
+                            		C9.728,39.691,9.965,39.104,9.749,38.596z" />
+              <path style="fill: #f0c419" d="M54.481,38.813L51.7,37.688c-0.511-0.207-1.095,0.041-1.302,0.553
+                            		c-0.207,0.512,0.041,1.095,0.553,1.302l2.782,1.124c0.123,0.049,0.25,0.073,0.374,0.073c0.396,0,0.771-0.236,0.928-0.626
+                            		C55.241,39.603,54.994,39.02,54.481,38.813z" />
+              <path style="fill: #f0c419"
+                d="M5.519,21.188L8.3,22.312c0.123,0.049,0.25,0.073,0.374,0.073c0.396,0,0.771-0.236,0.928-0.626
+                            		c0.207-0.512-0.041-1.095-0.553-1.302l-2.782-1.124c-0.513-0.207-1.095,0.04-1.302,0.553C4.759,20.397,5.006,20.98,5.519,21.188z" />
+              <path style="fill: #f0c419"
+                d="M39.907,50.781c-0.216-0.508-0.803-0.745-1.311-0.53c-0.508,0.216-0.746,0.803-0.53,1.311
+                            		l1.172,2.762c0.162,0.381,0.532,0.61,0.921,0.61c0.13,0,0.263-0.026,0.39-0.08c0.508-0.216,0.746-0.803,0.53-1.311L39.907,50.781z" />
+              <path style="fill: #f0c419"
+                d="M21.014,9.829c0.13,0,0.263-0.026,0.39-0.08c0.508-0.216,0.746-0.803,0.53-1.311l-1.172-2.762
+                            		c-0.215-0.509-0.802-0.747-1.311-0.53c-0.508,0.216-0.746,0.803-0.53,1.311l1.172,2.762C20.254,9.6,20.625,9.829,21.014,9.829z" />
+              <path style="fill: #f0c419" d="M21.759,50.398c-0.511-0.205-1.095,0.04-1.302,0.553l-1.124,2.782
+                            		c-0.207,0.512,0.041,1.095,0.553,1.302c0.123,0.049,0.25,0.073,0.374,0.073c0.396,0,0.771-0.236,0.928-0.626l1.124-2.782
+                            		C22.519,51.188,22.271,50.605,21.759,50.398z" />
+              <path style="fill: #f0c419"
+                d="M38.615,9.675c0.396,0,0.771-0.236,0.928-0.626l1.124-2.782c0.207-0.512-0.041-1.095-0.553-1.302
+                            		c-0.511-0.207-1.095,0.041-1.302,0.553L37.688,8.3c-0.207,0.512,0.041,1.095,0.553,1.302C38.364,9.651,38.491,9.675,38.615,9.675z" />
+            </g>
+            <circle style="fill: #f0c419" cx="30" cy="30" r="20" />
+            <circle style="fill: #ede21b" cx="30" cy="30" r="15" />
+          </svg>
+          <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+            x="0px" y="0px" viewBox="0 0 499.712 499.712" style="enable-background: new 0 0 499.712 499.712"
+            xml:space="preserve">
+            <path style="fill: #ffd93b" d="M146.88,375.528c126.272,0,228.624-102.368,228.624-228.64c0-55.952-20.16-107.136-53.52-146.88
+                            	C425.056,33.096,499.696,129.64,499.696,243.704c0,141.392-114.608,256-256,256c-114.064,0-210.608-74.64-243.696-177.712
+                            	C39.744,355.368,90.944,375.528,146.88,375.528z" />
+            <path style="fill: #f4c534" d="M401.92,42.776c34.24,43.504,54.816,98.272,54.816,157.952c0,141.392-114.608,256-256,256
+                            	c-59.68,0-114.448-20.576-157.952-54.816c46.848,59.472,119.344,97.792,200.928,97.792c141.392,0,256-114.608,256-256
+                            	C499.712,162.12,461.392,89.64,401.92,42.776z" />
+            <g>
+              <polygon style="fill: #ffd83b" points="128.128,99.944 154.496,153.4 213.472,161.96 170.8,203.56 180.864,262.296 
+                            		128.128,234.568 75.376,262.296 85.44,203.56 42.768,161.96 101.744,153.4 	" />
+              <polygon style="fill: #ffd83b" points="276.864,82.84 290.528,110.552 321.104,114.984 298.976,136.552 304.208,166.984 
+                            		276.864,152.616 249.52,166.984 254.752,136.552 232.624,114.984 263.2,110.552 	" />
+            </g>
+          </svg>
+        </div>
+      </li>
+
+      <li class="dropdown notification-list topbar-dropdown" *ngIf="authService.isUser() || authService.isFixedAsset() || authService.isIssueAccount()">
+        <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#" role="button"
+          aria-haspopup="false" aria-expanded="false" style="display: flex; align-items: center; gap: 8px">
+      <li class="notification-list">
+        <a class="nav-link end-bar-toggle" href="javascript: void(0);">
+          <i class="dripicons-gear noti-icon"></i>
+        </a>
+      </li>
+      </a>
+
+      <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu"
+        *ngIf="authService.isUser() || authService.isFixedAsset()|| authService.isIssueAccount()">
+        <div class="dropdown-header noti-title" *ngIf="authService.isUser() || authService.isIssueAccount()">
+          <h6 class="text-overflow m-0">
+            <div style=" display: flex; gap: 4px; font-weight: 600; margin-top: 2px;">
+              <div *ngIf="this.selected_account_full != null">{{this.selected_account_full.name}}</div><span>-</span>
+              <div *ngIf="this.selected_account_full != null">{{this.selected_account_full.currency}}</div>
+            </div>
+          </h6>
+        </div>
+
+        <a (click)="goToPage('user/list-account')" href="javascript:void(0);" class="dropdown-item notify-item"
+        *ngIf="authService.isUser() || authService.isIssueAccount()" style="display: flex; align-items: center; gap: 12px">
+          <i class="mdi mdi-currency-usd-circle-outline"></i>
+          <span class="align-middle"> Account</span>
+        </a>
+
+        <a (click)="goToPage('user/view-currency')" href="javascript:void(0);" class="dropdown-item notify-item"
+        *ngIf="authService.isUser() || authService.isIssueAccount()" style="display: flex; align-items: center; gap: 12px">
+          <i class="mdi mdi-currency-cny"></i>
+          <span class="align-middle"> Currency</span>
+        </a>
+
+        <a (click)="openSetAccountModal()" href="javascript:void(0);" class="dropdown-item notify-item"
+          *ngIf="authService.isUser() ||  authService.isIssueAccount()" style="display: flex; align-items: center; gap: 12px">
+          <i class="mdi mdi-set-left-center"></i>
+          <span class="align-middle">Set Account</span>
+        </a>
+
+        <a (click)="goToPage('fixedasset/disposed-amounts')" href="javascript:void(0);" class="dropdown-item notify-item"
+          *ngIf="authService.isFixedAsset()" style="display: flex; align-items: center; gap: 12px">
+          <i class="mdi mdi-set-left-center"></i>
+          <span class="align-middle">Trial Balance</span>
+        </a>
+      </div>
+      </li>
+
+      <li class="dropdown notification-list">
+        <a class="nav-link dropdown-toggle nav-user arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button"
+          aria-haspopup="false" aria-expanded="false">
+          <span class="account-user-avatar">
+
+            <img src="/rms/assets/template_assets/images/users/avatar-1.png" alt="user-image" class="rounded-circle" />
+
+          </span>
+          <span>
+            <span class="account-user-name">{{full_name}}</span>
+            <span class="account-position">{{role}}</span>
+          </span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu profile-dropdown">
+          <div class="dropdown-header noti-title">
+            <h6 class="text-overflow m-0">Welcome !</h6>
+          </div>
+
+          <a href="javascript:void(0);" (click)="logout()" class="dropdown-item notify-item">
+            <i class="mdi mdi-logout me-1"></i>
+            <span>Logout</span>
+          </a>
+
+          <!-- <a href="javascript:void(0);" (click)="logoutAll()" class="dropdown-item notify-item">
+            <i class="mdi mdi-logout me-1"></i>
+            <span>Logout all sessions</span>
+          </a> -->
+          <a href="javascript:void(0);" (click)="changeMyPassword()" class="dropdown-item notify-item">
+            <i class="mdi mdi-key-change me-1"></i>
+            <span>Change password</span>
+          </a>
+        </div>
+      </li>
+    </ul>
+
+    <button class="button-menu-mobile open-left disable-btn" (click)="changeOverflow()"
+      *ngIf="!authService.isUser() && !authService.isIssueAccount()">
+      <i class="mdi mdi-menu"></i>
+    </button>
+  </div>
+</div>
+
+<div id="setAccountModal" class="modal fade" data-bs-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
+  aria-labelledby="setAccountModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="setAccountModalLabel">Change the account of the workspace.</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+      </div>
+      <div class="modal-body">
+        <p class="text-center">If you change the account for the workspace all the activities you perform will be
+          performed on the account you selected.</p>
+        <div class="m-1"> <label for="role" class="form-label">Accounts</label>
+          <select class="form-select" [(ngModel)]="this.selected_account">
+            <option *ngFor="let account of accounts">
+              <!-- {{account.name}} -->
+              {{account.code}}-{{ account.name }} --> {{account.currency}}
+            </option>
+            <!-- <option *ngFor="let account of accounts" [ngValue]="account.name">
+                {{account.code}}-{{ account.name }}  {{account.currency}}
+              </option> -->
+          </select>
+          <!-- <select id="select-type-basic" [(ngModel)]="status">
+            <option *ngFor="let status_item of status_values">
+            {{status_item}}
+            </option>
+        </select>  *ngFor="let status_item of status_values" -->
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" (click)="applyAccountChange()">Apply change</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div id="modal-change-password" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"
+  data-bs-backdrop="static" data-bs-keyboard="false">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Change my password</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <form action="#" [formGroup]="passwordChangeForm" (submit)="changePassword()" autocomplete="off">
+          <div class="container">
+            <div class=" mb-3">
+              <label for="old-password" class="form-label">Old password</label>
+              <input class="form-control" type="password" id="old-password" required="" autocomplete="new-phone"
+                formControlName="oldpassword" placeholder="Old password">
+              <div class="valid-feedback" *ngIf="submitted && passwordChangeForm.controls['oldpassword'].valid">
+                Looks good!
+              </div>
+              <div class="invalid-feedback"
+                *ngIf="submitted && passwordChangeForm.controls['oldpassword'].errors?.['required']">
+                Please enter password.
+              </div>
+              <div class="invalid-feedback"
+                *ngIf="submitted && passwordChangeForm.controls['oldpassword'].errors?.['minlength']">
+                At least 8 Characters.
+              </div>
+              <div class="invalid-feedback"
+                *ngIf="submitted && passwordChangeForm.controls['oldpassword'].errors?.['maxlength']">
+                At most 20 Characters.
+              </div>
+            </div>
+            <div class="mb-3">
+              <div class="mb-3">
+                <label for="password" class="form-label">New password</label>
+                <div class="input-group input-group-merge">
+                  <input type="password" id="password" class="form-control" autocomplete="off"
+                    formControlName="newpassword" placeholder="New password">
+                  <div class="input-group-text" data-password="true" id="pass-eye-change">
+                    <span class="password-eye"></span>
+                  </div>
+                  <div class="valid-feedback" *ngIf="submitted && passwordChangeForm.controls['newpassword'].valid">
+                    Looks good!
+                  </div>
+                  <div class="invalid-feedback"
+                    *ngIf="submitted && passwordChangeForm.controls['newpassword'].errors?.['required']">
+                    Please enter password.
+                  </div>
+                  <div class="invalid-feedback"
+                    *ngIf="submitted && passwordChangeForm.controls['newpassword'].errors?.['minlength']">
+                    At least 8 Characters.
+                  </div>
+                  <div class="invalid-feedback"
+                    *ngIf="submitted && passwordChangeForm.controls['newpassword'].errors?.['maxlength']">
+                    At most 20 Characters.
+                  </div>
+                  <div class="invalid-feedback" *ngIf="submitted && passwordChangeForm.controls['newpassword'].errors?.['passwordStrength'] && 
+                              !passwordChangeForm.controls['newpassword'].errors?.['minlength'] && 
+                              !passwordChangeForm.controls['newpassword'].errors?.['maxlength']">
+                    Your password must have lower case, upper case and numeric characters.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="mb-3">
+              <div class="mb-3">
+                <label for="example-password" class="form-label">Confirm Password </label>
+                <div class="input-group">
+                  <input type="password" id="example-password" class="form-control" formControlName="confirmpassword"
+                    value="password" autocomplete="off" placeholder="Confirm Password">
+                  <div class="valid-feedback" *ngIf="submitted && passwordChangeForm.controls['confirmpassword'].valid">
+                    Looks good!
+                  </div>
+                  <div class="invalid-feedback"
+                    *ngIf="submitted && passwordChangeForm.controls['confirmpassword'].errors?.['required']">
+                    Please confirm your password.
+                  </div>
+                  <div class="invalid-feedback"
+                    *ngIf="submitted && passwordChangeForm.controls['confirmpassword'].errors?.['minlength']">
+                    At least 8 characters.
+                  </div>
+                  <div class="invalid-feedback"
+                    *ngIf="submitted && passwordChangeForm.controls['confirmpassword'].errors?.['maxlength']">
+                    At most 20 characters.
+                  </div><br>
+                  <div class="invalid-feedback" *ngIf="submitted && passwordChangeForm.controls['confirmpassword'].errors?.['mismatch'] && 
+                              !passwordChangeForm.controls['confirmpassword'].errors?.['minlength'] && 
+                              !passwordChangeForm.controls['confirmpassword'].errors?.['maxlength']">
+                    Password mismatch.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="mb-0 text-center">
+              <button class="btn btn-primary" type="submit">Change Password</button>
+            </div>
+          </div>
+        </form>
+
+      </div>
+
+
+    </div>
+  </div>
+
+
+
+</div>
+
+
+<swal #SwalSessionExpired title="Warning" text="Your session has expired! please login to continue." icon="warning"
+  [showCancelButton]="false" [showConfirmButton]="false" [timer]="3500" [focusCancel]="true">
+</swal>

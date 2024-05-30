@@ -1,0 +1,15 @@
+
+<div class="m-2">
+  <tabset #reconcileTab>
+    <tab heading="{{tabTitles[0]}}" (selectTab)="onSelect($event)" [active]="this.localStorageService.retrieve('selected-tab_') != null && 
+    this.localStorageService.retrieve('selected-tab_') == 0">
+      <app-receivable-manual *ngIf="reconcileTab.tabs[0]?.active"></app-receivable-manual>
+    </tab>
+ 
+    <tab heading="{{tabTitles[1]}}" (selectTab)="onSelect($event)" [active]="this.localStorageService.retrieve('selected-tab_') != null && 
+    this.localStorageService.retrieve('selected-tab_') == 1">
+      <app-receivable-automatic *ngIf="reconcileTab.tabs[1]?.active"></app-receivable-automatic>
+    </tab> 
+  </tabset>
+</div>
+

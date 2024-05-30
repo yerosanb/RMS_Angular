@@ -1,0 +1,12 @@
+
+<div class="m-2">
+  <tabset #accountTabset>
+    <tab heading="Manual-speed" [active]="true">
+      <app-payable-reconcile *ngIf="accountTabset.tabs[0]?.active"></app-payable-reconcile>
+    </tab>
+    <tab heading="Automatic">
+      <app-payable-auto *ngIf="accountTabset.tabs[1]?.active"></app-payable-auto>
+    </tab>
+  </tabset>
+</div>
+

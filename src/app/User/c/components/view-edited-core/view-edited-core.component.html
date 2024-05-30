@@ -1,0 +1,54 @@
+<div class="row">
+  <table datatable [dtOptions]="dtOptions" id="cur_list" class="
+        table table-bordered
+        dt-responsive
+        nowrap
+        w-100
+      "></table>
+</div>
+
+
+<div id="details_transaction_modal" class="modal fade" data-bs-backdrop="static" data-keyboard="false" tabindex="-1"
+  role="dialog" aria-labelledby="detail_transaction_modalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="details_transaction_modalLabel">View transaction detail.</h4>
+        <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true" (click)="clear()"></button> -->
+        <button type="button" class="btn btn-light btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="d-none" id="lalksdf6a5s4d6ffas"></div>
+      <div class="row" style="padding-left: 3%; padding-right: 3%;">
+        <table datatable [dtOptions]="dtOptions_detail" id="view_detail"
+          class="table table-bordered dt-responsive nowrap w-50"></table>
+      </div>
+      <br>
+      <div style="text-align: center;" *ngFor="let reas of reason1" id="cleardata">
+        <p style="color: blue;"><b>Reason:</b> {{reas}}</p>
+      </div>
+
+      <div style="text-align: center;" *ngFor="let reas of reasonEditDelete" id="cleardata">
+        <p><span ><b>Reason : </b> {{reas.reason}}</span>,&nbsp;&nbsp;&nbsp;
+          <span ><b>Action By : </b> {{reas.by}}</span>,&nbsp;&nbsp;&nbsp;
+          <span ><b>Date : </b> {{reas.date}}</span></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<swal
+  #SwalSessionExpired
+  title="Warning"
+  text="Your session has expired! please login to continue."
+  icon="warning"
+  [showCancelButton]="false"
+  [showConfirmButton]="false"
+  [timer]="3500"
+  [focusCancel]="true"
+>
+</swal>

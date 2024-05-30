@@ -1,0 +1,3 @@
+select distinct fm.fixed_mms_id as id, fmms.tag_number ,fmms.asset_description, fmms.asset_id,
+			fmms.created_date, fmms.branch_name, fmms.original_cost, fmms.book_value,fmms.quantity, 
+			fmms.grv_number, fmms.giv_number, fmms.main_pg, fmms.old_main_pg,  fmms.match_status, fmms.status, fmms.availability

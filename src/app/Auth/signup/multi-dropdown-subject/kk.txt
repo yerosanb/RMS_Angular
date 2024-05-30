@@ -1,0 +1,366 @@
+<div class="account-pages pt-2 pt-sm-5 pb-4 pb-sm-5" style="
+    background-image: url(/assets/template_assets/images/bg-pattern-light.svg);
+    background-size: cover;
+    background-position: center;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xxl-6 col-lg-8">
+                <div class="card">
+                    <!-- Logo-->
+                    <div class="card-header pt-4 pb-4 text-center bg-primary">
+                        <a href="index.html">
+                            <span><img src="/assets/template_assets/images/logo.png" alt="" height="18"></span>
+                        </a>
+                    </div>
+
+                    <div class="card-body p-4">
+
+                        <div class="text-center w-75 m-auto">
+                            <h4 class="text-dark-50 text-center mt-0 fw-bold">Free Sign Up</h4>
+                            <p class="text-muted mb-4">Don't have an account? Create your account, it takes less than a
+                                minute </p>
+                        </div>
+
+                        <form (ngSubmit)="onSubmit()" [formGroup]="reactiveForm">
+                            <div class="row">
+                                <div class="mb-3 col-sm-6">
+                                    <label class="form-label">User Name</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text" id="basic-addon1">@</span>
+                                        <input (ngModelChange)="checkNameExist(reactiveForm.controls['username'].value)"
+                                            type="text" class="form-control" placeholder="Username"
+                                            formControlName="username" aria-label="Username"
+                                            aria-describedby="basic-addon1">
+
+                                        <div style="  position: absolute;
+                                                    top: 20px;
+                                                    left: 95%;
+                                                    transform: translate(-50%, -50%);
+                                                    z-index: 3;">
+                                            <div id="invalid-username" class="d-none"><i class="dripicons-thumbs-up"
+                                                    style="color: #04d12a;"></i></div>
+                                            <div id="valid-username" class="d-none"><i class="dripicons-thumbs-down"
+                                                    style="color: red;"></i></div>
+                                        </div>
+
+
+                                        <div class="valid-feedback"
+                                            *ngIf="submitted && reactiveForm.controls['username'].valid && usernameChecked">
+                                            Looks good!
+                                        </div>
+                                        <div class="invalid-feedback"
+                                            *ngIf="(submitted && reactiveForm.controls['username'].valid) && !usernameChecked">
+                                            Username taken!
+                                        </div>
+                                        <div class="invalid-feedback"
+                                            *ngIf="submitted && reactiveForm.controls['username'].errors?.['required']">
+                                            Please enter username.
+                                        </div>
+                                        <div class="invalid-feedback"
+                                            *ngIf="submitted && reactiveForm.controls['username'].errors?.['minlength']">
+                                            At least 4 Characters.
+                                        </div>
+                                        <div class="invalid-feedback"
+                                            *ngIf="submitted && reactiveForm.controls['username'].errors?.['maxlength']">
+                                            At most 20 Characters.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-3 col-sm-6">
+                                    <label for="fullname" class="form-label">Full Name</label>
+                                    <div class="input-group">
+                                        <input class="form-control" type="text" id="fullname" formControlName="fullname"
+                                            placeholder="Full name">
+                                        <div class="valid-feedback"
+                                            *ngIf="submitted && reactiveForm.controls['fullname'].valid">
+                                            Looks good!
+                                        </div>
+                                        <div class="invalid-feedback"
+                                            *ngIf="submitted && reactiveForm.controls['fullname'].errors?.['required']">
+                                            Please enter fullname.
+                                        </div>
+                                        <div class="invalid-feedback"
+                                            *ngIf="submitted && reactiveForm.controls['fullname'].errors?.['minlength']">
+                                            At least 4 Characters.
+                                        </div>
+                                        <div class="invalid-feedback"
+                                            *ngIf="submitted && reactiveForm.controls['fullname'].errors?.['maxlength']">
+                                            At most 50 Characters.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3 col-sm-6">
+                                    <label for="fullname" class="form-label">I am</label>
+                                    <select class="form-select" formControlName="type" #teams
+                                        (change)="typeChange(teams.value)">
+                                        <option selected value="0">Student</option>
+                                        <option value="1">Teacher</option>
+                                    </select>
+
+                                </div>
+                                <div class="mb-3 col-sm-6">
+                                    <div>
+                                        <label for="fullname" class="form-label">Gender</label>
+                                        <div class="mt-1">
+                                            <div class="form-check form-check-inline">
+                                                <input type="radio" id="customRadio3" value="Male" name="gender"
+                                                    formControlName="gender" class="form-check-input">
+                                                <label class="form-check-label" for="customRadio3">Male</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input type="radio" id="customRadio4" value="Female" name="gender"
+                                                    formControlName="gender" class="form-check-input">
+                                                <label class="form-check-label" for="customRadio4">Female</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="row"> -->
+                            <div class="row" *ngIf="teacherType">
+                                <div class="mb-3 col-sm-6">
+                                    <label for="fullname" class="form-label">Level</label>
+                                    <div class="input-group">
+                                        <input class="form-control" type="text" id="level" formControlName="level"
+                                            placeholder="Level">
+                                        <div class="valid-feedback"
+                                            *ngIf="submitted && reactiveForm.controls['level'].valid">
+                                            Looks good!
+                                        </div>
+                                        <div class="invalid-feedback"
+                                            *ngIf="submitted && reactiveForm.controls['level'].errors?.['required']">
+                                            Please enter level.
+                                        </div>
+                                        <div class="invalid-feedback"
+                                            *ngIf="submitted && reactiveForm.controls['level'].errors?.['maxlength']">
+                                            At most 50 Characters.
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="mb-3 col-sm-6">
+                                    <label for="fullname" class="form-label">Subject</label>
+                                    <div class="input-group">
+                                        <input class="form-control" type="text" id="fullname" formControlName="subject"
+                                            placeholder="Subject">
+                                        <div class="valid-feedback"
+                                            *ngIf="submitted && reactiveForm.controls['subject'].valid">
+                                            Looks good!
+                                        </div>
+                                        <div class="invalid-feedback"
+                                            *ngIf="submitted && reactiveForm.controls['subject'].errors?.['required']">
+                                            Please enter subject.
+                                        </div>
+                                        <div class="invalid-feedback"
+                                            *ngIf="submitted && reactiveForm.controls['subject'].errors?.['minlength']">
+                                            At least 4 Characters.
+                                        </div>
+                                        <div class="invalid-feedback"
+                                            *ngIf="submitted && reactiveForm.controls['subject'].errors?.['maxlength']">
+                                            At most 20 Characters.
+                                        </div>
+                                    </div>
+                                </div> -->
+                                <!-- Multiple Select -->
+                                <!-- <span>mdi-book-plus-multiple</span> -->
+
+                                <div class="mb-3 col-sm-6">
+                                    <div class="d-flex"><label for="fullname" class="col form-label">Subject</label>
+                                        <!-- <i class="fa fa-plus" aria-hidden="true" style="    position: absolute;
+                                            margin-left: 8px; scale: 1.3;"></i> -->
+                                        <!-- <i class="fa fa-plus" aria-hidden="true"></i> -->
+                                        <div style="padding: 4px; cursor:pointer;" (click)="openModal()"><i
+                                                class="dripicons-plus mr-1"></i></div>
+                                    </div>
+                                    <app-multi-dropdown-subject 
+                                    
+                                    [dropdownSettings]="dropdownSettings"
+                                    
+                                    [onSelectAll]="onSelectAll"
+                                    [onItemSelect]="onItemSelect"
+                                    ></app-multi-dropdown-subject>
+<!--selectedItems="selectedItems" 
+    [dropdownList]="dropdownList" -->
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3 col-sm-6">
+                                    <div class="mb-3">
+                                        <label for="password" class="form-label">Password</label>
+                                        <div class="input-group input-group-merge">
+                                            <input type="password" id="password" class="form-control"
+                                                formControlName="password" placeholder="Password">
+                                            <div class="input-group-text" data-password="true" id="pass-eye-change">
+                                                <span class="password-eye"></span>
+                                            </div>
+                                            <div class="valid-feedback"
+                                                *ngIf="submitted && reactiveForm.controls['password'].valid">
+                                                Looks good!
+                                            </div>
+                                            <div class="invalid-feedback"
+                                                *ngIf="submitted && reactiveForm.controls['password'].errors?.['required']">
+                                                Please enter password.
+                                            </div>
+                                            <div class="invalid-feedback"
+                                                *ngIf="submitted && reactiveForm.controls['password'].errors?.['minlength']">
+                                                At least 8 Characters.
+                                            </div>
+                                            <div class="invalid-feedback"
+                                                *ngIf="submitted && reactiveForm.controls['password'].errors?.['maxlength']">
+                                                At most 20 Characters.
+                                            </div>
+                                            <div class="invalid-feedback" *ngIf="submitted && reactiveForm.controls['password'].errors?.['passwordStrength'] && 
+                                                !reactiveForm.controls['password'].errors?.['minlength'] && 
+                                                !reactiveForm.controls['password'].errors?.['maxlength']">
+                                                Your password must have lower case, upper case and numeric characters.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-3 col-sm-6">
+                                    <div class="mb-3">
+                                        <label for="example-password" class="form-label">Confirm Password </label>
+                                        <div class="input-group">
+                                            <input type="password" id="example-password" class="form-control"
+                                                formControlName="confirmPassword" value="password"
+                                                placeholder="Confirm Password">
+                                            <div class="valid-feedback"
+                                                *ngIf="submitted && reactiveForm.controls['confirmPassword'].valid">
+                                                Looks good!
+                                            </div>
+                                            <div class="invalid-feedback"
+                                                *ngIf="submitted && reactiveForm.controls['confirmPassword'].errors?.['required']">
+                                                Please confirm your password.
+                                            </div>
+                                            <div class="invalid-feedback"
+                                                *ngIf="submitted && reactiveForm.controls['confirmPassword'].errors?.['minlength']">
+                                                At least 8 characters.
+                                            </div>
+                                            <div class="invalid-feedback"
+                                                *ngIf="submitted && reactiveForm.controls['confirmPassword'].errors?.['maxlength']">
+                                                At most 20 characters.
+                                            </div><br>
+                                            <!-- <div>{{reactiveForm.controls['confirmPassword'].errors?.['mismatch']}}</div> -->
+                                            <div class="invalid-feedback" *ngIf="submitted && reactiveForm.controls['confirmPassword'].errors?.['mismatch'] && 
+                                                !reactiveForm.controls['confirmPassword'].errors?.['minlength'] && 
+                                                !reactiveForm.controls['confirmPassword'].errors?.['maxlength']">
+                                                Password mismatch.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <div class="input-group" style="width: fit-content;">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="checkbox-signup"
+                                            formControlName="termsAndConditions">
+                                        <label class="form-check-label" for="checkbox-signup"
+                                            style="margin-left: 8px;">I accept <a href="javascript:void(0);"
+                                                (click)="goToPage('terms-and-conditions')" class="text-muted">Terms and
+                                                Conditions</a></label>
+                                        <div class="valid-feedback"
+                                            *ngIf="submitted && reactiveForm.controls['termsAndConditions'].valid">
+                                            Looks good!
+                                        </div>
+                                        <div class="invalid-feedback"
+                                            *ngIf="submitted && reactiveForm.controls['termsAndConditions'].errors?.['required']">
+                                            Terms and Conditions are required.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3 text-center">
+                                <button class="btn btn-primary" type="submit"> Sign Up
+                                </button>
+                            </div>
+                        </form>
+                    </div> <!-- end card-body -->
+                </div>
+                <!-- end card -->
+
+                <div class="row mt-3">
+                    <div class="col-12 text-center">
+                        <p class="text-muted">Already have account? <a style="cursor: pointer;"
+                                (click)="goToPage('login')" class="text-muted ms-1"><b>Log In</b></a></p>
+                    </div> <!-- end col-->
+                </div>
+                <!-- end row -->
+
+            </div> <!-- end col -->
+        </div>
+        <!-- end row -->
+    </div>
+    <!-- end container -->
+</div>
+<!-- end page -->
+
+<footer class="footer footer-alt">
+    2018 - 2021 © Hyper - Coderthemes.com
+</footer>
+
+
+<div class="modal fade" id="add-subject-centermodal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myCenterModalLabel">Add Subject</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row" id="hh">
+                    <!-- <form> -->
+                    <!-- (ngModelChange)="checkSubjectExist(reactiveForm.controls['username'].value)" /> -->
+                    <div class="form-floating col-md-10" style="padding-right: 0px;">
+                        <input type="email" class="form-control" id="floatingInput_add_subject" autocomplete="off"
+                            placeholder="name@example.com" (ngModelChange)="checkSubjectExist($event)"
+                            [(ngModel)]="SubjectName" />
+                        <label style="width: 100%;" class="d-flex justify-content-between"
+                            for=" floatingInput_add_subject">
+                            <div>_add
+                                subject</div>
+                            <div style="color: red;" *ngIf="subjectErrorShort">Name too short</div>
+                            <div style="color: red;" *ngIf="subjectErrorLong">Name too long</div>
+                            <div></div>
+                        </label>
+                        <!-- endale -->
+                        <div style="position: absolute;
+                                    top: 20px;
+                                    left: 95%;
+                                    transform: translate(-50%, -50%);
+                                    z-index: 3;">
+                            <div id="invalid-subject" class="d-none"><i class="dripicons-thumbs-up"
+                                    style="color: #04d12a;"></i></div>
+                            <div id="valid-subject" class="d-none"><i class="dripicons-thumbs-down"
+                                    style="color: red;"></i></div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-2" style="display: flex; align-items: center; justify-content: center;">
+                        <button type="submit" class="btn btn-primary" (click)="registerSubject()"
+                            [disabled]="subjectErrorShort || subjectErrorLong || !subjectChecked"><i
+                                class="dripicons-plus mr-1"></i></button>
+                    </div>
+                    <!-- </form> -->
+                </div>
+                <div class="row mt-2">
+                    <div class="form-floating">
+                        <textarea class="form-control" placeholder="Leave a description here" id="floatingTextarea" [(ngModel)]="SubjectDescription"
+                            style="height: 70px;"></textarea>
+                        <label for="floatingTextarea">_description</label>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- <script>
+    $("#hh").on("click", function () {
+    // $("#add-subject-centermodal").on("click", function () {
+    // $("#add-subject-centermodal").on("hidden.bs.modal", function () {
+        alert("clicked");
+    });
+</script> -->

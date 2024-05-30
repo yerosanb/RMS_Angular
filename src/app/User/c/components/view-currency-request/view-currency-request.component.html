@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="col-12">
+    <div class="page-title-box">
+      <app-navigator-upper></app-navigator-upper>
+      <h4 class="page-title">View Currency Requests</h4>
+      <div class="card">
+        <div class="card-body">
+           <div class="continer mb-4">
+            <div class="row">
+              <tabset #accountTabset>
+                <tab heading="All"  [active] = "true">
+                  <app-all-currencies *ngIf="accountTabset.tabs[0]?.active"></app-all-currencies>
+                </tab>
+                <tab heading="Approved">
+                  <app-approved-currencies *ngIf="accountTabset.tabs[1]?.active"></app-approved-currencies>
+                </tab>
+                <tab heading="pending">
+                <app-pending-currencies *ngIf="accountTabset.tabs[2]?.active"></app-pending-currencies>
+                  </tab>
+
+                  <tab heading="Rejected">
+                    <app-rejected-currencies *ngIf="accountTabset.tabs[3]?.active"></app-rejected-currencies>
+                  </tab>
+               </tabset>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<swal
+  #SwalSessionExpired
+  title="Warning"
+  text="Your session has expired! please login to continue."
+  icon="warning"
+  [showCancelButton]="false"
+  [showConfirmButton]="false"
+  [timer]="3500"
+  [focusCancel]="true"
+>
+</swal>

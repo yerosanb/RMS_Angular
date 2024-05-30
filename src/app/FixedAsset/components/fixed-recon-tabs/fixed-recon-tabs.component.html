@@ -1,0 +1,45 @@
+<div class="row">
+    <div class="col-12">
+      <div class="page-title-box">
+        <app-navigator-upper></app-navigator-upper>
+        <!-- <h4 class="page-title">Reconciliation</h4>
+        <div class="card">
+          <div class="card-body">
+            <h4 class="header-title">Reconcile</h4> -->
+            <div class="containerr my-3">
+              <div>
+                <tabset type="pills" #reconTabs>
+                  <tab heading="{{tabTitles[0]}}" (selectTab)="onSelect($event)" [active]="this.localStorageService.retrieve('recon-selected-tab-fixed-asset') != null &&
+                  this.localStorageService.retrieve('recon-selected-tab-fixed-asset') == 0">
+                  <!-- here comes the component - manual -->
+                    <app-recon-tabs *ngIf="reconTabs.tabs[0]?.active"></app-recon-tabs>
+                             </tab>
+                  <tab heading="{{tabTitles[1]}}" (selectTab)="onSelect($event)" [active]="this.localStorageService.retrieve('recon-selected-tab-fixed-asset') != null && 
+                  this.localStorageService.retrieve('recon-selected-tab-fixed-asset') == 1">
+                  <!-- here comes the component - automatic -->
+                    <app-recon-tab-furn *ngIf="reconTabs.tabs[1]?.active"></app-recon-tab-furn>
+                  </tab> 
+
+                  <tab heading="{{tabTitles[2]}}" (selectTab)="onSelect($event)" [active]="this.localStorageService.retrieve('recon-selected-tab-fixed-asset') != null && 
+                  this.localStorageService.retrieve('recon-selected-tab-fixed-asset') == 2">
+                  <!-- here comes the component - automatic -->
+                    <app-recon-tab-vehicle *ngIf="reconTabs.tabs[2]?.active"></app-recon-tab-vehicle>
+                  </tab>
+                   
+                  <tab heading="{{tabTitles[3]}}" (selectTab)="onSelect($event)" [active]="this.localStorageService.retrieve('recon-selected-tab-fixed-asset') != null && 
+                  this.localStorageService.retrieve('recon-selected-tab-fixed-asset') == 3">
+                  <!-- here comes the component - automatic -->
+                    <app-recon-tab-equipment *ngIf="reconTabs.tabs[3]?.active"></app-recon-tab-equipment>
+                  </tab> 
+
+                </tabset>
+              </div>
+            </div>
+          <!-- </div>
+        </div> -->
+      </div>
+    </div>
+  
+  </div>
+  
+  

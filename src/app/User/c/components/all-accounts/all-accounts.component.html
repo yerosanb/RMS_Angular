@@ -1,0 +1,31 @@
+<div class="row">
+      <div class="col-12">
+        <div class="page-title-box">
+            <div class="card-body">
+               <div class="container ">
+                <div class="row">
+                  <table
+                  datatable
+                  [dtOptions]="dtOption1"
+                  id="CurrencyRequest_table"
+                  class="table table-bordered dt-responsive nowrap w-100"
+ 
+                  >
+                </table>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+
+  <swal
+    #SwalSessionExpired
+    title="Warning"
+    text="Your session has expired! please login to continue."
+    icon="warning"
+    [showCancelButton]="false"
+    [showConfirmButton]="false"
+    [timer]="3500"
+    [focusCancel]="true"
+  >
+  </swal>

@@ -1,0 +1,149 @@
+<div class="row">
+  <div class="col-12">
+    <div class="page-title-box">
+      <app-navigator-upper></app-navigator-upper>
+      <h4 class="page-title">File Upload</h4>
+      <div class="card">
+        <div class="card-body">
+          <h4 class="header-title">Upload</h4>
+          <div class="container my-4">
+            <div class="row">
+              <form
+                enctype="multipart/form-data"
+                (ngSubmit)="submitUploadForm()"
+                [formGroup]="uploadForm"
+              >
+                <div class="row">
+                  <div class="mb-3 col-sm-6">
+                    <div class="form-floating">
+                     <input
+                        type="text"
+                        placeholder="Datepicker"
+                        class="form-control"
+                        autocomplete="off"
+                        (ngModelChange)="dateChange($event)"
+                        id="floatingInput"
+                        bsDatepicker
+                        formControlName="upload_date"
+                        [bsConfig]="{adaptivePosition: true }"
+                        [maxDate]="maxDate"
+                      />
+                      <label for="floatingInput">Transaction Date</label>
+                    </div>
+                    <div
+                      class="valid-feedback"
+                      *ngIf="
+                        submitted && uploadForm.controls['upload_date'].valid
+                      "
+                    >
+                      Looks good!
+                    </div>
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="submitted && uploadForm.controls['upload_date'].errors?.['required']"
+                    >
+                      Please select date for the transactions.
+                    </div>
+                  </div>
+                  <div class="mb-3 col-sm-6">
+                    <div class="form-floating">
+    
+                      <select class="form-select" id="floatingSelect" aria-label="Floating label select example" (change)="db_cr_Change($event)">
+                        <!-- <option selected>Open this select menu</option> -->
+
+                        <option value="1" *ngIf="authService.isUser()">NBE (ATS) </option>
+                        <option value="2" *ngIf="authService.isUser()">AWB Core</option>
+                        <!-- <option value="3" *ngIf="authService.isUser()">Payable</option>
+                        <option value="4" *ngIf="authService.isUser()">Receivable</option> -->
+                        <option value="125" *ngIf="authService.isIssueAccount()">Issue Account QBS </option>
+                        <option value="126" *ngIf="authService.isIssueAccount()">Issue Account Core</option>
+                      
+                      </select>
+                      <label for="floatingSelect">Transaction source</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="mb-3 col-sm-12">
+                  <div class="form-floating">
+                    <ngx-dropzone
+                      [disabled]="false"
+                      id="ngx-dropzone-upload"
+                      accept="text/csv,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                      [processDirectoryDrop]="false"
+                      [ngClass]="{
+                        'light-ngx-dropzone':
+                          this.localStorageService.retrieve('theme').trim() ==
+                          'light'.trim(),
+                        'dark-ngx-dropzone':
+                          this.localStorageService.retrieve('theme').trim() !=
+                          'light'.trim()
+                      }"
+                      (change)="onSelect($event)"
+                      [multiple]="true"
+                      [maxFileSize]="8000000"
+                    >
+                      <ngx-dropzone-label>
+                        <i class="h1 text-muted dripicons-cloud-upload"></i>
+                        <h3>Drop files here or click to upload.</h3>
+                        <span class="text-muted font-13"
+                          >Attach additional files here
+                        </span>
+                      </ngx-dropzone-label>
+                      <ngx-dropzone-preview
+                        *ngFor="let f of files"
+                        [removable]="true"
+                        (removed)="onRemove(files)"
+                      >
+                        <ngx-dropzone-label>{{
+                          files.at(0)!.name
+                        }}</ngx-dropzone-label>
+                      </ngx-dropzone-preview>
+                    </ngx-dropzone>
+                  </div>
+                </div>
+              </form>
+              
+            </div>
+
+            <h4 class="page-title">View Uploaded Files</h4>
+            <!-- <div class="container mb-4">
+              <div class="row"></div>
+            </div> -->
+            <!-- <div class="container"> -->
+              <div class="row">
+                <table
+                  datatable
+                  [dtOptions]="dtOptions"
+                  id="file_upload_table"
+                  class="
+                    table table-bordered
+                    dt-responsive
+                    nowrap
+                    w-100
+                  "
+                ></table>
+              </div>
+              <div class="row"></div>
+              <div class="row justify-content-center"></div>
+            <!-- </div> -->
+            
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+ 
+<swal
+#SwalSessionExpired
+title="Warning"
+text="Your session has expired! please login to continue."
+icon="warning"
+[showCancelButton]="false"
+[showConfirmButton]="false"
+[timer]="3500"
+[focusCancel]="true"
+>
+</swal>
+

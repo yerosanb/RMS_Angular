@@ -1,0 +1,64 @@
+<div class="row">
+    <div class="col-12">
+        <div class="row">
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box">
+                        <app-navigator-upper></app-navigator-upper>
+                        <div class="col-3 form-floating" style="margin-top:15px;padding-bottom:5px;">
+                            <select (change)="onChange($event)" class="form-select" id="floatingSelect"
+                                aria-label="Floating label select example">
+                                <option value="000" class="text-warning">Please select stock category</option>
+                                <option value="121" *ngIf="authService.isFixedAsset()">Stationary</option>
+                                <option value="111" *ngIf="authService.isFixedAsset()">Tools</option>
+                                <option value="113" *ngIf="authService.isFixedAsset()">Spares</option>
+                                <option value="105" *ngIf="authService.isFixedAsset()">Uniform</option>
+                                <option value="119" *ngIf="authService.isFixedAsset()">Accessory</option>
+                                <option value="120" *ngIf="authService.isFixedAsset()">check</option>
+                                <option value="112" *ngIf="authService.isFixedAsset()">Sanitory</option>
+                                <option value="106" *ngIf="authService.isFixedAsset()">Computer Stock</option>
+                                <option value="107" *ngIf="authService.isFixedAsset()">Furniture Stock</option>
+                                <option value="104" *ngIf="authService.isFixedAsset()">O/Equipment Stock</option>
+                                <option value="all" *ngIf="authService.isFixedAsset()">All Stock Categorys</option>
+                            </select>
+                            <label for="floatingInput" style="color: black;"> Stock Category</label>
+                        </div>
+                        <hr style="color: silver;">
+                    </div>
+                    <div *ngIf="type !='000'" class="page-title-box">
+                        <!-- <app-navigator-upper></app-navigator-upper> -->
+                        <!-- <h4 class="page-title">Reconciliation</h4> -->
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 *ngIf="type=='121'" class="header-title text-primary"> Stock-Stationary </h4>
+                                <h4 *ngIf="type=='111'" class="header-title text-primary"> Stock-Tools </h4>
+                                <h4 *ngIf="type=='113'" class="header-title text-primary"> Stock-Spares </h4>
+                                <h4 *ngIf="type=='105'" class="header-title text-primary"> Stock-Uniform </h4>
+                                <h4 *ngIf="type=='119'" class="header-title text-primary"> Stock-Accessory </h4>
+                                <h4 *ngIf="type=='120'" class="header-title text-primary"> Stock-check </h4>
+                                <h4 *ngIf="type=='112'" class="header-title text-primary"> Stock-Sanitory </h4>
+                                <h4 *ngIf="type=='106'" class="header-title text-primary"> Stock-Computer </h4>
+                                <h4 *ngIf="type=='107'" class="header-title text-primary"> Stock-Furniture </h4>
+                                <h4 *ngIf="type=='104'" class="header-title text-primary"> Stock-Office-Equipment </h4>
+                                <div class="containerr my-3">
+                                    <div>
+                                        <tabset #fixedTabset>
+                                            <tab heading="{{tabTitles[0]}}" (selectTab)="onSelect($event)" [active]="this.localStorageService.retrieve('recon-selected-tab-stock') != null && 
+                            this.localStorageService.retrieve('recon-selected-tab-stock') == 0" id="stock-manual-tab">
+                                                <app-stock-manual
+                                                    *ngIf="fixedTabset.tabs[0]?.active"></app-stock-manual>
+                                            </tab>
+                                            <tab heading="{{tabTitles[1]}}" (selectTab)="onSelect($event)" [active]="this.localStorageService.retrieve('recon-selected-tab-stock') != null && 
+                            this.localStorageService.retrieve('recon-selected-tab-stock') == 1" id="stock-auto-tab">
+                                                <app-stock-automatic
+                                                    *ngIf="fixedTabset.tabs[1]?.active"></app-stock-automatic>
+                                            </tab>
+                                        </tabset>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>

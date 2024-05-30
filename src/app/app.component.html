@@ -1,0 +1,42 @@
+<div *ngIf="authService.isAuthenticated()">
+  <app-header></app-header>
+</div>
+<div class="container-fluid" [ngClass]="{'container-fluid': authService.isAuthenticated() && !authService.isUser()}">
+  <div class="wrapper" *ngIf="authService.isAuthenticated()">
+    <!-- Start Content-->
+    <!-- Begin page -->
+    <!-- <div class="wrapper"> -->
+    <ngx-loading-bar [color]="'#727cf5'" [includeSpinner]="false"></ngx-loading-bar>
+    <div *ngIf="authService.isAuthenticated() && (authService.isAdmin() || authService.isApprover())">
+      <app-leftside-menu id="app-left-side-menu"></app-leftside-menu>
+    </div>
+
+    <div class="content-page">
+      <div class="content">
+        <!-- <div class="container-fluid"> -->
+        <main *ngIf="authService.isAuthenticated()" role="main"
+          [@fadeAnimation]="outlet.isActivated ? outlet.activatedRoute : ''">
+          <router-outlet #outlet="outlet"></router-outlet>
+          <button *ngIf="isShow" (click)="gotoTop()" id="go-to-top-button" type="button" style="z-index: 12;"
+            class="btn btn-outline-secondary btn-rounded d-flex align-items-center">
+            <i class="mdi mdi-arrow-up-bold-box-outline" id="go-to-top-icon"></i>
+          </button>
+        </main>
+        <!-- </div> -->
+      </div>
+      <div *ngIf="authService.isAuthenticated()">
+        <app-footer></app-footer>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main disabled *ngIf="!authService.isAuthenticated()" role="main"
+  [@fadeAnimation]="outlet.isActivated ? outlet.activatedRoute : ''">
+  <ngx-loading-bar [color]="'#727cf5'" [includeSpinner]="true"></ngx-loading-bar>
+  <router-outlet #outlet="outlet"></router-outlet>
+  <button *ngIf="isShow" (click)="gotoTop()" id="go-to-top-button" type="button"
+    class="btn btn-outline-secondary btn-rounded">
+    <i class="mdi mdi-arrow-up-bold-box"></i>
+  </button>
+</main>

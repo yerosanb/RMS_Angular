@@ -1,0 +1,41 @@
+<div class="row ">
+    <div class="col-12">
+        <div class="page-title-box">
+            <app-navigator-upper></app-navigator-upper>
+
+            <h4 class="page-title">View Stock-Transaction </h4>
+            <div class="card m-3">
+                <div class="card_body">
+
+                    <tabset #fixedTabset>
+                        <tab heading="{{tabTitles[0]}}" (selectTab)="onSelect($event)" [active]="this.localStorageService.retrieve('stock-view-tab') != null && 
+                            this.localStorageService.retrieve('stock-view-tab') == 0" id="stock-manual-tab">
+                            <app-view-stock *ngIf="fixedTabset.tabs[0]?.active"></app-view-stock>
+                        </tab>
+                        <tab heading="{{tabTitles[1]}}" (selectTab)="onSelect($event)" [active]="this.localStorageService.retrieve('stock-view-tab') != null && 
+                            this.localStorageService.retrieve('stock-view-tab') == 1" id="stock-auto-tab">
+                            <app-stock-unmatched *ngIf="fixedTabset.tabs[1]?.active"></app-stock-unmatched>
+                        </tab>
+
+                        <tab heading="{{tabTitles[2]}}" (selectTab)="onSelect($event)" [active]="this.localStorageService.retrieve('stock-view-tab') != null && 
+                            this.localStorageService.retrieve('stock-view-tab') == 2" id="stock-auto-tab">
+                            <app-matched-with-reason *ngIf="fixedTabset.tabs[2]?.active"></app-matched-with-reason>
+                        </tab>
+
+                        <tab heading="{{tabTitles[3]}}" (selectTab)="onSelect($event)" [active]="this.localStorageService.retrieve('stock-view-tab') != null && 
+                            this.localStorageService.retrieve('stock-view-tab') == 3" id="stock-auto-tab">
+                            <app-stock-reversal *ngIf="fixedTabset.tabs[3]?.active"></app-stock-reversal>
+                        </tab>
+                        <tab heading="{{tabTitles[4]}}" (selectTab)="onSelect($event)" [active]="this.localStorageService.retrieve('stock-view-tab') != null && 
+                            this.localStorageService.retrieve('stock-view-tab') == 4" id="stock-auto-tab">
+                            <app-view-core-stock-deleted *ngIf="fixedTabset.tabs[4]?.active"></app-view-core-stock-deleted>
+                        </tab>
+                        <tab heading="{{tabTitles[5]}}" (selectTab)="onSelect($event)" [active]="this.localStorageService.retrieve('stock-view-tab') != null && 
+                        this.localStorageService.retrieve('stock-view-tab') == 5" id="stock-auto-tab">
+                        <app-view-mms-stock-deleted *ngIf="fixedTabset.tabs[5]?.active"></app-view-mms-stock-deleted>
+                       </tab>
+                    </tabset>
+
+                </div>
+            </div>
+        </div>

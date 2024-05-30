@@ -1,0 +1,31 @@
+<hr />
+<br />
+<div class="row">
+  <div class="col-12">
+    <div class="page-title-box">
+      <div class="continer mb-4">
+        <div class="row">
+          <tabset #accountTabset>
+            <tab heading="Matched" [active]="true">
+              <app-view-sos-matched
+                *ngIf="accountTabset.tabs[0]?.active"
+              ></app-view-sos-matched>
+            </tab>
+           <!-- <tab heading="unmatched">
+              <app-view-sos-unmatched
+                *ngIf="accountTabset.tabs[1]?.active"
+              ></app-view-sos-unmatched>
+            </tab>
+            <tab heading="partially matched ">
+              <app-view-sos-partially-matched
+                *ngIf="accountTabset.tabs[2]?.active"
+              ></app-view-sos-partially-matched>
+            </tab> -->
+            
+          </tabset>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

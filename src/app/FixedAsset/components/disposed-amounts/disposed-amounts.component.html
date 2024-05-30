@@ -1,0 +1,248 @@
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box">
+            <app-navigator-upper></app-navigator-upper>
+            <h4 class="page-title">Manage Disposed Amounts</h4>
+            <div class="card">
+                <div class="card-body p-4">
+                    <h3 style="text-align: center; background-color: rgb(246, 242, 242);color: black;">Fixed Asset</h3>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5>MMS-COMPUTER TOTAL BALANCE: {{ label_inputValue_com }}</h5>
+                            <div class="continer mb-4">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group form-floating">
+                                            <input type="text" class="form-control" id="exampleInputEmail1"
+                                                aria-describedby="emailHelp" name="title" placeholder="Enter Title"
+                                                autocomplete="off" type="number" min="0.00001"
+                                                [(ngModel)]="inputValue_com" (ngModelChange)="inputCOMChanged()" />
+                                            <label for="floatingInput">Amount to change</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto" style="display: flex; align-items: center;">
+                                        <button (click)="addTotalBalance('comp')" type="button"
+                                            class="btn btn-primary btn-rounded" [disabled]='isCOMbuttonDisabled'><i
+                                                class="mdi mdi-plus"></i>Add</button>
+                                        <button (click)="subTotalBalance('comp')" type="button"
+                                            class="btn btn-primary btn-rounded" style="margin-left: 4px;"
+                                            [disabled]='isCOMbuttonDisabled'>
+                                            <i class="mdi mdi-minus"></i>Subtract</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h5>MMS-FURNITURE TOTAL BALANCE: {{ label_inputValue_fur }}</h5>
+                            <div class="continer mb-4">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group form-floating">
+                                            <input type="text" class="form-control" id="exampleInputEmail1"
+                                                aria-describedby="emailHelp" name="title" placeholder="Enter Title"
+                                                autocomplete="off" type="number" min="0.00001"
+                                                [(ngModel)]="inputValue_fur" (ngModelChange)="inputFURChanged()" />
+                                            <label for="floatingInput">Amount to change</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto" style="display: flex; align-items: center;">
+                                        <button (click)="addTotalBalance('fur')" type="button"
+                                            class="btn btn-primary btn-rounded" [disabled]='isFURbuttonDisabled'><i
+                                                class="mdi mdi-plus"></i>Add</button>
+                                        <button (click)="subTotalBalance('fur')" type="button"
+                                            class="btn btn-primary btn-rounded" style="margin-left: 4px;"
+                                            [disabled]='isFURbuttonDisabled'>
+                                            <i class="mdi mdi-minus"></i>Subtract</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5>MMS-OFFICE EQUIPMENT TOTAL BALANCE: {{ label_inputValue_oe }}</h5>
+                            <div class="continer mb-4">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group form-floating">
+                                            <input type="text" class="form-control" id="exampleInputEmail1"
+                                                aria-describedby="emailHelp" name="title" placeholder="Enter Title"
+                                                autocomplete="off" type="number" min="0.00001"
+                                                [(ngModel)]="inputValue_oe" (ngModelChange)="inputOEChanged()" />
+                                            <label for="floatingInput">Amount to change</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto" style="display: flex; align-items: center;">
+                                        <button (click)="addTotalBalance('oe')" type="button"
+                                            class="btn btn-primary btn-rounded" [disabled]='isOEbuttonDisabled'><i
+                                                class="mdi mdi-plus"></i>Add</button>
+                                        <button (click)="subTotalBalance('oe')" type="button"
+                                            class="btn btn-primary btn-rounded" style="margin-left: 4px;"
+                                            [disabled]='isOEbuttonDisabled'>
+                                            <i class="mdi mdi-minus"></i>Subtract</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h5>MMS-MOTOR VEHICLE TOTAL BALANCE: {{ label_inputValue_mv }}</h5>
+                            <div class="continer mb-4">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group form-floating">
+                                            <input type="text" class="form-control" id="exampleInputEmail1"
+                                                aria-describedby="emailHelp" name="title" placeholder="Enter Title"
+                                                autocomplete="off" type="number" min="0.00001"
+                                                [(ngModel)]="inputValue_mv" (ngModelChange)="inputMVChanged()" />
+                                            <label for="floatingInput">Amount to change</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto" style="display: flex; align-items: center;">
+                                        <button (click)="addTotalBalance('mv')" type="button"
+                                            class="btn btn-primary btn-rounded" [disabled]='isMVbuttonDisabled'><i
+                                                class="mdi mdi-plus"></i>Add</button>
+                                        <button (click)="subTotalBalance('mv')" type="button"
+                                            class="btn btn-primary btn-rounded" style="margin-left: 4px;"
+                                            [disabled]='isMVbuttonDisabled'>
+                                            <i class="mdi mdi-minus"></i>Subtract</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 style="text-align: center; background-color: rgb(246, 242, 242);color: black;">Stock</h3>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5>Stock Category </h5>
+                            <div class="continer mb-4">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group form-floating">
+                                            <select (change)="onChange($event)" class="form-select" id="floatingSelect"
+                                                aria-label="Floating label select example">
+                                                <option value="0" class="text-warning">Please select stock category
+                                                </option>
+                                                <option value="Stationary" *ngIf="authService.isFixedAsset()">Stationary
+                                                </option>
+                                                <option value="Tools" *ngIf="authService.isFixedAsset()">Tools</option>
+                                                <option value="Spares" *ngIf="authService.isFixedAsset()">Spares
+                                                </option>
+                                                <option value="Uniform" *ngIf="authService.isFixedAsset()">Uniform
+                                                </option>
+                                                <option value="Accessory" *ngIf="authService.isFixedAsset()">Accessory
+                                                </option>
+                                                <option value="check" *ngIf="authService.isFixedAsset()">check</option>
+                                                <option value="Sanitory" *ngIf="authService.isFixedAsset()">Sanitory
+                                                </option>
+                                                <option value="Computer" *ngIf="authService.isFixedAsset()">Computer
+                                                    Stock</option>
+                                                <option value="Furniture" *ngIf="authService.isFixedAsset()">Furniture
+                                                    Stock</option>
+                                                <option value="Equipment" *ngIf="authService.isFixedAsset()">O/Equipment
+                                                    Stock</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h5 *ngIf="type=='0'">Please select Stock Category!</h5>
+                            <h5 *ngIf="type=='Stationary'">Stock-MMS-{{type}} TOTAL BALANCE: {{
+                                label_inputValue_stock_stationary }}</h5>
+                            <h5 *ngIf="type=='Tools'">Stock-MMS-{{type}} TOTAL BALANCE: {{ label_inputValue_stock_tools
+                                }}</h5>
+                            <h5 *ngIf="type=='Spares'">Stock-MMS-{{type}} TOTAL BALANCE: {{
+                                label_inputValue_stock_spares }}</h5>
+                            <h5 *ngIf="type=='Uniform'">Stock-MMS-{{type}} TOTAL BALANCE: {{
+                                label_inputValue_stock_uniform }}</h5>
+                            <h5 *ngIf="type=='Accessory'">Stock-MMS-{{type}} TOTAL BALANCE: {{
+                                label_inputValue_stock_accessory }}</h5>
+                            <h5 *ngIf="type=='check'">Stock-MMS-{{type}} TOTAL BALANCE: {{ label_inputValue_stock_check
+                                }}</h5>
+                            <h5 *ngIf="type=='Sanitory'">Stock-MMS-{{type}} TOTAL BALANCE: {{
+                                label_inputValue_stock_sanitory }}</h5>
+                            <h5 *ngIf="type=='Computer'">Stock-MMS-{{type}} TOTAL BALANCE: {{
+                                label_inputValue_stock_computer }}</h5>
+                            <h5 *ngIf="type=='Furniture'">Stock-MMS-{{type}} TOTAL BALANCE: {{
+                                label_inputValue_stock_furniture }}</h5>
+                            <h5 *ngIf="type=='Equipment'">Stock-MMS-{{type}} TOTAL BALANCE: {{
+                                label_inputValue_stock_office_equipment }}</h5>
+                            <div class="continer mb-4">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group form-floating">
+                                            <input *ngIf="type=='0'" type="text" class="form-control"
+                                                id="exampleInputEmail1" aria-describedby="emailHelp" name="title"
+                                                placeholder="Enter Title" autocomplete="off" type="number" min="0.00001"
+                                                readonly [(ngModel)]="inputValue_stock"
+                                                (ngModelChange)="inputStockChanged()" />
+                                            <input *ngIf="type!='0'" type="text" class="form-control"
+                                                id="exampleInputEmail1" aria-describedby="emailHelp" name="title"
+                                                placeholder="Enter Title" autocomplete="off" type="number" min="0.00001"
+                                                [(ngModel)]="inputValue_stock" (ngModelChange)="inputStockChanged()" />
+                                            <label for="floatingInput">Amount to change</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto" style="display: flex; align-items: center;">
+                                        <button *ngIf="type!='0'" (click)="addTotalBalance(type)" type="button"
+                                            class="btn btn-primary btn-rounded"><i class="mdi mdi-plus"></i>Add</button>
+                                        <button *ngIf="type!='0'" (click)="subTotalBalance(type)" type="button"
+                                            class="btn btn-primary btn-rounded" style="margin-left: 4px;">
+                                            <i class="mdi mdi-minus"></i>Subtract</button>
+                                        <button *ngIf="type=='0'" (click)="addTotalBalance(type)" type="button"
+                                            [disabled]='true' class="btn btn-primary btn-rounded"><i
+                                                class="mdi mdi-plus"></i>Add</button>
+                                        <button *ngIf="type=='0'" (click)="subTotalBalance(type)" type="button"
+                                            class="btn btn-primary btn-rounded" style="margin-left: 4px;"
+                                            [disabled]='true'>
+                                            <i class="mdi mdi-minus"></i>Subtract</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 style="text-align: center; background-color: rgb(246, 242, 242);color: black;">Change Disposed, Removed or waiting date here</h3>
+                    <div class="row">
+                        <div class="col-sm-3" style="margin-top: 4px;">
+                            <div class="form-floating">
+                                <input type="text" placeholder="Datepicker" class="form-control" autocomplete="off"
+                                    id="floatingInput" bsDatepicker [bsValue]="disposed_date"
+                                    [bsConfig]="{ adaptivePosition: true }"
+                                    (bsValueChange)="DisposedDateChange($event)">
+                                <label for="floatingInput">Disposed Date</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3" style="margin-top: 4px;">
+                            <div class="form-floating">
+                                <input type="text" placeholder="Datepicker" class="form-control" autocomplete="off"
+                                    id="floatingInput" bsDatepicker [bsValue]="removed_date"
+                                    [bsConfig]="{ adaptivePosition: true }"
+                                    (bsValueChange)="RemovedDateChange($event)">
+                                <label for="floatingInput">Removed Date</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3" style="margin-top: 4px;">
+                            <div class="form-floating">
+                                <input type="text" placeholder="Datepicker" class="form-control" autocomplete="off"
+                                    id="floatingInput" bsDatepicker [bsValue]="waiting_date"
+                                    [bsConfig]="{ adaptivePosition: true }"
+                                    (bsValueChange)="WaitingDateChange($event)">
+                                <label for="floatingInput">Waiting Date</label>
+                            </div>
+                        </div>
+                        <div class="col-auto" style="display: flex; align-items: center;">
+                            <button (click)="changeDRW()" type="button"
+                            class="btn btn-primary" style="margin-left: 4px;">
+                            Update Date</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<swal #SwalSessionExpired title="Warning" text="Your session has expired! please login to continue." icon="warning"
+    [showCancelButton]="false" [showConfirmButton]="false" [timer]="3500" [focusCancel]="true">
+</swal>

@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="col-12">
+    <div class="page-title-box">
+      <app-navigator-upper></app-navigator-upper>
+      <h4 class="page-title">Functionalities</h4>
+      <div class="card">
+        <div class="card-body">
+          <h4 class="header-title">Update Role Functionalities</h4>
+          <div class="container my-4">
+            <table datatable [dtOptions]="dtOptions" id="functionality_all_table"
+              class="table table-bordered dt-responsive nowrap w-100">
+            </table>
+
+            <div class="row m-2 d-flex justify-content-center" *ngIf="functionality_size > 0">
+              <button class="btn btn-primary" style="width: fit-content" (click)="updateStatus()">
+                Update
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<swal #SwalSessionExpired title="Warning" text="Your session has expired! please login to continue." icon="warning"
+  [showCancelButton]="false" [showConfirmButton]="false" [timer]="3500" [focusCancel]="true">
+</swal>

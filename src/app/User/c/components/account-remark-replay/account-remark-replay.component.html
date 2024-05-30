@@ -1,0 +1,127 @@
+<div class="field-row">
+    <div class="col-12">
+      <div class="page-title-box">
+        <app-navigator-upper></app-navigator-upper>
+        <h4 class="page-title">Replay</h4>
+        <div class="card">
+          <div class="card-body">
+            <div class="continer mb-4">
+              <div class="row mt-4">
+                <form
+                  (ngSubmit)="submitremarkReplay()"
+                  [formGroup]="submitRemarkForm"
+                 >
+                  <div class="row">
+                    <div class="col-sm">
+                      <div class="continer mb-2 col-sm-12">
+                        
+                        <div class="form-group">
+                          <label for="floatingInput">Title</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="exampleInputEmail1"
+                            aria-describedby="emailHelp"
+                            name="title"
+                            placeholder="Enter Title"
+                            autocomplete="off"
+                            formControlName="title"
+   
+                          />
+                        </div>
+   
+                        <div
+                          class="valid-feedback"
+                          *ngIf="
+                          submitRemarkForm.controls['title'].touched && submitRemarkForm.controls['title'].valid
+                          "
+                        >
+                          Looks good!
+                        </div>
+                        <div
+                          class="invalid-feedback"
+                          *ngIf=" submitted && submitRemarkForm.controls['title'].errors?.['required']"
+                        >
+                          Please enter Title.
+                        </div>
+                        <div
+                          class="invalid-feedback"
+                          *ngIf="  submitRemarkForm.controls['title'].touched && submitRemarkForm.controls['title'].errors?.['minlength']"
+                        >
+                          At least 5 Characters.
+                        </div>
+                        <div
+                          class="invalid-feedback"
+                          *ngIf="  submitRemarkForm.controls['title'].touched && submitRemarkForm.controls['title'].errors?.['maxlength']"
+                        >
+                          At most 200 Characters.
+                        </div>
+                      </div>
+                    </div>
+  
+  
+                    
+                    <div class="w-100"> </div>
+  
+                   
+                  </div>
+  
+                    
+                  <div class="continer mb-2">
+                    <div class="form-group mt-10">
+                      <quill-editor
+                        [placeholder]="'Enter description'"
+                        formControlName="description"
+  
+                        style="width:100%"  
+                      ></quill-editor>
+                    </div>
+                    
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="submitted &&  submitRemarkForm.controls['description'] && submitRemarkForm.controls['description'].errors?.['required']"
+                    >
+                      Please enter description.
+                    </div>
+        
+                  </div>
+                 
+  
+                  <div class="col-md-12 text-center">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <swal
+      #SuccessSwalRegisterUser
+      title="Success"
+      text="User registered successfully!"
+      icon="success"
+      [showCancelButton]="false"
+      [showConfirmButton]="false"
+      [timer]="2500"
+      [focusCancel]="true"
+    ></swal>
+
+  <swal
+  #SwalSessionExpired
+  title="Warning"
+  text="Your session has expired! please login to continue."
+  icon="warning"
+  [showCancelButton]="false"
+  [showConfirmButton]="false"
+  [timer]="3500"
+  [focusCancel]="true"
+  >
+</swal>
+  
+   
+    <!-- </div> -->
+  <!-- </div> -->
+  

@@ -1,0 +1,27 @@
+ 
+<div class="row">
+  <div class="col-12">
+    <div class="page-title-box">
+      <app-navigator-upper></app-navigator-upper>
+      <!-- <h4 class="page-title">Reconciliation</h4> -->
+      <!-- <div class="card"> -->
+        <div class="card-body">
+          <!-- <h4 class="header-title">Reconcile</h4> -->
+          <div class="containerr my-3">
+            <div>
+              <tabset #fixedTabset>
+                <tab heading="Manual"  [active] = "true">
+                  <app-recon-manual-equipment *ngIf="fixedTabset.tabs[0]?.active"></app-recon-manual-equipment>
+                </tab>
+                <tab heading="Automatic">
+                  <app-recon-automatic-equipment *ngIf="fixedTabset.tabs[1]?.active"></app-recon-automatic-equipment>
+                </tab>
+               </tabset>
+            </div>
+          </div>
+        <!-- </div> -->
+      </div>
+    </div>
+  </div>
+
+</div>

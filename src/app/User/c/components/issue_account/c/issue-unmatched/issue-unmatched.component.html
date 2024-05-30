@@ -1,0 +1,303 @@
+<hr>
+<div class="row">
+    <div class="col-lg-6">
+        <table datatable [dtOptions]="dtOptions_core" id="core_table"
+            class="table table-bordered dt-responsive nowrap w-100">
+            <tfoot class="foot-datatables-container">
+                <tr style="border-top: none !important">
+                    <th class="foot-datatables">
+                        <div class="form-floating">
+                            <input type="text" id="floatingInput" [ngModel]="core_input_0"
+                                id="{{ core_first_column_id }}" name="search-id"
+                                class="form-control {{ core_first_column_id }} _id" />
+                            <label for="floatingInput">Id</label>
+                        </div>
+                    </th>
+                    <th class="foot-datatables">
+                        <div class="form-floating">
+                            <input type="text" id="floatingInput" id="{{ core_third_column_id }}"
+                                name="search-last-name" [ngModel]="core_input_2"
+                                class="form-control {{ core_third_column_id }} _middlename" />
+
+                            <label for="floatingInput">Amount</label>
+                        </div>
+                    </th>
+                    <th class="foot-datatables">
+                        <div class="form-floating">
+                            <input type="text" id="floatingInput" id="{{ core_second_column_id }}"
+                                name="search-first-name" [ngModel]="core_input_1"
+                                class="form-control {{ core_second_column_id }} _firstname" />
+
+                            <label for="floatingInput">Branch</label>
+                        </div>
+                    </th>
+                    <th class="foot-datatables">
+                        <div class="form-floating">
+                            <input type="text" id="floatingInput" id="{{ core_fourth_column_id }}"
+                                name="search-last-name" [ngModel]="core_input_3"
+                                class="form-control {{ core_fourth_column_id }} _lastname" />
+
+                            <label for="floatingInput">Value Date type</label>
+                        </div>
+                    </th>
+                    <th class="foot-datatables">
+                        <div class="form-floating">
+                            <input type="text" id="floatingInput" id="{{ core_seventh_column_id }}"
+                                name="search-last-name" [ngModel]="core_input_6"
+                                class="form-control {{ core_seventh_column_id }} _email" />
+
+                            <label for="floatingInput">Type</label>
+                        </div>
+                    </th>
+                    <th class="foot-datatables">
+                        <div class="form-floating">
+                            <input type="text" id="floatingInput" id="{{ core_eighth_column_id }}"
+                                name="search-last-name" [ngModel]="core_input_7" class="form-control {{ core_eighth_column_id
+                }} _phonenumber" />
+
+                            <label for="floatingInput">Upload Date</label>
+                        </div>
+                    </th>
+                    <th class="foot-datatables">
+                        <div class="form-floating">
+                            <input type="text" id="floatingInput" id="{{ core_ninth_column_id }}"
+                                name="search-last-name" [ngModel]="core_input_8"
+                                class="form-control {{ core_ninth_column_id }} _reg_date" />
+
+                            <label for="floatingInput">Additional Information</label>
+                        </div>
+                    </th>
+   
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <div class="col-lg-6">
+        <table datatable [dtOptions]="dtOptions_qbs" id="qbs_table"
+            class="table table-bordered dt-responsive nowrap w-100">
+            <tfoot class="foot-datatables-container">
+                <tr style="border-top: none !important">
+                    <th class="foot-datatables">
+                        <div class="form-floating">
+                            <input type="text" id="floatingInput" [ngModel]="qbs_input_0" id="{{ qbs_first_column_id }}"
+                                name="search-id" class="form-control {{ qbs_first_column_id }} _id" />
+                            <label for="floatingInput">Id</label>
+                        </div>
+                    </th>
+                    <th class="foot-datatables">
+                        <div class="form-floating">
+                            <input type="text" id="floatingInput" id="{{ qbs_third_column_id }}" name="search-last-name"
+                                [ngModel]="qbs_input_2" class="form-control {{ qbs_third_column_id }} _middlename" />
+
+                            <label for="floatingInput">Amount</label>
+                        </div>
+                    </th>
+                    <th class="foot-datatables">
+                        <div class="form-floating">
+                            <input type="text" id="floatingInput" id="{{ qbs_second_column_id }}"
+                                name="search-first-name" [ngModel]="qbs_input_1"
+                                class="form-control {{ qbs_second_column_id }} _firstname" />
+
+                            <label for="floatingInput">Add..-Info</label>
+                        </div>
+                    </th>
+                    <th class="foot-datatables">
+                        <div class="form-floating">
+                            <input type="text" id="floatingInput" id="{{ qbs_fourth_column_id }}"
+                                name="search-last-name" [ngModel]="qbs_input_3"
+                                class="form-control {{ qbs_fourth_column_id }} _lastname" />
+
+                            <label for="floatingInput">Value Date</label>
+                        </div>
+                    </th>
+                    <th class="foot-datatables">
+                        <div class="form-floating">
+                            <input type="text" id="floatingInput" id="{{ qbs_fifth_column_id }}" name="search-last-name"
+                                [ngModel]="qbs_input_4" class="form-control {{ qbs_fifth_column_id }} _gender" />
+
+                            <label for="floatingInput">Upload Date</label>
+                        </div>
+                    </th>
+                    <th class="foot-datatables">
+                        <div class="form-floating">
+                            <input type="text" id="floatingInput" id="{{ qbs_sixth_column_id }}" name="search-last-name"
+                                [ngModel]="qbs_input_5" class="form-control {{ qbs_sixth_column_id }} _role" />
+
+                            <label for="floatingInput">Branch Code</label>
+                        </div>
+                    </th>
+                    <th class="foot-datatables">
+                        <div class="form-floating">
+                            <input type="text" id="floatingInput" id="{{ qbs_seventh_column_id }}"
+                                name="search-last-name" [ngModel]="qbs_input_6"
+                                class="form-control {{ qbs_seventh_column_id }} _email" />
+
+                            <label for="floatingInput">Type</label>
+                        </div>
+                    </th>
+                </tr>
+            </tfoot>
+        </table>
+
+    </div>
+</div>
+<button id="reset_button" class="btn btn-primary" (click)="clearAllSearches()">Reset</button>
+<lib-ng-toast></lib-ng-toast>
+
+
+<!-- <div id="edit_transaction_modal" class="modal fade" data-bs-backdrop="static" data-keyboard="false" tabindex="-1"
+  role="dialog" aria-labelledby="edit_transaction_modalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="edit_transaction_modalLabel">Edit transaction information.</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+      </div>
+      <form (ngSubmit)="onEditSubmit()" [formGroup]="editForm">
+        <div class="d-none" id="lalksdf6a5s4d6ffas"></div>
+        <div class="modal-body pt-2 px-3">
+          <div class="row" >
+            <div class="mb-3">
+              <label for="simpleinput" class="form-label">Reason for editing the transaction</label>
+              <textarea type="text" rows="2" id="simpleinput" class="form-control" formControlName="reason"></textarea>
+              <div class="valid-feedback" *ngIf="submitted && editForm.controls['reason'].valid">
+                Looks good!
+              </div>
+              <div class="invalid-feedback" *ngIf="submitted && editForm.controls['reason'].errors?.['required']">
+                Please enter the reason for updating this transaction.
+              </div>
+              <div class="invalid-feedback" *ngIf="submitted && editForm.controls['reason'].errors?.['minlength']">
+                Should be at least 4 characters.
+              </div>
+
+            </div>
+          </div>
+
+          <div class="row" *ngIf="!edit_core">
+            <div class="mb-3">
+              <label for="simpleinput" class="form-label">Reference</label>
+              <input type="text" id="simpleinput" class="form-control" formControlName="reference">
+              <div class="valid-feedback" *ngIf="submitted && editForm.controls['reference'].valid">
+                Looks good!
+              </div>
+              <div class="invalid-feedback" *ngIf="submitted && editForm.controls['reference'].errors?.['required']">
+                Please enter reference.
+              </div>
+              <div class="invalid-feedback" *ngIf="submitted && editForm.controls['reference'].errors?.['minlength']">
+                At least 8 Characters.
+              </div>
+              <div class="invalid-feedback" *ngIf="submitted && editForm.controls['reference'].errors?.['maxlength']">
+                At most 24 Characters.
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="mb-3">
+                <label for="simpleinput" class="form-label">Amount</label>
+                <input type="number" id="simpleinput" class="form-control" formControlName="amount">
+                <div class="valid-feedback" *ngIf="submitted && editForm.controls['amount'].valid">
+                  Looks good!
+                </div>
+                <div class="invalid-feedback" *ngIf="submitted && editForm.controls['amount'].errors?.['required']">
+                  Please enter amount.
+                </div>
+                <div class="invalid-feedback" *ngIf="submitted && editForm.controls['amount'].errors?.['lessThan0']">
+                  Amount should be > 0.
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="mb-3">
+                <label for="simpleinput" class="form-label">Value date <span *ngIf="true">type</span></label>
+                <input type="text" id="simpleinput" class="form-control" formControlName="value_date">
+                <div class="valid-feedback" *ngIf="submitted && editForm.controls['value_date'].valid">
+                  Looks good!
+                </div>
+                <div class="invalid-feedback" *ngIf="submitted && editForm.controls['value_date'].errors?.['required']">
+                  Please enter value date.
+                </div>
+                <div class="invalid-feedback"
+                  *ngIf="submitted && editForm.controls['value_date'].errors?.['minlength']">
+                  At least 8 Characters.
+                </div>
+                <div class="invalid-feedback"
+                  *ngIf="submitted && editForm.controls['value_date'].errors?.['maxlength']">
+                  At most 24 Characters.
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="mb-3">
+                <label for="simpleinput" class="form-label">Type</label>
+                <input type="text" id="simpleinput" class="form-control" formControlName="type">
+                <div class="valid-feedback" *ngIf="submitted && editForm.controls['type'].valid">
+                  Looks good!
+                </div>
+                <div class="invalid-feedback" *ngIf="submitted && editForm.controls['type'].errors?.['required']">
+                  Please enter the 'CR' for credit and 'DR' for debit.
+                </div>
+                <div class="invalid-feedback" *ngIf="submitted && editForm.controls['type'].errors?.['cr_dr_error']">
+                  Please enter the 'CR' for credit and 'DR' for debit.
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="mb-3">
+                <label for="simpleinput" class="form-label">Upload date yyyymmdd eg: 20230317</label>
+                <input type="number" id="simpleinput" class="form-control" formControlName="upload_date">
+                <div class="valid-feedback" *ngIf="submitted && editForm.controls['upload_date'].valid">
+                  Looks good!
+                </div>
+                <div class="invalid-feedback"
+                  *ngIf="submitted && editForm.controls['upload_date'].errors?.['required']">
+                  Please enter the upload date.
+                </div>
+                <div class="invalid-feedback" *ngIf="submitted && editForm.controls['upload_date'].errors?.['min']">
+                  Should be 8 characters and possible date.
+                </div>
+                <div class="invalid-feedback" *ngIf="submitted && editForm.controls['upload_date'].errors?.['max']">
+                  Should be 8 characters and possible date.
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="row">
+            <div class="mb-0">
+              <label for="simpleinput" class="form-label">Additional Information</label>
+              <textarea type="text" rows="4" id="simpleinput" class="form-control"
+                formControlName="additional_information"></textarea>
+              <div class="valid-feedback" *ngIf="submitted && editForm.controls['additional_information'].valid">
+                Looks good!
+              </div>
+              <div class="invalid-feedback"
+                *ngIf="submitted && editForm.controls['additional_information'].errors?.['required']">
+                Please enter the additional information.
+              </div>
+              <div class="invalid-feedback"
+                *ngIf="submitted && editForm.controls['additional_information'].errors?.['minlength']">
+                Should be at least 4 characters.
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-primary">Apply</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div> -->
+
+
+<swal #SwalSessionExpired title="Warning" text="Your session has expired! please login to continue." icon="warning"
+    [showCancelButton]="false" [showConfirmButton]="false" [timer]="3500" [focusCancel]="true">
+</swal>

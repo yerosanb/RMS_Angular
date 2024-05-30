@@ -1,0 +1,642 @@
+<div class="field-row">
+  <div class="col-12">
+    <div class="page-title-box">
+      <!-- <app-navigator-upper></app-navigator-upper> -->
+      <h4 class="page-title">View Transaction History</h4>
+      <div class="card">
+        <div class="card-body">
+          <div class="continer mb-4">
+            <form class="row" [formGroup]="generalSearchForm" (ngSubmit)="submitGenerallSearch()">
+              <h4>General History</h4>
+              <div class="col-sm-6">
+                <div class="continer mb-2">
+                  <div class="form-group mb-2 col-sm-12">
+                    <label for="Type" class="form-label mb-0">Type</label>
+                    <select class="form-select" formControlName="type" (change)="onChange($event)">
+
+                      <option value="" default selected disabled>Select type</option>
+
+                      <option value="ATS" *ngIf="authService.isUser()">ATS</option>
+                      <option value="CORE" *ngIf="authService.isUser()">CORE</option>
+                      <option value="Payable" *ngIf="authService.isUser()">Payable</option>
+                      <option value="Receivable" *ngIf="authService.isUser()">Receivable</option>
+                      <option value="QBS" *ngIf="authService.isIssueAccount()">Issue Account QBS </option>
+                      <option value="IssueCore" *ngIf="authService.isIssueAccount()">Issue Account Core</option>
+                      <option value="FixedAssetMMS" *ngIf="authService.isFixedAsset()">Fixed Asset MMS</option>
+                      <option value="FixedAssetCore" *ngIf="authService.isFixedAsset()">Fixed Asset Core</option>
+                      <option value="stockCore" *ngIf="authService.isFixedAsset()">Stock Core</option>
+                      <option value="stockMMS" *ngIf="authService.isFixedAsset()">Stock MMS</option>
+                       
+                    </select>
+                    <div class="invalid-feedback"
+                      *ngIf=" clicked && generalSearchForm.controls['type'].errors?.['required']">
+                      Please select type
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div *ngIf="stockCore" class="col-sm-6">
+                <div class="continer mb-2">
+                  <div class="form-group mb-2 col-sm-12">
+                    <label for="Type" class="form-label mb-0">Category</label>
+                    <select class="form-select" formControlName="categoryStockCore">
+
+                      <option value="" default >Select Category</option>
+
+                      <option value="12100">Stationary</option>
+                      <option value="11100">Tools</option>
+                      <option value="11300">Spares</option>
+                      <option value="10500">Uniform</option>
+                      <option value="11900">Accessory</option>
+                      <option value="12000">Check</option>
+                      <option value="11200">Sanitory</option>
+                      <option value="10600">Computer Stock</option>
+                      <option value="10700">Furniture Stock</option>
+                      <option value="10400">Equipment Stock</option>
+                    </select>
+
+                  </div>
+                </div>
+              </div>
+
+               
+              <div *ngIf="stockMMS" class="col-sm-6">
+                <div class="continer mb-2">
+                  <div class="form-group mb-2 col-sm-12">
+                    <label for="Type" class="form-label mb-0">Category</label>
+                    <select class="form-select" formControlName="categoryStockMMs">
+
+                      <option value="" default >Select Category</option>
+
+                      <option value="121">Stationary</option>
+                      <option value="111">Tools</option>
+                      <option value="113">Spares</option>
+                      <option value="105">Uniform</option>
+                      <option value="119">Accessory</option>
+                      <option value="120">Check</option>
+                      <option value="112">Sanitory</option>
+                      <option value="106">Computer Stock</option>
+                      <option value="107">Furniture Stock</option>
+                      <option value="104">Equipment Stock</option>
+                    </select>
+
+                  </div>
+                </div>
+              </div>
+
+
+              <div *ngIf="fixed_asset_mms || fixed_asset_core" class="col-sm-6">
+                <div class="continer mb-2">
+                  <div class="form-group mb-2 col-sm-12">
+                    <label for="Type" class="form-label mb-0">Category</label>
+                    <select class="form-select" formControlName="category">
+             
+                      <option value="" default>Select Category</option>
+
+                      <option value="AB">Computer</option>
+                      <option value="BF">Furniture</option>
+                      <option value="GX">Office equpment</option>
+                      <option value="CP">Motor Vehicle</option>
+
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="ats" class="form-group mb-2 col-sm-6">
+                <label for="exampleInputEmail1">Reference</label>
+                <input type="text" class="form-control" id="exampleInputRef" aria-describedby="reflHelp"
+                  placeholder="Enter Reference" formControlName="reference" />
+              </div>
+
+              <div *ngIf="stockCore" class="form-group mb-2 col-sm-6">
+                <label for="exampleInputEmail1">GIV Number</label>
+                <input type="text" class="form-control" id="exampleInputRef" aria-describedby="reflHelp"
+                  placeholder="Enter GIV Number" formControlName="reference" />
+              </div>
+         
+              <div *ngIf="fixed_asset_mms" class="form-group mb-2 col-sm-6">
+                <label for="exampleInputEmail1">Giv/Grv</label>
+                <input type="text" class="form-control" id="exampleInputRef" aria-describedby="reflHelp"
+                  placeholder="Enter Giv or Grv" formControlName="reference" />
+              </div>
+              
+              <div *ngIf="fixed_asset_core" class="form-group mb-2 col-sm-6">
+                <label for="exampleInputEmail1">Naration</label>
+                <input type="text" class="form-control" id="exampleInputRef" aria-describedby="reflHelp"
+                  placeholder="Enter naration" formControlName="reference" />
+              </div>
+
+              <div *ngIf="fixed_asset_mms||stockCore" class="form-group mb-2 col-sm-6">
+                <label for="exampleInputEmail1">Branch name</label>
+                <input type="text" class="form-control" id="exampleInputRef" aria-describedby="reflHelp"
+                  placeholder="Enter branch name" formControlName="branch_code" />
+              </div>
+
+              <div *ngIf="fixed_asset_core" class="form-group mb-2 col-sm-6">
+                <label for="exampleInputEmail1">Branch code</label>
+                <input type="text" class="form-control" id="exampleInputRef" aria-describedby="reflHelp"
+                  placeholder="Enter branch code" formControlName="branch_code" />
+              </div>
+
+              <div *ngIf="core || issue || Stationary" class="form-group mb-2 col-sm-6">
+                <label for="exampleInputEmail1">Additional Information</label>
+                <input type="text" class="form-control" id="exampleInputRef" aria-describedby="reflHelp"
+                  placeholder="Enter additional information" formControlName="reference" />
+              </div>
+              <div class="col-sm-6" >
+                <!-- <label for="exampleInputEmail1">Amount</label> -->
+
+                <div class="form-floating" *ngIf="!fixed_asset_mms && !fixed_asset_core">
+                  <input type="number" placeholder="Datepicker" class="form-control" autocomplete="off"
+                    id="floatingInput" formControlName="min_amount" (change)="onChangeminAmount($event)" />
+                  <label for="floatingInput">min</label>
+                </div>
+                <div class="form-floating" *ngIf="fixed_asset_mms || fixed_asset_core ">
+                  <input type="number" placeholder="Datepicker" class="form-control" autocomplete="off"
+                    id="floatingInput" formControlName="debit" />
+                  <label for="floatingInput"> Min Amount</label>
+                </div>
+              </div>
+
+              <div class="col-sm-6" *ngIf="!fixed_asset_mms && !fixed_asset_core">
+
+                <div class="form-floating">
+                  <input type="number" placeholder="" class="form-control" autocomplete="off" id="floatingInput"
+                    formControlName="max_amount" min={{min_am}} (change)="onChangemaxAmount($event)" />
+                  <label for="floatingInput">Max</label>
+                </div>
+                <div class="invalid-feedback" *ngIf=" min_amount_greater_than_max_amount_true">
+                  Please enter correct amount ! because max amount is less than min amount.
+                </div>
+              </div>
+              <div class="col-sm-6" *ngIf="fixed_asset_mms || fixed_asset_core">
+                <div class="form-floating">
+                  <input type="number" placeholder="" class="form-control" autocomplete="off" id="floatingInput"
+                    formControlName="credit" />
+                  <label for="floatingInput">Max Amount</label>
+                </div>
+
+              </div>
+              
+              <div class="mb-3 col-sm-6 mt-2" *ngIf="!fixed_asset_mms && !fixed_asset_core && !stockCore && !stockMMS">
+                <label for="exampleInputEmail1">Transaction Date</label>
+
+                <div class="form-floating">
+                  <input type="text" placeholder="Datepicker" class="form-control" autocomplete="off" id="floatingInput"
+                    bsDaterangepicker formControlName="min_upload_date"
+                    (bsValueChange)="onUploadDateValueChange($event)" />
+                  <label for="floatingInput">Select range</label>
+                </div>
+              </div>
+
+
+              <div class="mb-3 col-sm-6 mt-2" *ngIf="fixed_asset_mms || fixed_asset_core">
+                <label for="exampleInputEmail1">Transaction Date</label>
+
+                <div class="form-floating">
+                  <input type="text" placeholder="Datepicker" class="form-control" autocomplete="off" id="floatingInput"
+                    bsDaterangepicker formControlName="transaction_date"
+                    (bsValueChange)="onTransactionDateValueChange($event)" />
+                  <label for="floatingInput">Select range</label>
+                </div>
+              </div>
+
+
+              <!-- <div class="mb-3 col-sm-6 mt-4">
+                    <div class="form-floating">
+                      <input
+                        type="text"
+                        placeholder="Datepicker"
+                        class="form-control"
+                        autocomplete="off"
+                        id="floatingInput"
+                        bsDatepicker
+                        formControlName="max_upload_date"
+                        [bsConfig]="{ adaptivePosition: true }"
+                      />
+                      <label for="floatingInput">max</label>
+                    </div>
+                  </div> -->
+              <!-- <div *ngIf="! fixed_asset_mms"> -->
+
+              <div class="mb-3 col-sm-6 mt-2" *ngIf="fixed_asset_mms || fixed_asset_core">
+                <label for="exampleInputEmail1">Match Date</label>
+
+                <div class="form-floating">
+                  <input type="text" placeholder="Datepicker" class="form-control" autocomplete="off" id="floatingInput"
+                    bsDaterangepicker (bsValueChange)="onMatchDateValueChange($event)" formControlName="match_date" />
+                  <label for="floatingInput"> Select Match Date</label>
+                </div>
+              </div>
+
+              <!-- <div class="mb-3 col-sm-6 mt-2" *ngIf="fixed_asset_core">
+                <label for="exampleInputEmail1">Posting Date</label>
+
+                <div class="form-floating">
+                  <input type="text" placeholder="Datepicker" class="form-control" autocomplete="off" id="floatingInput"
+                    bsDaterangepicker (bsValueChange)="onPostingDateValueChange($event)"
+                    formControlName="posting_date" />
+                  <label for="floatingInput"> Selecte Posting Date</label>
+                </div>
+              </div> -->
+
+              <!-- <div class="mb-3 col-sm-6 mt-2" *ngIf="fixed_asset_core">
+                <label for="exampleInputEmail1">Value Date</label>
+
+                <div class="form-floating">
+                  <input type="text" placeholder="Datepicker" class="form-control" autocomplete="off" id="floatingInput"
+                    bsDaterangepicker (bsValueChange)="onValueDateValueChange($event)" formControlName="value_date2" />
+                  <label for="floatingInput"> Selecte Value Date</label>
+                </div>
+              </div> -->
+
+
+
+
+<!-- 
+              <div class="mb-3 col-sm-6 mt-2" *ngIf="fixed_asset_core">
+                <label for="exampleInputEmail1">Account Name</label>
+
+                <div class="form-floating">
+                  <input type="text" placeholder="Account Name" class="form-control" autocomplete="off"
+                    id="floatingInput" formControlName="account_name" />
+                  <label for="floatingInput"> Account Name </label>
+                </div>
+              </div> -->
+
+
+              <!-- </div> -->
+              <!-- <div *ngIf="fixed_asset_mms">
+              <div class="mb-3 col-sm-6 mt-2">
+                <label for="exampleInputEmail1">Transaction Date</label>
+
+                <div class="form-floating">
+                  <input type="text" placeholder="Datepicker" class="form-control" autocomplete="off" id="floatingInput"
+                    bsDaterangepicker formControlName="transaction_date"
+                    (bsValueChange)="onMatchDateValueChange($event)" />
+                  <label for="floatingInput">Select range</label>
+                </div>
+              </div>
+              
+            </div> -->
+<!-- 
+              <div class="form-group mb-2 col-sm-6" *ngIf="!fixed_asset_mms && !fixed_asset_core && !stockMMS">
+                <label for="exampleInputEmail1">Value Date</label>
+                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                  placeholder="Enter value date" formControlName="value_date" />
+              </div> -->
+
+              <div *ngIf='core' class="form-group mb-2 col-sm-6">
+                <label for="exampleInputbranchcode">Branch code</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                  placeholder="Enter branch code" formControlName="branch_code" />
+              </div>
+              <div *ngIf='issue' class="form-group mb-2 col-sm-6">
+                <label for="exampleInputbranchcode">Branch name</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                  placeholder="Enter branch name" formControlName="branch_code" />
+              
+              </div>
+              <div *ngIf='fixed_asset_mms' class="form-group mb-2 col-sm-6">
+                <label for="exampleInputbranchcode">Tag number</label>
+                <input type="email" class="form-control" id="exampleInputTagNumber" aria-describedby="emailHelp"
+                  placeholder="Enter tag number" formControlName="tag_number" />
+              </div>
+              <div *ngIf="stockMMS" class="form-group mb-2 col-sm-6">
+                <label for="exampleInputEmail1">Reference</label>
+                <input type="text" class="form-control" id="exampleInputRef" aria-describedby="reflHelp"
+                  placeholder="Enter Reference" formControlName="reference" />
+              </div>
+
+              <!-- ==============================here the stock added========================================== -->
+
+              <div *ngIf='stockMMS' class="form-group mb-2 col-sm-6">
+                <label for="exampleInputbranchcode">Store Name</label>
+                <input type="email" class="form-control" id="exampleInputTagNumber" aria-describedby="emailHelp"
+                  placeholder="Enter Store Name" formControlName="store_name" />
+              </div>
+              <div class="mb-3 col-sm-6 mt-2" *ngIf="stockMMS || stockCore">
+                <label for="exampleInputEmail1">Value Date</label>
+
+                <div class="form-floating">
+                  <input type="text" placeholder="Datepicker" class="form-control" autocomplete="off" id="floatingInput"
+                    bsDaterangepicker formControlName="min_upload_date"
+                    (bsValueChange)="onUploadDateValueChange($event)" />
+                  <label for="floatingInput">Select range</label>
+                </div>
+              </div>
+              <div *ngIf='stockCore' class="form-group mb-2 col-sm-6">
+                <label for="exampleInputbranchcode">Source Branch</label>
+                <input type="email" class="form-control" id="exampleInputTagNumber" aria-describedby="emailHelp"
+                  placeholder="Enter source branch" formControlName="source_branch" />
+              </div>
+
+              <div class="mb-3 col-sm-6" *ngIf="!fixed_asset_mms && !fixed_asset_core">
+                <label for="exampleInputEmail1">Match Date</label>
+
+                <div class="form-floating">
+                  <input type="text" placeholder="Datepicker" class="form-control" autocomplete="off" id="floatingInput"
+                    bsDaterangepicker formControlName="min_match_date"
+                    (bsValueChange)="onMatchDateValueChange($event)" />
+                  <label for="floatingInput">Select range</label>
+                </div>
+              </div>
+      
+
+           
+
+              <!--================================here ends====================================================== -->
+
+              <div class="col-md-12 text-left">
+                <button type="submit" style="margin-top: 8px" class="btn btn-primary">
+                  Search
+                </button>
+              </div>
+
+            </form>
+
+            <div *ngIf="checked_ats && submitted" class="row">
+              <table datatable [dtOptions]="dtOptions_ats" id="ats_history" class="
+              table table-bordered
+              dt-responsive
+              nowrap
+              w-100
+            "></table>
+            </div>
+            
+             <!-- =================== -->
+
+           <div *ngIf="checked_stockCore && submitted" class="row">
+              <table datatable [dtOptions]="dtOptions_stock_core" id="stock_history" class="
+              table table-bordered
+              dt-responsive
+              nowrap
+              w-100
+              "></table>
+            </div>
+            
+            <div *ngIf="checked_stockMMS && submitted" class="row">
+              <table datatable [dtOptions]="dtOptions_stock_mms" id="stock_mms_history" class="
+              table table-bordered
+              dt-responsive
+              nowrap
+              w-100
+              "></table>
+            </div>
+
+            <!-- =========================== -->
+
+            <div *ngIf="checked_core && submitted" class="row">
+              <table datatable [dtOptions]="dtOptions_core" id="core_history" class="
+              table table-bordered
+              dt-responsive
+            
+            "></table>
+            </div>
+            <div *ngIf="checked_issue_core && submitted" class="row">
+              <table datatable [dtOptions]="dtOptions_issue_core" id="issue_cor" class="
+              table table-bordered
+              dt-responsive
+            
+            "></table>
+            </div>
+            <div *ngIf="checked_issue_qbs && submitted" class="row">
+              <table datatable [dtOptions]="dtOptions_issue_qbs" id="issue_qbs" class="
+              table table-bordered
+              dt-responsive
+            
+            "></table>
+            </div>
+            
+            <!-- Fixed Asset MMS Data Table  Options  -->
+            <div *ngIf="checked_fixed_asset_mms && submitted" class="row">
+              <table datatable [dtOptions]="dtOptions_fixed_asset_mms" id="fixed_asset_mms_id" class="
+           table table-bordered dt-responsive "></table>
+            </div>
+
+            <!-- Fixed Asset Core Data Table Options  -->
+            <div *ngIf="checked_fixed_asset_core && submitted" class="row">
+              <table datatable [dtOptions]="dtOptions_fixed_asset_core" id="fixed_asset_core_id"
+                class="table table-bordered  dt-responsive "></table>
+            </div>
+
+            <!---
+            <div *ngIf="search_ats && !submitted" class="row">
+              <p style="color:red;"> please select one of search crateria from above list in addition of Type</p>
+            </div>
+          -->
+          </div>
+
+        </div>
+
+        <div id="modal-786263487" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"
+          data-bs-backdrop="static" data-bs-keyboard="false">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Matched Transaction Detail</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body" *ngIf="ats_matched_detail">
+
+
+                <p> <b> Matched date:</b> {{match_date}}</p>
+
+                <p> <b> Matced by:</b> {{mached_by}} </p>
+
+                <p><b>Reconciliation with amount:</b> {{amount}}</p>
+
+                <p> <b> Reconciliation with Branch code:</b> {{branch_code}}</p>
+
+                <p><b> Reconciliation with Aditional information:</b> {{additional_information}}</p>
+
+
+              </div>
+              <div class="modal-body" *ngIf="core_matched_detail">
+
+
+                <p> <b> Matched date:</b> {{core_match_date}}</p>
+
+                <p> <b> Matced by:</b> {{core_mached_by}} </p>
+
+
+                <p><b>Reconciliation with amount:</b> {{core_amount}}</p>
+
+                <p> <b> Reconciliation with Value date type:</b> {{core_value_date_type}}</p>
+
+                <p><b> Reconciliation with Reference:</b> {{reference }}</p>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div id="modal-786263480" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"
+        data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Matched Transaction Detail</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+           <div class="modal-body" *ngIf="stock_mms_matched_detail">
+
+
+              <p> <b> Matched date:</b> {{history_detail.match_date}}</p>
+
+              <p> <b> Matced by:</b> {{history_detail.firstname+ " " + history_detail.middlename+" "+
+                history_detail.lastname}} </p>
+
+              <p *ngIf="history_detail.reconciliation_type=='1'"><b>Reconciliation type:</b> Automatic</p>
+
+              <p *ngIf="history_detail.reconciliation_type=='2'"><b>Reconciliation type:</b> Manaual</p>
+
+              <p><b>Account Segment:</b> {{history_detail.stock_account_segment}}</p>
+
+              <p><b>matched with value date:</b> {{history_detail.value_date}}</p>
+
+            </div>
+            <div class="modal-body" *ngIf="stock_core_matched_detail">
+
+
+              <p> <b> Matched date:</b> {{history_detail.match_date}}</p>
+
+              <p> <b> Matced by:</b> {{history_detail.firstname+" "+ history_detail.middlename+" "+
+               history_detail.lastname}} </p>
+
+              <p *ngIf="history_detail.reconciliation_type=='1'"><b>Reconciliation type:</b> Automatic</p>
+
+              <p *ngIf="history_detail.reconciliation_type=='2'"><b>Reconciliation type:</b> Manaual</p>
+
+             <p><b>Value Date:</b> {{history_detail.value_date}}</p>
+
+             <p><b>matched with reference:</b> {{history_detail.reference}}</p>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+        <div id="modal-786263488" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"
+          data-bs-backdrop="static" data-bs-keyboard="false">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Matched Transaction Detail</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body" *ngIf="fixed_asset_core_matched_detail">
+                <p> <b> Matched date:</b> {{history_detail.match_date}}</p>
+
+                <p> <b> Matced by:</b> {{history_detail.firstname+" "+ history_detail.middlename+" "+
+                  history_detail.lastname}} </p>
+
+
+                <p *ngIf="history_detail.reconciliation_type=='1'"><b>Reconciliation type:</b> Automatic</p>
+                <p *ngIf="history_detail.reconciliation_type=='2'"><b>Reconciliation type:</b> Manaual</p>
+
+                <p> <b> Account Name:</b> {{history_detail.account_name}}</p>
+
+                <p><b> Value Date :</b> {{history_detail.value_date}}</p>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--end of id 8-->
+        <div id="modal-786263489" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"
+          data-bs-backdrop="static" data-bs-keyboard="false">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Matched Transaction Detail</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+
+              <div class="modal-body" *ngIf="fixed_asset_mms_matched_detail">
+
+                <p> <b> Matched date:</b> {{history_detail.match_date}}</p>
+
+                <p> <b> Matced by:</b> {{history_detail.firstname+" "+ history_detail.middlename+" "+
+                  history_detail.lastname}} </p>
+
+                <p *ngIf="history_detail.type=='1'"> <b> Reconciliation Type:</b> Automaticaly</p>
+                <p *ngIf="history_detail.type=='2'"> <b> Reconciliation Type:</b> Mannualy</p>
+
+                <p><b>Account Segment:</b> {{history_detail.stock_account_segment}}</p>
+
+                <p> <b> Reconciliation with Aditional Information:</b> {{history_detail.additional_information}}</p>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- end of id 9-->
+      </div>
+    </div>
+  </div>
+</div>
+<swal #SwalSessionExpired title="Warning" text="Your session has expired! please login to continue." icon="warning"
+  [showCancelButton]="false" [showConfirmButton]="false" [timer]="3500" [focusCancel]="true">
+</swal>
+
+
+
+
+
+
+<!-- <div id="modal-786263487" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"
+data-bs-backdrop="static" data-bs-keyboard="false">
+<div class="modal-dialog modal-dialog-centered">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">Matched Transaction Detail</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body" *ngIf="ats_matched_detail">
+
+
+      <p> <b> Matched date:</b> {{match_date}}</p>
+
+      <p> <b> Matced by:</b> {{mached_by}} </p>
+
+      <p><b>Reconciliation with amount:</b> {{amount}}</p>
+
+      <p> <b> Reconciliation with Branch code:</b> {{branch_code}}</p>
+
+      <p><b> Reconciliation with Aditional information:</b> {{additional_information}}</p>
+
+
+    </div>
+    <div class="modal-body" *ngIf="fixed_asset_core_matched_detail">
+      <p> <b> Matched date:</b> {{history_detail.match_date}}</p>
+
+      <p> <b> Matced by:</b> {{mached_by}} </p>
+
+      <p><b>Reconciliation type:</b> {{history_detail.reconciliation_type}}</p>
+
+      <p> <b> Account Name:</b> {{history_detail.account_name}}</p>
+
+      <p><b> Value Date :</b> {{history_detail.value_date}}</p>
+    </div>
+    <div class="modal-body" *ngIf="fixed_asset_mms_matched_detail">
+
+      <p> <b> Matched date:</b> {{history_detail.match_date}}</p>
+
+      <p> <b> Matced by:</b> {{core_mached_by}} </p>
+
+      <p> <b> Reconciliation Type:</b> {{history_detail.type}}</p>
+
+      <p><b>Account Segment:</b> {{history_detail.stock_account_segment}}</p>
+
+      <p> <b> Reconciliation with Aditional Information:</b> {{history_detail.additional_information}}</p>
+
+    </div>
+  </div>
+</div> -->

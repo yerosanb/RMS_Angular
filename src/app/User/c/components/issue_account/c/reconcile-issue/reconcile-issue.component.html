@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col-12">
+    <div class="page-title-box">
+      <app-navigator-upper></app-navigator-upper>
+      <h4 class="page-title">Reconciliation</h4>
+      <div class="card">
+        <div class="card-body">
+          <h4 class="header-title">Reconcile</h4>
+          <div class="containerr my-3">
+            <div>
+              <tabset type="pills" #reconTab>
+                <tab heading="{{tabTitles[0]}}" (selectTab)="onSelect($event)" [active]="this.localStorageService.retrieve('recon-selected-tab-issue') != null && 
+                this.localStorageService.retrieve('recon-selected-tab-issue') == 0">
+                  <app-recon-manual-issue *ngIf="reconTab.tabs[0]?.active"></app-recon-manual-issue>
+                </tab>
+                <tab heading="{{tabTitles[1]}}" (selectTab)="onSelect($event)" [active]="this.localStorageService.retrieve('recon-selected-tab-issue') != null && 
+                this.localStorageService.retrieve('recon-selected-tab-issue') == 1">
+                  <app-recon-auto-issue *ngIf="reconTab.tabs[1]?.active"></app-recon-auto-issue>
+                </tab> 
+                <!-- <tab heading="{{tabTitles[2]}}" (selectTab)="onSelect($event)" [active]="this.localStorageService.retrieve('recon-selected-tab-issue') != null && 
+                this.localStorageService.retrieve('recon-selected-tab-issue') == 2">
+                  <app-partial-automatic *ngIf="reconTab.tabs[2]?.active"></app-partial-automatic>
+                </tab>
+                <tab heading="{{tabTitles[3]}}" (selectTab)="onSelect($event)" [active]="this.localStorageService.retrieve('recon-selected-tab-issue') != null && 
+                this.localStorageService.retrieve('recon-selected-tab-issue') == 3">
+                  <app-partial-matched *ngIf="reconTab.tabs[3]?.active"></app-partial-matched>
+                </tab> -->
+              </tabset>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

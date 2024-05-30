@@ -1,0 +1,280 @@
+<div class="row">
+  <div class="col-12">
+    <div class="page-title-box">
+      <app-navigator-upper></app-navigator-upper>
+      <h4 class="page-title">Users</h4>
+      <div class="card">
+        <div class="card-body">
+          <h4 class="header-title">users</h4>
+          <!-- <div class="continer mb-4">
+            <div class="row">
+              <div class="row d-flex justify-content-end">
+                <button
+                disabled
+                  class="btn btn-primary"
+                  style="width: fit-content"
+                  (click)="goToPage('admin/users/add')"
+                >
+                  Add user
+                </button>
+              </div>
+            </div>
+          </div> -->
+          <div class="container">
+            <div class="row">
+              <!-- <blockquote>Please click on a row</blockquote>
+              <p class="text-danger">
+                You clicked on: <strong>{{ message }}</strong>
+              </p>
+              <br />
+
+              <hr />
+              <p>
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  (click)="displayToConsole(datatableElement)"
+                >
+                  Display the DataTable instance in the console
+
+                </button>
+              </p>
+              <hr /> -->
+              <!-- <form (submit)="filterById()" class="mb-2">
+                <div class="row g-2">
+                  <div class="col-md">
+                    <div class="form-group">
+                      <input
+                        type="number"
+                        name="min"
+                        id="min"
+                        [(ngModel)]="min"
+                        class="form-control"
+                      />
+                      <label for="groupInputGrid">Min</label>
+                    </div>
+                  </div>
+                  <div class="col-md">
+                    <div class="form-group">
+                      <input
+                        type="number"
+                        name="max"
+                        id="max"
+                        [(ngModel)]="max"
+                        class="form-control"
+                      />
+                      <label for="groupInputGrid">Max</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <button class="btn btn-primary" type="submit">
+                        Filter by ID
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </form> -->
+              <!-- <br />
+              <hr /> -->
+              <table
+                datatable
+                [dtOptions]="dtOptions"
+                id="users_table"
+                class="table table-bordered dt-responsive nowrap w-100"
+              >
+                <tfoot>
+                  <tr style="border-top: none !important">
+                    <th>
+                      <div class="form-floating">
+                        <input
+                          type="text"
+                          id="floatingInput"
+                          [ngModel]="input_0"
+                          id="{{ first_column_id }}"
+                          name="search-id"
+                          class="form-control {{ first_column_id }} _id"
+                        />
+                        <label for="floatingInput">Id</label>
+                      </div>
+                    </th>
+                    <th>
+                      <div class="form-floating">
+                        <input
+                          type="text"
+                          id="floatingInput"
+                          id="{{ second_column_id }}"
+                          name="search-first-name"
+                          [ngModel]="input_1"
+                          class="form-control {{ second_column_id }} _firstname"
+                        />
+
+                        <label for="floatingInput">First Name</label>
+                      </div>
+                    </th>
+                    <th>
+                      <div class="form-floating">
+                        <input
+                          type="text"
+                          id="floatingInput"
+                          id="{{ third_column_id }}"
+                          name="search-last-name"
+                          [ngModel]="input_2"
+                          class="form-control {{ third_column_id }} _middlename"
+                        />
+
+                        <label for="floatingInput">Middle Name</label>
+                      </div>
+                    </th>
+                    <th>
+                      <div class="form-floating">
+                        <input
+                          type="text"
+                          id="floatingInput"
+                          id="{{ fourth_column_id }}"
+                          name="search-last-name"
+                          [ngModel]="input_3"
+                          class="form-control {{ fourth_column_id }} _lastname"
+                        />
+
+                        <label for="floatingInput">Last Name</label>
+                      </div>
+                    </th>
+                    <th>
+                      <div class="form-floating">
+                        <input
+                          type="text"
+                          id="floatingInput"
+                          id="{{ fifth_column_id }}"
+                          name="search-last-name"
+                          [ngModel]="input_4"
+                          class="form-control {{ fifth_column_id }} _gender"
+                        />
+
+                        <label for="floatingInput">Gender</label>
+                      </div>
+                    </th>
+                    <th>
+                      <div class="form-floating">
+                        <input
+                          type="text"
+                          id="floatingInput"
+                          id="{{ sixth_column_id }}"
+                          name="search-last-name"
+                          [ngModel]="input_5"
+                          class="form-control {{ sixth_column_id }} _role"
+                        />
+
+                        <label for="floatingInput">Role</label>
+                      </div>
+                    </th>
+                    <th>
+                      <div class="form-floating">
+                        <input
+                          type="text"
+                          id="floatingInput"
+                          id="{{ seventh_column_id }}"
+                          name="search-last-name"
+                          [ngModel]="input_6"
+                          class="form-control {{ seventh_column_id }} _email"
+                        />
+
+                        <label for="floatingInput">Email</label>
+                      </div>
+                    </th>
+                    <th>
+                      <div class="form-floating">
+                        <input
+                          type="text"
+                          id="floatingInput"
+                          id="{{ eighth_column_id }}"
+                          name="search-last-name"
+                          [ngModel]="input_7"
+                          class="form-control {{
+                            eighth_column_id
+                          }} _phonenumber"
+                        />
+
+                        <label for="floatingInput">Phone Number</label>
+                      </div>
+                    </th>
+                    <th>
+                      <div class="form-floating">
+                        <input
+                          type="text"
+                          id="floatingInput"
+                          id="{{ ninth_column_id }}"
+                          name="search-last-name"
+                          [ngModel]="input_8"
+                          class="form-control {{ ninth_column_id }} _reg_date"
+                        />
+
+                        <label for="floatingInput">Reg Date</label>
+                      </div>
+                    </th>
+                    <th>
+                      <div class="form-floating">
+                        <input
+                          type="text"
+                          id="floatingInput"
+                          id="{{ tenth_column_id }}"
+                          name="search-last-name"
+                          [disabled]="true"
+                          class="form-control {{ tenth_column_id }} _status"
+                        />
+
+                        <label for="floatingInput">Status</label>
+                      </div>
+                    </th>
+                    <th>
+                      <div class="form-floating">
+                        <input
+                          type="text"
+                          id="floatingInput"
+                          id="{{ eleventh_column_id }}"
+                          name="search-last-name"
+                          [disabled]="true"
+                          class="form-control {{
+                            eleventh_column_id
+                          }} _change_status"
+                        />
+
+                        <label for="floatingInput">Change Status</label>
+                      </div>
+                    </th>
+                    <th>
+                      <div class="form-floating">
+                        <input
+                          type="text"
+                          id="floatingInput"
+                          id="{{ twelfth_column_id }}"
+                          name="search-last-name"
+                          [disabled]="true"
+                          class="form-control {{ twelfth_column_id }} _action"
+                        />
+
+                        <label for="floatingInput">Action</label>
+                      </div>
+                    </th>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<swal
+  #SwalSessionExpired
+  title="Warning"
+  text="Your session has expired! please login to continue."
+  icon="warning"
+  [showCancelButton]="false"
+  [showConfirmButton]="false"
+  [timer]="3500"
+  [focusCancel]="true"
+>
+</swal>

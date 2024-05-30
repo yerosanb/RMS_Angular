@@ -1,0 +1,376 @@
+<div class="con leftside-menu" style="position: sticky; height: fit-content">
+  <div class="leftside-menu leftside-menu-detached" style="height: 100%; min-height: 400px !important;">
+    <!-- overflow-x: visible; overflow-y: auto -->
+    <div class="leftbar-user">
+      <a href="javascript: void(0);" *ngIf="
+          this.localStorageService.retrieve('theme').trim() == 'dark'.trim()
+        ">
+
+        <img src="/rms/assets/template_assets/images/awash_assets/awash_logo_003.svg" alt="Awash bank logo" height="45"
+          class="shadow-sm mt-2" style="background: #f1f1f1d9; padding: 2px" />
+        <span class="leftbar-user-name" style="margin-left: 0px">Awash Bank Reconciliation System</span>
+      </a>
+      <a href="javascript: void(0);" *ngIf="
+          this.localStorageService.retrieve('theme').trim() == 'light'.trim()
+        ">
+        <img src="/rms/assets/template_assets/images/awash_assets/awash_logo_003.svg" alt="Awash bank logo" height="45"
+          class="shadow-sm mt-2" />
+        <span class="leftbar-user-name" style="margin-left: 0px">Awash Bank Reconciliation System</span>
+      </a>
+    </div>
+    <ul class="side-nav">
+
+      <!--- Sidemenu -->
+
+      <!-- Approver menus start======================================================================== -->
+      <li class="side-nav-title side-nav-item" *ngIf="authService.isApprover()">Approver</li>
+      <li class="side-nav-item" *ngIf="authService.isApprover()">
+        <a data-bs-toggle="collapse" href="#sidebarDashboards" aria-expanded="false" aria-controls="sidebarDashboards"
+          class="side-nav-link">
+          <i class="uil-question-circle"></i>
+          <span class="side-items"> Currency Requests </span>
+          <span class="menu-arrow"></span>
+        </a>
+        <div class="collapse" id="sidebarDashboards">
+          <ul class="side-nav-second-level">
+            <li *ngIf="authService.isApprover()">
+              <a href="javascript: void(0);" (click)="goToPage('Approver/Currency-requests')">
+                <!-- <span class="badge bg-success float-end">4</span> -->
+                <span>Pending Requests</span>
+              </a>
+            </li>
+
+            <li *ngIf="authService.isApprover()">
+              <a href="javascript: void(0);" (click)="goToPage('Approver/Approved-currency-requests')">
+                <!-- <span class="badge bg-success float-end">2</span> -->
+                <span>Approved Requests</span>
+              </a>
+            </li>
+
+            <li *ngIf="authService.isApprover()">
+              <a href="javascript: void(0);" (click)="goToPage('Approver/Rejected-currency-requests')">
+                <!-- <span class="badge bg-success float-end">2</span> -->
+                <span>Rejected Requests</span>
+
+              </a>
+            </li>
+
+          </ul>
+        </div>
+      </li>
+
+      <li class="side-nav-item" *ngIf="authService.isApprover()">
+        <a data-bs-toggle="collapse" href="#sidebarEcommerce" aria-expanded="false" aria-controls="sidebarEcommerce"
+          class="side-nav-link">
+          <i class="uil-question-circle"></i>
+          <span class="side-items"> Account Requests </span>
+          <span class="menu-arrow"></span>
+        </a>
+        <div class="collapse" id="sidebarEcommerce">
+          <ul class="side-nav-second-level">
+            <li *ngIf="authService.isApprover()">
+              <a href="javascript: void(0);" (click)="goToPage('Approver/Account-requests')">
+                <!-- <span class="badge bg-success float-end">2</span> -->
+                <span>Pending Requests</span>
+              </a>
+            </li>
+
+            <li *ngIf="authService.isApprover()">
+              <a href="javascript: void(0);" (click)="goToPage('Approver/Approved-account-requests')">
+                <!-- <span class="badge bg-success float-end">2</span> -->
+                <span>Approved Requests</span>
+              </a>
+            </li>
+
+            <li *ngIf="authService.isApprover()">
+              <a href="javascript: void(0);" (click)="goToPage('Approver/Rejected-account-requests')">
+                <!-- <span class="badge bg-success float-end">2</span> -->
+                <span>Rejected Requests</span>
+              </a>
+            </li>
+
+          </ul>
+        </div>
+      </li>
+      <li class="side-nav-item" *ngIf="authService.isApprover()">
+        <a data-bs-toggle="collapse" href="#sidebarEcommerc" aria-expanded="false" aria-controls="sidebarEcommerc"
+          class="side-nav-link">
+          <i class="uil-comment"></i>
+          <span class="side-items"> Remarks </span>
+          <span class="menu-arrow"></span>
+        </a>
+        <div class="collapse" id="sidebarEcommerc">
+          <ul class="side-nav-second-level">
+            <li *ngIf="authService.isApprover()">
+              <a href="javascript: void(0);" (click)="goToPage('Approver/currency-remark')">
+                <span class="badge bg-success float-end"></span>
+                <span>Currency Remark</span>
+              </a>
+            </li>
+            <li *ngIf="authService.isApprover()">
+              <a href="javascript: void(0);" (click)="goToPage('Approver/account-remark')">
+                <span class="badge bg-success float-end"></span>
+                <span>Account Remark</span>
+              </a>
+            </li>
+
+          </ul>
+        </div>
+      </li>
+
+
+
+
+      <!-- Approver menus end======================================================================== -->
+
+      <!-- Admin menus start======================================================================== -->
+      <li class="side-nav-title side-nav-item" *ngIf="authService.isAdmin()">Admin</li>
+      <!-- <li class="side-nav-title side-nav-item" *ngIf="authService.isUser()">User</li>
+      <li class="side-nav-item" *ngIf="authService.isUser()">
+        <a href="javascript: void(0);" (click)="goToPage('user/reconcile')" class="side-nav-link">
+          <i class="mdi mdi-handshake-outline"></i>
+          <span> Reconcile</span>
+        </a>
+      </li>
+      <li class="side-nav-item" *ngIf="authService.isUser()">
+
+        <a href="javascript: void(0);" (click)="goToPage('user/view_transaction')" class="side-nav-link">
+
+          <i class="mdi mdi-eye"></i>
+          <span> View Transaction</span>
+        </a>
+      </li>
+      <li class="side-nav-item" *ngIf="authService.isUser()">
+        <a href="javascript: void(0);" (click)="goToPage('user/file-upload')" class="side-nav-link">
+          <i class="mdi mdi-file-upload-outline"></i>
+          <span>Upload</span>
+        </a>
+      </li>
+      <li class="side-nav-item" *ngIf="authService.isUser()">
+
+        <a data-bs-toggle="collapse" href="#sidebarEcommerce" aria-expanded="false" aria-controls="sidebarEcommerc"
+          class="side-nav-link">
+          <i class="uil-window"></i>
+          <span> Requests </span>
+          <span class="menu-arrow"></span>
+        </a>
+
+      </li>
+
+      <div class="collapse" id="sidebarEcommerce">
+        <ul class="side-nav-second-level" *ngIf="authService.isUser()">
+
+          <li>
+            <a href="javascript: void(0);" (click)="goToPage('user/view-account-request')">
+              <i class="mdi mdi-currency-usd-circle-outline"></i>
+              <span> Account Requests</span>
+            </a>
+          </li>
+          <li>
+
+            <a href="javascript: void(0);" (click)="goToPage('user/view-currency-request')">
+              <i class="mdi mdi-currency-cny"></i>
+
+              <span> Currency Requests </span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <li class="side-nav-item" *ngIf="authService.isUser()">
+        <a data-bs-toggle="collapse" href="#sidebarEcommerc" aria-expanded="false" aria-controls="sidebarEcommerc"
+          class="side-nav-link">
+          <i class="uil-comments"></i>
+          <span> Remarks </span>
+          <span class="menu-arrow"></span>
+
+        </a>
+        <div class="collapse" id="sidebarEcommerc">
+          <ul class="side-nav-second-level">
+            <li *ngIf="authService.isUser()">
+              <a href="javascript: void(0);" (click)="goToPage('user/view-account-remark')">
+                <i class="uil-comments"></i>
+                <span class="badge bg-success float-end">{{totalaccountRemarks}}</span>
+                <span>Account Remarks</span>
+              </a>
+            </li>
+
+            <li *ngIf="authService.isUser()">
+              <a href="javascript: void(0);" (click)="goToPage('user/view-currency-remark')">
+                <i class="uil-comments"></i>
+                <span class="badge bg-success float-end">{{totalCurrencyRemarks}}</span>
+                <span>Currency Remarks</span>
+              </a>
+            </li>
+
+          </ul>
+        </div>
+      </li> -->
+      <!-- <li class="side-nav-item" *ngIf="authService.isAdmin()">
+        <a href="javascript: void(0);" (click)="goToPage('admin/pending-users')" class="side-nav-link">
+          <i class="mdi mdi-account-details"></i>
+          <span>  Pending Users </span>
+        </a>
+      </li> -->
+      <li class="side-nav-item" *ngIf="authService.isAdmin()">
+        <a href="javascript: void(0);" (click)="goToPage('admin/users')" class="side-nav-link">
+          <i class="mdi mdi-account-details"></i>
+          <span> Users </span>
+        </a>
+      </li>
+      <li class="side-nav-item" *ngIf="authService.isAdmin()">
+        <a href="javascript: void(0);" (click)="goToPage('admin/roles')" class="side-nav-link">
+
+          <i class="mdi mdi-account-key-outline"></i>
+          <span> Roles </span>
+        </a>
+      </li>
+      <li class="side-nav-item" *ngIf="authService.isAdmin()">
+        <a href="javascript: void(0);" (click)="goToPage('admin/functionalities')" class="side-nav-link">
+          <i class="mdi mdi-lock-check-outline"></i>
+          <span> Functionalities </span>
+        </a>
+      </li>
+      <li class="side-nav-title side-nav-item" *ngIf="authService.isAdmin()">System</li>
+      <li class="side-nav-item" *ngIf="authService.isAdmin()">
+        <a href="javascript: void(0);" (click)="goToPage('admin/logins')" class="side-nav-link">
+          <i class="mdi mdi-login"></i>
+          <span> Logins </span>
+        </a>
+      </li>
+      <li class="side-nav-item" *ngIf="authService.isAdmin()">
+        <a href="javascript: void(0);" (click)="goToPage('admin/user-activities')" class="side-nav-link">
+          <i class="mdi mdi-clipboard-list-outline"></i>
+          <span> User Activities </span>
+        </a>
+      </li>
+      <!-- <li class="side-nav-item" *ngIf="authService.isAdmin()">
+        <a href="javascript: void(0);" (click)="goToPage('admin/mm')" class="side-nav-link">
+          <i class="mdi mdi-clipboard-list-outline"></i>
+          <span> mm</span>
+        </a>
+      </li> -->
+      <!-- ====================================================================================================== -->
+      <!-- here is reconciliation endale -->
+
+
+      <!-- <li class="side-nav-item" *ngIf="authService.isUser()">
+        <a data-bs-toggle="collapse" href="#sidebarMultiLevel" aria-expanded="false" aria-controls="sidebarMultiLevel" class="side-nav-link">
+            <i class="mdi mdi-format-list-checks"></i>
+            <b><span> Workspace</span></b>
+            <span class="menu-arrow"></span>
+        </a>
+        <div class="collapse" id="sidebarMultiLevel">
+            <ul class="side-nav-second-level">
+                <li class="side-nav-item">
+                    <a data-bs-toggle="collapse" href="#pas_menus" aria-expanded="false" aria-controls="pas_menus">
+                        <span> PAS</span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="pas_menus">
+                        <ul class="side-nav-third-level">
+                            <li (click)='setReconciliationType("BTB 202")'>
+                                <a href="javascript: void(0);" >BTB 202</a>
+                            </li>
+                            <li (click)='setReconciliationType("RTGS 103")'>
+                                <a href="javascript: void(0);">RTGS 103</a>
+                            </li>
+                            <li (click)='setReconciliationType("ERCA 204")'>
+                                <a href="javascript: void(0);">ERCA 204</a>
+                            </li>
+                            <li (click)='setReconciliationType("SOS 205")'>
+                                <a href="javascript: void(0);">SOS 205</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="side-nav-item">
+                    <a data-bs-toggle="collapse" href="#saf-a" aria-expanded="false" aria-controls="saf-a">
+                        <span> Stock and F/Asset </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="saf-a">
+                        <ul class="side-nav-third-level">
+                            <li>
+                                <a href="javascript: void(0);">Options</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="side-nav-item">
+                    <a data-bs-toggle="collapse" href="#PAS-Payable" aria-expanded="false" aria-controls="PAS-Payable">
+                        <span> PAS-Payable </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="PAS-Payable">
+                        <ul class="side-nav-third-level">
+                            <li>
+                                <a href="javascript: void(0);">Options</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="side-nav-item">
+                    <a data-bs-toggle="collapse" href="#PAS-Receivable" aria-expanded="false" aria-controls="PAS-Receivable">
+                        <span> PAS-Receivable </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="PAS-Receivable">
+                        <ul class="side-nav-third-level">
+                            <li>
+                                <a href="javascript: void(0);">Options</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="side-nav-item">
+                    <a data-bs-toggle="collapse" href="#issue-and-accounts" aria-expanded="false" aria-controls="issue-and-accounts">
+                        <span> Issue and Accounts </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="issue-and-accounts">
+                        <ul class="side-nav-third-level">
+                            <li>
+                                <a href="javascript: void(0);">Options</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="side-nav-item">
+                    <a data-bs-toggle="collapse" href="#sidebarThirdLevel" aria-expanded="false" aria-controls="sidebarThirdLevel">
+                        <span> Third Level </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="sidebarThirdLevel">
+                        <ul class="side-nav-third-level">
+                            <li>
+                                <a href="javascript: void(0);">Item 1</a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a data-bs-toggle="collapse" href="#sidebarFourthLevel" aria-expanded="false" aria-controls="sidebarFourthLevel">
+                                    <span> Item 2 </span>
+                                    <span class="menu-arrow"></span>
+                                </a>
+                                <div class="collapse" id="sidebarFourthLevel">
+                                    <ul class="side-nav-forth-level">
+                                        <li>
+                                            <a href="javascript: void(0);">Item 2.1</a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript: void(0);">Item 2.2</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    
+      </li> -->
+      <!-- ====================================================================================================== -->
+
+    </ul>
+  </div>
+</div>

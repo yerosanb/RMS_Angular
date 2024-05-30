@@ -1,0 +1,47 @@
+<hr />
+<br />
+<div class="row">
+  <div class="col-12">
+    <div class="page-title-box">
+      <div class="continer mb-4">
+        <div class="row">
+          <tabset #accountTabset>
+          <tab heading="NBE Edited & Deleted" [active]="true">
+              <app-view-edited-nbe
+                *ngIf="accountTabset.tabs[0]?.active"
+              ></app-view-edited-nbe>
+          </tab>
+           <tab heading="Core Edited & Deleted" [active]>
+              <app-view-edited-core
+                *ngIf="accountTabset.tabs[1]?.active"
+              ></app-view-edited-core>
+            </tab> 
+            <!-- <tab heading="Payable Edited & Deleted" [active]="true">
+              <app-view-edited-payable
+                *ngIf="accountTabset.tabs[2]?.active"
+              ></app-view-edited-payable>
+            </tab>     -->
+            <tab heading="View Matched With Reason" [active]>
+              <app-view-matching-reason
+                *ngIf="accountTabset.tabs[2]?.active"
+              ></app-view-matching-reason>
+            </tab> 
+            <tab heading="View Matched With Reason Payable" [active]>
+              <app-view-match-with-reson-payable
+                *ngIf="accountTabset.tabs[3]?.active"
+              ></app-view-match-with-reson-payable>
+            </tab>  
+            <tab heading="Matched With Reason receivable" [active]>
+              <app-view-match-with-reason
+                *ngIf="accountTabset.tabs[4]?.active"
+              ></app-view-match-with-reason>
+            </tab>  
+          </tabset>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

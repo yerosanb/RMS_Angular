@@ -1,0 +1,74 @@
+<div class="row">
+  <div class="col-12">
+    <div class="page-title-box">
+      <app-navigator-upper></app-navigator-upper>
+      <h4 class="page-title">Users Activity</h4>
+      <div class="card">
+        <div class="col-sm-6" style="margin-top: 4px;">
+        </div>
+       
+        <div class="card-body">
+          <h4 class="header-title">Users Activity</h4>
+          <div class="col-sm-6" style="margin-top: 25px; margin-bottom: 0px;">
+            <div class="form-floating">
+              <input type="text" placeholder="Datepicker" class="form-control" autocomplete="off" id="floatingInput"
+                bsDatepicker [bsValue]="initialDateValue" [bsConfig]="{ adaptivePosition: true }"
+                (bsValueChange)="onReconDateChange($event)">
+              <label for="floatingInput">Activies Date</label>
+            </div>
+          </div>
+          <div class="container mb-4">
+            <!-- <div class="mb-3 col-sm-6 px-4" style="position: absolute; right: 0; z-index: 1;">
+              <div class="form-floating">
+                <input type="text" placeholder="Datepicker" class="form-control" autocomplete="off" id="floatingInput" bsDatepicker
+                  [bsValue]="initialDateValue" [bsConfig]="{ adaptivePosition: true }" (bsValueChange)="onReconDateChange($event)">
+                <label for="floatingInput">Transaction Date</label>
+              </div>
+              <div class="valid-feedback" *ngIf="false">
+                Looks good!
+              </div>
+              <div class="invalid-feedback" *ngIf="false">
+                Please select initial and final date for the assignment.
+              </div>
+            </div> -->
+            <div class="row mt-4">
+            
+              <table
+                datatable
+                [dtOptions]="dtOptions"
+                id="user_activity_table"
+                class="table table-bordered dt-responsive nowrap w-100"
+              >
+                <tfoot>
+                  <tr>
+                    <th>{{ first_column_title }}</th>
+                    <th>{{ second_column_title }}</th>
+                    <th>{{ third_column_title }}</th>
+                    <th>{{ fourth_column_title }}</th>
+                    <th>{{ fifth_column_title }}</th>
+                    <th>{{ sixth_column_title }}</th>
+                    <th>{{ seventh_column_title }}</th>
+                    <th>{{ eighth_column_title }}</th>
+                    <th>{{ ninth_column_title }}</th>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<swal
+  #SwalSessionExpired
+  title="Warning"
+  text="Your session has expired! please login to continue."
+  icon="warning"
+  [showCancelButton]="false"
+  [showConfirmButton]="false"
+  [timer]="3500"
+  [focusCancel]="true"
+>
+</swal>

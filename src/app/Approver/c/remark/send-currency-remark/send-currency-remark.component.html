@@ -1,0 +1,112 @@
+<div class="row">
+  <div class="col-12">
+    <div class="page-title-box">
+      <app-navigator-upper></app-navigator-upper>
+      <h4 class="page-title">Send Remark</h4>
+      <div class="card">
+        <div class="card-body">
+          <h4 class="header-title">currency remark</h4>
+          <div class="continer mb-4">
+            <div class="row mt-4">
+              <form (ngSubmit)="onSubmit()" [formGroup]="registerForm">
+                <div class="row">
+                  <div class="mb-3 col-sm-12">
+                    <label for="title" class="form-label">Title</label>
+                    <div class="input-group">
+                      <input
+                        class="form-control"
+                        type="text"
+                        id="title"
+                        formControlName="title"
+                        placeholder="Title"
+                        autocomplete="off"
+                        style="width:100%"
+
+                      />
+                      <div
+                        class="valid-feedback"
+                        *ngIf="
+                        registerForm.controls['title'].touched  && registerForm.controls['title'].valid
+                        "
+                      >
+                        Looks good!
+                      </div>
+                      <div
+                        class="invalid-feedback"
+                        *ngIf="submitted && registerForm.controls['title'].errors?.['required']"
+                      >
+                        Please enter title.
+                      </div>
+                      <div
+                        class="invalid-feedback"
+                        *ngIf="submitted && registerForm.controls['title'].errors?.['minlength']"
+                      >
+                        At least 2 Characters.
+                      </div>
+                      <div
+                        class="invalid-feedback"
+                        *ngIf="submitted && registerForm.controls['title'].errors?.['maxlength']"
+                      >
+                        At most 30 Characters.
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+                
+                <div class="mb-2 col-sm-12">
+                  <div class="form-group mt-1">
+                      <quill-editor [placeholder]="'Description........'" 
+                      formControlName="description"
+                      style="width:100%"
+                         ></quill-editor>
+                  </div>
+                  <div class="valid-feedback"
+                      *ngIf="registerForm.controls['description'].touched && registerForm.controls['description'].valid">
+                      Looks good!
+                  </div>
+                  <div class="invalid-feedback"
+                      *ngIf="submitted && registerForm.controls['description'].errors?.['required']">
+                      Please enter description for the remark.
+                  </div>
+              </div>
+ 
+              
+                <div class="mb-3 text-center">
+                  <button
+                    class="btn btn-primary"
+                    type="submit"
+                  >
+                    Submit
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<swal
+  #SuccessSwalSendRemark
+  title="Success"
+  text="Remark sent successfully!"
+  icon="success"
+  [showCancelButton]="true"
+  [showConfirmButton]="false"
+  [timer]="4500"
+  [focusCancel]="true"
+></swal>
+<swal
+  #SwalSessionExpired
+  title="Warning"
+  text="Your session has expired! please login to continue."
+  icon="warning"
+  [showCancelButton]="false"
+  [showConfirmButton]="false"
+  [timer]="3500"
+  [focusCancel]="true"
+>
+</swal>

@@ -1,0 +1,170 @@
+<hr>
+<div class="row d-flex">
+  <div class="col-sm-3" style="margin-top: 4px;">
+    <div class="form-floating">
+      <input type="text" placeholder="Datepicker" class="form-control" autocomplete="off" id="floatingInput"
+        bsDatepicker [bsValue]="initialMinDateValue" [bsConfig]="{ adaptivePosition: true }"
+        (bsValueChange)="minDateChange($event)">
+      <label for="floatingInput"> Select Min Remove Date</label>
+    </div>
+  </div>
+  <div class="col-sm-3" style="margin-top: 4px;">
+    <div class="form-floating">
+      <input type="text" placeholder="Datepicker" class="form-control" autocomplete="off" id="floatingInput"
+        bsDatepicker [bsValue]="initialMaxDateValue" [bsConfig]="{ adaptivePosition: true }"
+        (bsValueChange)="maxDateChange($event)" required>
+      <label for="floatingInput"> Select Max Remove Date</label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <table datatable [dtOptions]="dtOptions_mms_waiting" id="mms_waiting_table"
+        class="table table-bordered dt-responsive nowrap w-100">
+        <tfoot class="foot-datatables-container">
+          <tr style="border-top: none !important">
+            <th class="foot-datatables">
+              <div class="form-floating">
+                <input type="text" id="floatingInput" [ngModel]="mms_waiting_input_0"
+                  id="{{ mms_waiting_first_column_id }}" name="search-id"
+                  class="form-control {{ mms_waiting_first_column_id }} _id" />
+                <label for="floatingInput">Id</label>
+              </div>
+            </th>
+            <th class="foot-datatables">
+              <div class="form-floating">
+                <input type="text" id="floatingInput" id="{{ mms_waiting_second_column_id }}" name="search-last-name"
+                  [ngModel]="mms_waiting_input_1" class="form-control {{ mms_waiting_second_column_id }} _middlename" />
+
+                <label for="floatingInput">Category</label>
+              </div>
+            </th>
+            <th class="foot-datatables">
+              <div class="form-floating">
+                <input type="text" id="floatingInput" id="{{ mms_waiting_third_column_id }}" name="search-last-name"
+                  [ngModel]="mms_waiting_input_2" class="form-control {{ mms_waiting_third_column_id }} _middlename" />
+
+                <label for="floatingInput">grn_date</label>
+              </div>
+            </th>
+            <th class="foot-datatables">
+              <div class="form-floating">
+                <input type="text" id="floatingInput" id="{{ mms_waiting_fourth_column_id }}" name="search-first-name"
+                  [ngModel]="mms_waiting_input_3" class="form-control {{ mms_waiting_fourth_column_id }} _firstname" />
+
+                <label for="floatingInput">main_pg</label>
+              </div>
+            </th>
+            <th class="foot-datatables">
+              <div class="form-floating">
+                <input type="text" id="floatingInput" id="{{ mms_waiting_fifth_column_id }}" name="search-last-name"
+                  [ngModel]="mms_waiting_input_4" class="form-control {{ mms_waiting_fifth_column_id }} _lastname" />
+
+                <label for="floatingInput">Removed date</label>
+              </div>
+            </th>
+            <th class="foot-datatables">
+              <div class="form-floating">
+                <input type="text" id="floatingInput" id="{{ mms_waiting_sixth_column_id }}" name="search-last-name"
+                  [ngModel]="mms_waiting_input_5" class="form-control {{ mms_waiting_seventh_column_id }} _email" />
+
+                <label for="floatingInput">asset code</label>
+              </div>
+            </th>
+            <th class="foot-datatables">
+              <div class="form-floating">
+                <input type="text" id="floatingInput" id="{{ mms_waiting_seventh_column_id }}" name="search-last-name"
+                  [ngModel]="mms_waiting_input_6" class="form-control {{ mms_waiting_seventh_column_id
+                   }} _phonenumber" />
+
+                <label for="floatingInput">Tag number</label>
+              </div>
+            </th>
+            <th class="foot-datatables">
+              <div class="form-floating">
+                <input type="text" id="floatingInput" id="{{ mms_waiting_eighth_column_id }}" name="search-last-name"
+                  [ngModel]="mms_waiting_input_7" class="form-control {{ mms_waiting_eighth_column_id }} _reg_date" />
+
+                <label for="floatingInput">Quantity</label>
+              </div>
+            </th>
+            <th class="foot-datatables">
+              <div class="form-floating">
+                <input type="text" id="floatingInput" id="{{ mms_waiting_ninth_column_id }}" name="search-last-name"
+                  [ngModel]="mms_waiting_input_8" class="form-control {{ mms_waiting_ninth_column_id }} _reg_date" />
+
+                <label for="floatingInput">Assetdescription</label>
+              </div>
+            </th>
+            <th class="foot-datatables">
+              <div class="form-floating">
+                <input type="text" id="floatingInput" id="{{ mms_waiting_tenth_column_id }}" name="search-last-name"
+                  [ngModel]="mms_waiting_input_9" class="form-control {{ mms_waiting_tenth_column_id }} _reg_date" />
+
+                <label for="floatingInput">Created by</label>
+              </div>
+            </th>
+            <th class="foot-datatables">
+              <div class="form-floating">
+                <input type="text" id="floatingInput" id="{{ mms_waiting_eleventh_column_id }}" name="search-last-name"
+                  [ngModel]="mms_waiting_input_10"
+                  class="form-control {{ mms_waiting_eleventh_column_id }} _reg_date" />
+
+                <label for="floatingInput">Book_value</label>
+              </div>
+            </th>
+            <!-- <th class="foot-datatables">
+                        <div class="form-floating">
+                            <input type="text" id="floatingInput" id="{{ mms_waiting_twelfth_column_id }}"
+                                name="search-last-name" [ngModel]="mms_waiting_input_11"
+                                class="form-control {{ mms_waiting_twelfth_column_id }} _reg_date" />
+
+                            <label for="floatingInput">Branch_name</label>
+                        </div>
+                    </th> -->
+            <th class="foot-datatables">
+              <div class="form-floating">
+                <input type="text" id="floatingInput" id="{{ mms_waiting_thirteenth_column_id }}"
+                  name="search-last-name" [ngModel]="mms_waiting_input_12"
+                  class="form-control {{ mms_waiting_thirteenth_column_id }} _reg_date" />
+
+                <label for="floatingInput">grv_number</label>
+              </div>
+            </th>
+            <th class="foot-datatables">
+              <div class="form-floating">
+                <input type="text" id="floatingInput" id="{{ mms_waiting_fourteenth_column_id }}"
+                  name="search-last-name" [ngModel]="mms_waiting_input_13"
+                  class="form-control {{ mms_waiting_fourteenth_column_id }} _reg_date" />
+
+                <label for="floatingInput">giv_number</label>
+              </div>
+            </th>
+            <th class="foot-datatables">
+              <div class="form-floating">
+                <input type="text" id="floatingInput" id="{{ mms_waiting_fifteenth_column_id }}" name="search-last-name"
+                  [ngModel]="mms_waiting_input_14"
+                  class="form-control {{ mms_waiting_fifteenth_column_id }} _reg_date" />
+
+                <label for="floatingInput">siv_date</label>
+              </div>
+            </th>
+            <!-- <th class="foot-datatables">
+                        <div class="form-floating">
+                            <input type="text" id="floatingInput" id="{{ mms_waiting_sixteenth_column_id }}"
+                                name="search-last-name" [ngModel]="mms_waiting_input_14"
+                                class="form-control {{ mms_waiting_sixteenth_column_id }} _reg_date" />
+
+                            <label for="floatingInput">Old main pg</label>
+                        </div>
+                    </th> -->
+          </tr>
+        </tfoot>
+      </table>
+      <button id="reset_button" class="btn btn-primary" (click)="clearAllSearches()">Reset</button>
+
+    </div>
+  </div>
+
+  <swal #SwalSessionExpired title="Warning" text="Your session has expired! please login to continue." icon="warning"
+    [showCancelButton]="false" [showConfirmButton]="false" [timer]="3500" [focusCancel]="true">
+  </swal>
