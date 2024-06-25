@@ -3763,9 +3763,21 @@ export class ReconManualSpeedComponent implements OnInit {
                   } else {
                     checker_DR_CR += 1;
                   }
-                  data_1_amount_sum += Number(
-                    JSON.stringify(rowData[i].amount, null, 4)
-                  );
+                  
+                  if (rowData[i].dr_cr.toLowerCase().startsWith('cr'))
+                    data_1_amount_sum = Math.abs(
+                      Number(data_1_amount_sum.toFixed(2)) +
+                      Number(JSON.stringify(rowData[i].amount, null, 4))
+                      );
+                  else
+                  data_1_amount_sum = Math.abs(
+                    Number(data_1_amount_sum.toFixed(2)) -
+                    Number(JSON.stringify(rowData[i].amount, null, 4))
+                    );
+
+                  // data_1_amount_sum += Number(
+                  //   JSON.stringify(rowData[i].amount, null, 4)
+                  // );
                   data_1_id.push(rowData[i].id);
                   data_1_type.push(rowData[i].value_date_type);
                   if (i == 0) data_1_reference = rowData[i].reference;
@@ -3801,9 +3813,20 @@ export class ReconManualSpeedComponent implements OnInit {
                 .data()
                 .toArray();
               for (let i = 0; i < rowData.length; i++) {
-                data_2_amount_sum += Number(
-                  JSON.stringify(rowData[i].amount, null, 4)
-                );
+
+                if (rowData[i].dr_cr.toLowerCase().startsWith('cr'))
+                  data_2_amount_sum = Math.abs(
+                    Number(data_2_amount_sum.toFixed(2)) +
+                    Number(JSON.stringify(rowData[i].amount, null, 4))
+                    );
+                else
+                data_2_amount_sum = Math.abs(
+                  Number(data_2_amount_sum.toFixed(2)) -
+                  Number(JSON.stringify(rowData[i].amount, null, 4))
+                  );
+                // data_2_amount_sum += Number(
+                //   JSON.stringify(rowData[i].amount, null, 4)
+                // );
                 data_2_id.push(rowData[i].id);
                 if (i == 0)
                   data_2_additional_data = rowData[i].additional_information;
@@ -3841,20 +3864,13 @@ export class ReconManualSpeedComponent implements OnInit {
               }
               if (data_1_id.length != 0 && data_2_id.length != 0) {
                 if (
-                  data_1_id.length > 1 &&
-                  data_2_id.length == 1 &&
+                  (data_1_id.length > 1 &&data_2_id.length == 1)||
+                  (data_1_id.length == 1 &&data_2_id.length > 1) &&
                   data_1_amount_sum == data_2_amount_sum
                 ) {
                   if (checker_DR_CR != 0) {
                     this.showSelectionErrorOnATS();
-                  } else if (
-                    (rowData1[0].dr_cr.toLowerCase().startsWith('cr') &&
-                      rowData[0].dr_cr.toLowerCase().startsWith('cr')) ||
-                    (rowData1[0].dr_cr.toLowerCase().startsWith('dr') &&
-                      rowData[0].dr_cr.toLowerCase().startsWith('dr'))
-                  ) {
-                    this.showSelectionError();
-                  } else {
+                  }  else {
                     const { value: text } = await Swal.fire({
                       input: 'textarea',
                       inputLabel: 'Reason',
