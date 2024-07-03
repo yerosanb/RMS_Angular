@@ -3765,15 +3765,17 @@ export class ReconManualSpeedComponent implements OnInit {
                   }
                   
                   if (rowData[i].dr_cr.toLowerCase().startsWith('cr'))
-                    data_1_amount_sum = Math.abs(
+                    data_1_amount_sum =
                       Number(data_1_amount_sum.toFixed(2)) +
                       Number(JSON.stringify(rowData[i].amount, null, 4))
-                      );
+                      
                   else
-                  data_1_amount_sum = Math.abs(
+                  data_1_amount_sum = 
                     Number(data_1_amount_sum.toFixed(2)) -
                     Number(JSON.stringify(rowData[i].amount, null, 4))
-                    );
+                    
+
+                  
 
                   // data_1_amount_sum += Number(
                   //   JSON.stringify(rowData[i].amount, null, 4)
@@ -3805,6 +3807,7 @@ export class ReconManualSpeedComponent implements OnInit {
                     }
                 }
               }
+              data_1_amount_sum = Math.abs(Number(data_1_amount_sum))
             });
           } else {
             dtElement.dtInstance.then(async (dtInstance: DataTables.Api) => {
@@ -3815,15 +3818,15 @@ export class ReconManualSpeedComponent implements OnInit {
               for (let i = 0; i < rowData.length; i++) {
 
                 if (rowData[i].dr_cr.toLowerCase().startsWith('cr'))
-                  data_2_amount_sum = Math.abs(
+                  data_2_amount_sum = 
                     Number(data_2_amount_sum.toFixed(2)) +
                     Number(JSON.stringify(rowData[i].amount, null, 4))
-                    );
-                else
-                data_2_amount_sum = Math.abs(
+                    
+                else 
+                data_2_amount_sum = 
                   Number(data_2_amount_sum.toFixed(2)) -
                   Number(JSON.stringify(rowData[i].amount, null, 4))
-                  );
+             
                 // data_2_amount_sum += Number(
                 //   JSON.stringify(rowData[i].amount, null, 4)
                 // );
@@ -3862,15 +3865,15 @@ export class ReconManualSpeedComponent implements OnInit {
                     }
                   }
               }
+              data_2_amount_sum = Math.abs(Number(data_2_amount_sum));
+              console.log("here the amounttttttttt: 1 "  + data_1_amount_sum) 
+              console.log("here the amounttttttttt: 2 "  + data_2_amount_sum) 
               if (data_1_id.length != 0 && data_2_id.length != 0) {
                 if (
                   (data_1_id.length > 1 &&data_2_id.length == 1)||
                   (data_1_id.length == 1 &&data_2_id.length > 1) &&
                   data_1_amount_sum == data_2_amount_sum
                 ) {
-                  if (checker_DR_CR != 0) {
-                    this.showSelectionErrorOnATS();
-                  }  else {
                     const { value: text } = await Swal.fire({
                       input: 'textarea',
                       inputLabel: 'Reason',
@@ -4090,7 +4093,7 @@ export class ReconManualSpeedComponent implements OnInit {
                           }
                         );
                     }
-                  }
+                  
                 } else if (
                   rowData1[0].value_date_type != null &&
                   rowData1[0].value_date_type
@@ -4394,8 +4397,9 @@ export class ReconManualSpeedComponent implements OnInit {
                     this.showErrormessage('There is an amount difference.');
                   }
                 } else if (
-                  data_1_id.length == 1 &&
+                  data_1_id.length == 1 && 
                   data_2_id.length == 1 &&
+                  data_1_amount_sum == data_2_amount_sum &&
                   !data_2_additional_data.includes(data_1_reference.toString())
                 ) {
                   if (
