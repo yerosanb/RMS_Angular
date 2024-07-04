@@ -3870,9 +3870,8 @@ export class ReconManualSpeedComponent implements OnInit {
               console.log("here the amounttttttttt: 2 "  + data_2_amount_sum) 
               if (data_1_id.length != 0 && data_2_id.length != 0) {
                 if (
-                  (data_1_id.length > 1 &&data_2_id.length == 1)||
-                  (data_1_id.length == 1 &&data_2_id.length > 1) &&
-                  data_1_amount_sum == data_2_amount_sum
+                  ((data_1_id.length > 1 && data_2_id.length == 1) ||(data_1_id.length == 1 && data_2_id.length > 1) ||(data_1_id.length >1 && data_2_id.length > 1)) &&
+                   (data_1_amount_sum == data_2_amount_sum)
                 ) {
                     const { value: text } = await Swal.fire({
                       input: 'textarea',
