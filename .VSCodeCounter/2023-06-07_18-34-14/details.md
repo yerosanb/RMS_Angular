@@ -767,7 +767,7 @@ Total : 861 files,  215587 codes, 23876 comments, 13161 blanks, all 252624 lines
 | [src/assets/template_assets/fonts/Nunito-SemiBold.svg](/src/assets/template_assets/fonts/Nunito-SemiBold.svg) | XML | 5,001 | 0 | 1 | 5,002 |
 | [src/assets/template_assets/fonts/dripicons-v2.svg](/src/assets/template_assets/fonts/dripicons-v2.svg) | XML | 209 | 0 | 2 | 211 |
 | [src/assets/template_assets/fonts/unicons.svg](/src/assets/template_assets/fonts/unicons.svg) | XML | 1,080 | 0 | 1,068 | 2,148 |
-| [src/assets/template_assets/images/awash_assets/awash_logo_003.svg](/src/assets/template_assets/images/awash_assets/awash_logo_003.svg) | XML | 1 | 0 | 0 | 1 |
+| [src/assets/template_assets/images/_assets/_logo_003.svg](/src/assets/template_assets/images/_assets/_logo_003.svg) | XML | 1 | 0 | 0 | 1 |
 | [src/assets/template_assets/images/bg-pattern-light.svg](/src/assets/template_assets/images/bg-pattern-light.svg) | XML | 9 | 0 | 0 | 9 |
 | [src/assets/template_assets/images/email-campaign.svg](/src/assets/template_assets/images/email-campaign.svg) | XML | 1 | 0 | 0 | 1 |
 | [src/assets/template_assets/images/features-1.svg](/src/assets/template_assets/images/features-1.svg) | XML | 1 | 0 | 0 | 1 |

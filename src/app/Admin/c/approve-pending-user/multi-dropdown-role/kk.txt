@@ -325,7 +325,7 @@
                             <div style="color: red;" *ngIf="subjectErrorLong">Name too long</div>
                             <div></div>
                         </label>
-                        <!-- endale -->
+                        <!--  -->
                         <div style="position: absolute;
                                     top: 20px;
                                     left: 95%;

@@ -1516,7 +1516,7 @@ function delay(ms: number) {
                         <div class="col-lg-6 col-xl-6">
                             <div class="card">
                                 <div class="card-body">
-                                    <i class='mdi mdi-24px mdi-bank-transfer float-end'></i>
+                                    <i class='mdi mdi-24px mdi--transfer float-end'></i>
                                     <h6 class="text-uppercase mt-0">Transactions</h6>
                                     <h4 class="my-0" id="active-users-count">ATS &nbsp;&nbsp;&nbsp;:&nbsp; <span
                                             class="dashboard-number-text">6,784,457</span></h4>
@@ -1551,7 +1551,7 @@ function delay(ms: number) {
                         <div class="col-md-6">
                             <div class="card">
                                 <div class="card-body" style="height: 304px">
-                                    <i class='mdi mdi-24px mdi-bank-transfer float-end'></i>
+                                    <i class='mdi mdi-24px mdi--transfer float-end'></i>
                                     <h6 class="text-uppercase mt-0">Current Transactions</h6>
                                     <h5 class="my-2 text-center mt-3" id="active-users-count">Core Total
                                         &nbsp;&nbsp;&nbsp;: <span class="dashboard-number-text">6,784</span></h5>

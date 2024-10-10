@@ -2870,7 +2870,7 @@ Npm version bump due to package not being fully updated.
 - Fixed so the pre block format is called preformatted to make it more verbose.
 - Fixed so it's possible to context scope translation strings this isn't needed most of the time.
 - Fixed so the max length of the width/height input fields of the media dialog is 5 instead of 3.
-- Fixed so drag/dropped contents gets properly processed by paste plugin since it's basically a paste. Patch contributed by Greg Fairbanks.
+- Fixed so drag/dropped contents gets properly processed by paste plugin since it's basically a paste. Patch contributed by Greg Fairs.
 - Fixed so shortcut keys for headers is ctrl+alt+[1-9] instead of ctrl+[1-9] since these are for switching tabs in the browsers.
 - Fixed so "u" doesn't get converted into a span element by the legacy input filter. Since this is now a valid HTML5 element.
 - Fixed font families in order to provide appropriate web-safe fonts.

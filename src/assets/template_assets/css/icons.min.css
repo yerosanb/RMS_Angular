@@ -5575,37 +5575,37 @@
 .mdi-bandcamp::before {
   content: "\F0675";
 }
-.mdi-bank::before {
+.mdi-::before {
   content: "\F0070";
 }
-.mdi-bank-check::before {
+.mdi--check::before {
   content: "\F1655";
 }
-.mdi-bank-minus::before {
+.mdi--minus::before {
   content: "\F0DB0";
 }
-.mdi-bank-off::before {
+.mdi--off::before {
   content: "\F1656";
 }
-.mdi-bank-off-outline::before {
+.mdi--off-outline::before {
   content: "\F1657";
 }
-.mdi-bank-outline::before {
+.mdi--outline::before {
   content: "\F0E80";
 }
-.mdi-bank-plus::before {
+.mdi--plus::before {
   content: "\F0DB1";
 }
-.mdi-bank-remove::before {
+.mdi--remove::before {
   content: "\F0DB2";
 }
-.mdi-bank-transfer::before {
+.mdi--transfer::before {
   content: "\F0A27";
 }
-.mdi-bank-transfer-in::before {
+.mdi--transfer-in::before {
   content: "\F0A28";
 }
-.mdi-bank-transfer-out::before {
+.mdi--transfer-out::before {
   content: "\F0A29";
 }
 .mdi-barcode::before {
@@ -14776,7 +14776,7 @@
 .mdi-microsoft-onenote::before {
   content: "\F0747";
 }
-.mdi-microsoft-outlook::before {
+.mdi-microsoft-::before {
   content: "\F0D22";
 }
 .mdi-microsoft-powerpoint::before {
@@ -16438,10 +16438,10 @@
 .mdi-pig-variant-outline::before {
   content: "\F1678";
 }
-.mdi-piggy-bank::before {
+.mdi-piggy-::before {
   content: "\F1007";
 }
-.mdi-piggy-bank-outline::before {
+.mdi-piggy--outline::before {
   content: "\F1679";
 }
 .mdi-pill::before {

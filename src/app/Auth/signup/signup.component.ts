@@ -97,7 +97,7 @@ export class SignupComponent {
           Validators.required,
           Validators.maxLength(320),
           Validators.email,
-          Validators.pattern('^[a-zA-Z0-9_.]+@awashbank.com$'),
+          Validators.pattern('^[a-zA-Z0-9_.]+@.com$'),
          
         ]),
         phonenumber: new FormControl('', [Validators.required]),

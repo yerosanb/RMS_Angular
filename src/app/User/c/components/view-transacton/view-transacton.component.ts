@@ -13,7 +13,7 @@ export class ViewTransactonComponent implements OnInit {
   private loginpopup!: ElementRef;
   showOption:boolean=true;
 
-  tabTitles = ['ALL ', 'RTGS ', 'ERCA ', 'Bank to bank ', 'IS/OS','PAS Core Reversal Matched','Payable','Recievable','Edited & Reasons'];
+  tabTitles = ['ALL ', 'RTGS ', 'ERCA ', ' to  ', 'IS/OS','PAS Core Reversal Matched','Payable','Recievable','Edited & Reasons'];
 
   constructor(public localStorageService: LocalStorageService,
               public authService:AuthService) {

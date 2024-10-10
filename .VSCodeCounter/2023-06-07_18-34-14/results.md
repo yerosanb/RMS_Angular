@@ -306,7 +306,7 @@ Summary / [Details](details.md) / [Diff Summary](diff.md) / [Diff Details](diff-
 | assets\\template_assets\\fonts | 6 | 21,726 | 0 | 1,074 | 22,800 |
 | assets\\template_assets\\images | 12 | 20 | 0 | 0 | 20 |
 | assets\\template_assets\\images (Files) | 11 | 19 | 0 | 0 | 19 |
-| assets\\template_assets\\images\\awash_assets | 1 | 1 | 0 | 0 | 1 |
+| assets\\template_assets\\images\\_assets | 1 | 1 | 0 | 0 | 1 |
 | assets\\template_assets\\js | 90 | 19,992 | 3,114 | 4,528 | 27,634 |
 | assets\\template_assets\\js (Files) | 2 | 18,314 | 2,967 | 4,480 | 25,761 |
 | assets\\template_assets\\js\\pages | 41 | 1,080 | 0 | 3 | 1,083 |

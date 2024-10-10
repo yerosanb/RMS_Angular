@@ -116,7 +116,7 @@ Directories
 | assets\template_assets\fonts                                                                                                                     |          6 |     21,726 |          0 |      1,074 |     22,800 |
 | assets\template_assets\images                                                                                                                    |         12 |         20 |          0 |          0 |         20 |
 | assets\template_assets\images (Files)                                                                                                            |         11 |         19 |          0 |          0 |         19 |
-| assets\template_assets\images\awash_assets                                                                                                       |          1 |          1 |          0 |          0 |          1 |
+| assets\template_assets\images\_assets                                                                                                       |          1 |          1 |          0 |          0 |          1 |
 | assets\template_assets\js                                                                                                                        |         90 |     19,992 |      3,114 |      4,528 |     27,634 |
 | assets\template_assets\js (Files)                                                                                                                |          2 |     18,314 |      2,967 |      4,480 |     25,761 |
 | assets\template_assets\js\pages                                                                                                                  |         41 |      1,080 |          0 |          3 |      1,083 |
@@ -257,7 +257,7 @@ Files
 | c:\Users\Fire and Ice\Documents\GitHub\frontend2\src\assets\template_assets\fonts\Nunito-SemiBold.svg                                            | XML        |      5,001 |          0 |          1 |      5,002 |
 | c:\Users\Fire and Ice\Documents\GitHub\frontend2\src\assets\template_assets\fonts\dripicons-v2.svg                                               | XML        |        209 |          0 |          2 |        211 |
 | c:\Users\Fire and Ice\Documents\GitHub\frontend2\src\assets\template_assets\fonts\unicons.svg                                                    | XML        |      1,080 |          0 |      1,068 |      2,148 |
-| c:\Users\Fire and Ice\Documents\GitHub\frontend2\src\assets\template_assets\images\awash_assets\awash_logo_003.svg                               | XML        |          1 |          0 |          0 |          1 |
+| c:\Users\Fire and Ice\Documents\GitHub\frontend2\src\assets\template_assets\images\_assets\_logo_003.svg                               | XML        |          1 |          0 |          0 |          1 |
 | c:\Users\Fire and Ice\Documents\GitHub\frontend2\src\assets\template_assets\images\bg-pattern-light.svg                                          | XML        |          9 |          0 |          0 |          9 |
 | c:\Users\Fire and Ice\Documents\GitHub\frontend2\src\assets\template_assets\images\email-campaign.svg                                            | XML        |          1 |          0 |          0 |          1 |
 | c:\Users\Fire and Ice\Documents\GitHub\frontend2\src\assets\template_assets\images\features-1.svg                                                | XML        |          1 |          0 |          0 |          1 |

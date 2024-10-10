@@ -730,7 +730,7 @@ export class ViewApprovedRejectUserComponent   implements OnInit, AfterViewInit,
           text:
             'Are you sure? you are about to reset the password for ' +
             selected_user_name +
-            '. The new password will be sent to the user via their outlook address.',
+            '. The new password will be sent to the user via their  address.',
           icon: 'warning',
           showCancelButton: true,
           confirmButtonColor: '#d33',
